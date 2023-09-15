@@ -1,0 +1,61 @@
+:root {
+  --primary-dark-cyan: #041720;
+  --primary-cyan: #0f3d3a;
+  --primary-aqua: #2f9c7f;
+  --primary-black: #000000;
+  --primary-white: #ffffff;
+  --secondary-dark-blue: #0b1016;
+  --secondary-gray: #f6f6f6;
+  --terciary-light-green: #557a46;
+  --suport-success: #28a745;
+  --suport-warning: #ffc107;
+  --suport-danger: #dc3545;
+}
+
+.bg-primary-dark-cyan {
+  background-color: var(--primary-dark-cyan);
+}
+
+.color-primary-dark-cyan {
+  color: var(--primary-dark-cyan);
+}
+
+.bg-primary-cyan {
+  background-color: var(--primary-cyan);
+}
+
+.color-primary-cyan {
+  color: var(--primary-cyan);
+}
+
+.bg-primary-aqua {
+  background-color: var(--primary-aqua);
+}
+
+.color-primary-aqua {
+  color: var(--primary-aqua);
+}
+
+.bg-secondary-dark-blue {
+  background-color: var(--secondary-dark-blue);
+}
+
+.color-secondary-dark-blue {
+  color: var(--secondary-dark-blue);
+}
+
+.bg-secondary-gray {
+  background-color: var(--secondary-gray);
+}
+
+.color-secondary-gray {
+  color: var(--secondary-gray);
+}
+
+.bg-terciary-light-green {
+  background-color: var(--terciary-light-green);
+}
+
+.color-terciary-light-green {
+  color: var(--terciary-light-green);
+}
