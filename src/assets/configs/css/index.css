@@ -1,3 +1,11 @@
+@import "./color.css";
+@import "./loader.css";
+@import "../fonts/fonts.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: var(--font-quicksand);
+}
