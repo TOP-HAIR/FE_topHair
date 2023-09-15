@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <div className="p-6">
-        <app works />
+        <>app works</>
         <Button>Primary</Button>
       </div>
     </>
