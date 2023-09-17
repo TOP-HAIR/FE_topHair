@@ -13,3 +13,5 @@ export const Loader = () => {
     </>
   );
 };
+
+export default Loader;

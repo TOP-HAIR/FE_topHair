@@ -1,6 +1,7 @@
 @import "./color.css";
 @import "./loader.css";
 @import "../fonts/fonts.css";
+@import "./home-page.css";
 
 @tailwind base;
 @tailwind components;
@@ -8,4 +9,28 @@
 
 * {
   font-family: var(--font-quicksand);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
