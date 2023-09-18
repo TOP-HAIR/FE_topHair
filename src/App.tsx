@@ -1,8 +1,11 @@
-import { useState } from "react";
-import Button from "@mui/material/Button";
+import HomePage from "./pages/home-page/home-page";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <HomePage />
+    </>
+  );
 }
 
 export default App;
