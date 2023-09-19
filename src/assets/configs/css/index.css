@@ -2,6 +2,7 @@
 @import "./loader.css";
 @import "../fonts/fonts.css";
 @import "./home-page.css";
+@import "./login-page.css";
 
 @tailwind base;
 @tailwind components;
