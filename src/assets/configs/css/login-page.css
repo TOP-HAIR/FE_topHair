@@ -2,3 +2,13 @@
     width: 450px;
     height: 500px;
 }
+
+.input-login{
+    border: none;
+    outline: none;
+    padding-left: 5px;
+}
+
+.input-login::placeholder{
+    color: rgb(141, 141, 141);
+}
