@@ -5,6 +5,13 @@ import HomePage from "../../pages/home-page/home-page";
 
 import PrivateRoutes from "../private-router/private-router";
 import HomeEstablishment from "../../pages/home-establishment/tabs/home-establishment";
+import HomeList from "../../pages/home-establishment/tabs/establishment-home/home-list/components/home-list";
+import HomeCalendar from "../../pages/home-establishment/tabs/establishment-calendar/establishment-calendar";
+import HomeReports from "../../pages/home-establishment/tabs/establishment-reports/establishment-reports";
+import HomeShop from "../../pages/home-establishment/tabs/establishment-shop/establishment-shop";
+import HomeService from "../../pages/home-establishment/tabs/establishment-service/establishment-service";
+import HomeComments from "../../pages/home-establishment/tabs/establishment-comments/establishment-comments";
+import HomeEmployees from "../../pages/home-establishment/tabs/establishment-employees/establishment-employees";
 
 export default function PublicRoutes() {
   return (
@@ -13,13 +20,70 @@ export default function PublicRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/load" element={<Loader />} />
         <Route
-          path="/home-estabelecimento"
+          path="/establishment"
           element={
             <PrivateRoutes>
               <HomeEstablishment />
             </PrivateRoutes>
           }
-        />
+        >
+          <Route
+            path="/establishment/home"
+            element={
+              <PrivateRoutes>
+                <HomeList />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="/establishment/calendar"
+            element={
+              <PrivateRoutes>
+                <HomeCalendar />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="/establishment/reports"
+            element={
+              <PrivateRoutes>
+                <HomeReports />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="/establishment/shop"
+            element={
+              <PrivateRoutes>
+                <HomeShop />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="/establishment/service"
+            element={
+              <PrivateRoutes>
+                <HomeService />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="/establishment/comments"
+            element={
+              <PrivateRoutes>
+                <HomeComments />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="/establishment/employees"
+            element={
+              <PrivateRoutes>
+                <HomeEmployees />
+              </PrivateRoutes>
+            }
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

@@ -10,7 +10,7 @@ import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import PeopleIcon from "@mui/icons-material/People";
 import LogoutIcon from "@mui/icons-material/Logout";
 import TopHair from "../../../assets/configs/img/logo/top-hair-logo-white-version 2.svg";
-import HomeList from "./establishment-home/home-list/components/home-list";
+import { Link, Outlet } from "react-router-dom";
 
 export default function HomeEstablishment() {
   return (
@@ -21,42 +21,64 @@ export default function HomeEstablishment() {
             <div className="flex justify-center">
               <img className="h-40" src={TopHair} alt="Logo da TopHair" />
             </div>
-            <a
+            <Link
               aria-label="dashboard"
               className="px-4 py-3 text-gray-100 flex items-center space-x-4 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 cursor-pointer"
+              to="/establishment/home"
             >
               <HomeIcon />
               <span className="-mr-1 font-medium">Inicio</span>
-            </a>
+            </Link>
 
-            <a className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer">
+            <Link
+              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              to="/establishment/calendar"
+            >
               <CalendarMonthIcon />
               <span>Calendário</span>
-            </a>
-            <a className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer">
+            </Link>
+            <Link
+              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              to="/establishment/reports"
+            >
               <AssignmentIcon />
               <span>Relatórios</span>
-            </a>
-            <a className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer">
+            </Link>
+            <Link
+              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              to="/establishment/shop"
+            >
               <StoreIcon />
               <span>Estabelecimento</span>
-            </a>
-            <a className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer">
+            </Link>
+            <Link
+              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              to="/establishment/service"
+            >
               <BuildCircleIcon />
               <span>Serviços</span>
-            </a>
-            <a className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer">
+            </Link>
+            <Link
+              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              to="/establishment/comments"
+            >
               <InsertCommentIcon />
               <span>Comentários</span>
-            </a>
-            <a className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer">
+            </Link>
+            <Link
+              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              to="/establishment/employees"
+            >
               <PeopleIcon />
               <span>Funcionários</span>
-            </a>
-            <a className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer">
+            </Link>
+            <Link
+              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              to="/"
+            >
               <LogoutIcon />
               <span>Logout</span>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -69,7 +91,7 @@ export default function HomeEstablishment() {
               <div className="space-x-4"></div>
             </div>
           </nav>
-          <HomeList />
+          <Outlet />
         </div>
       </div>
     </>

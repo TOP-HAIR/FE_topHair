@@ -9,54 +9,58 @@ import Paper from "@mui/material/Paper";
 import { Card } from "@mui/material";
 
 function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
+  Name: string,
+  ScheduledDate: Date,
+  Schedule: String,
+  Status: string
 ) {
-  return { name, calories, fat, carbs, protein };
+  return { Name, ScheduledDate, Schedule, Status };
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
+  createData("Item 1", new Date(), "Weekly", "Pending"),
+  createData("Item 2", new Date(), "Weekly", "Completed"),
+  createData("Item 3", new Date(), "Monthly", "Pending"),
+  createData("Item 4", new Date(), "Daily", "Completed"),
+  createData("Item 5", new Date(), "Weekly", "Pending"),
+  createData("Item 6", new Date(), "Monthly", "Completed"),
+  createData("Item 7", new Date(), "Daily", "Pending"),
+  createData("Item 8", new Date(), "Weekly", "Completed"),
+  createData("Item 9", new Date(), "Monthly", "Pending"),
+  createData("Item 10", new Date(), "Daily", "Completed"),
 ];
 
 export default function HomeList() {
   return (
     <>
-      <div className="h-screen w-full">
+      <div className="w-full">
         <Card className="m-4">
-          <h2 className="m-6 text-3xl font-bold">Últimos Agendamentos</h2>
+          <h2 className="m-6 text-2xl font-bold">Últimos Agendamentos</h2>
           <div className="m-6">
             <TableContainer className="shadow-table" component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
-                  <TableRow>
-                    <TableCell>Dessert (100g serving)</TableCell>
-                    <TableCell align="right">Calories</TableCell>
-                    <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                    <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                    <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                  <TableRow className="font-bold">
+                    <TableCell align="center">Nome</TableCell>
+                    <TableCell align="center">Data Marcada</TableCell>
+                    <TableCell align="center">Horário</TableCell>
+                    <TableCell align="center">Status</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {rows.map((row) => (
                     <TableRow
-                      key={row.name}
+                      key={row.Name}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
-                      <TableCell component="th" scope="row">
-                        {row.name}
+                      <TableCell align="center" component="th" scope="row">
+                        {row.Name}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="center">
+                        {row.ScheduledDate.toLocaleDateString()}
+                      </TableCell>
+                      <TableCell align="center">{row.Schedule}</TableCell>
+                      <TableCell align="center">{row.Status}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
