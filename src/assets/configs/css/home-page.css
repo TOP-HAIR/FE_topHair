@@ -39,6 +39,11 @@
   background: rgba(0, 0, 0, 0.3);
 }
 
+.page-background-comments {
+  background: linear-gradient(180deg, #041720 40.1%, #000 100%);
+  box-shadow: 0px -3px 30px 22px #041720;
+}
+
 .bg-image-home {
   background: linear-gradient(90deg, #fff 22.75%, rgba(255, 255, 255, 0) 69.51%),
     url("../img/banner-home.png");

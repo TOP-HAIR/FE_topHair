@@ -5,7 +5,7 @@ import Comments from "./main/commets";
 import ProjectTeam from "./main/teams";
 import Button from "@mui/material/Button";
 
-function HomeMain() {
+export default function HomeMain() {
   return (
     <>
       <div className="relative">
@@ -54,5 +54,3 @@ function HomeMain() {
     </>
   );
 }
-
-export default HomeMain;
