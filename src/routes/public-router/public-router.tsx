@@ -12,6 +12,9 @@ import HomeShop from "../../pages/home-establishment/tabs/establishment-shop/est
 import HomeService from "../../pages/home-establishment/tabs/establishment-service/establishment-service";
 import HomeComments from "../../pages/home-establishment/tabs/establishment-comments/establishment-comments";
 import HomeEmployees from "../../pages/home-establishment/tabs/establishment-employees/establishment-employees";
+import ReportList from "../../pages/home-establishment/tabs/establishment-reports/reports-list/report-list";
+import ReportDashboard from "../../pages/home-establishment/tabs/establishment-reports/reports-dashboard/report-dashboard";
+import ServiceList from "../../pages/home-establishment/tabs/establishment-service/service-list/service-list";
 
 export default function PublicRoutes() {
   return (
@@ -50,7 +53,24 @@ export default function PublicRoutes() {
                 <HomeReports />
               </PrivateRoutes>
             }
-          />
+          >
+            <Route
+              path="/establishment/reports"
+              element={
+                <PrivateRoutes>
+                  <ReportList />
+                </PrivateRoutes>
+              }
+            />
+            <Route
+              path="/establishment/reports/dashboard"
+              element={
+                <PrivateRoutes>
+                  <ReportDashboard />
+                </PrivateRoutes>
+              }
+            />
+          </Route>
           <Route
             path="/establishment/shop"
             element={
@@ -66,7 +86,16 @@ export default function PublicRoutes() {
                 <HomeService />
               </PrivateRoutes>
             }
-          />
+          >
+            <Route
+              path="/establishment/service"
+              element={
+                <PrivateRoutes>
+                  <ServiceList />
+                </PrivateRoutes>
+              }
+            />
+          </Route>
           <Route
             path="/establishment/comments"
             element={

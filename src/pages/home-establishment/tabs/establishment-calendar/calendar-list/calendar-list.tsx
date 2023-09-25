@@ -32,37 +32,36 @@ const rows = [
 export default function CalendarList() {
   return (
     <>
-      <div className="m-6">
-        <TableContainer className="shadow-table" component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow className="font-bold">
-                <TableCell align="center">Nome</TableCell>
-                <TableCell align="center">Data Marcada</TableCell>
-                <TableCell align="center">Horário</TableCell>
-                <TableCell align="center">Status</TableCell>
+      <TableContainer className="shadow-table" component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow className="font-bold">
+              <TableCell align="center">Nome</TableCell>
+              <TableCell align="center">Data Marcada</TableCell>
+              <TableCell align="center">Horário</TableCell>
+              <TableCell align="center">Status</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow
+                key={row.Name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="center" component="th" scope="row">
+                  {row.Name}
+                </TableCell>
+                <TableCell align="center">
+                  {row.ScheduledDate.toLocaleDateString()}
+                </TableCell>
+                <TableCell align="center">{row.Schedule}</TableCell>
+                <TableCell align="center">{row.Status}</TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.Name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell align="center" component="th" scope="row">
-                    {row.Name}
-                  </TableCell>
-                  <TableCell align="center">
-                    {row.ScheduledDate.toLocaleDateString()}
-                  </TableCell>
-                  <TableCell align="center">{row.Schedule}</TableCell>
-                  <TableCell align="center">{row.Status}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      S
     </>
   );
 }
