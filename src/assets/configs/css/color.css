@@ -59,3 +59,27 @@
 .color-terciary-light-green {
   color: var(--terciary-light-green) !important;
 }
+
+.bg-success {
+  background-color: var(--suport-success) !important;
+}
+
+.color-success {
+  color: var(--suport-success) !important;
+}
+
+.bg-danger {
+  background-color: var(--suport-danger) !important;
+}
+
+.color-danger {
+  color: var(--suport-danger) !important;
+}
+
+.bg-warning {
+  background-color: var(--suport-warning) !important;
+}
+
+.color-warning {
+  color: var(--suport-warning) !important;
+}

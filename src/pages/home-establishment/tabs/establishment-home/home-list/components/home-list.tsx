@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Card } from "@mui/material";
-
+import "../../../../../../assets/configs/css/home-page.css";
 function createData(
   Name: string,
   ScheduledDate: Date,
@@ -33,7 +33,7 @@ const rows = [
 export default function HomeList() {
   return (
     <>
-      <div className="w-full">
+      <div className="w-full ">
         <Card className="m-4">
           <h2 className="m-6 text-2xl font-bold">Últimos Agendamentos</h2>
           <div className="m-6">

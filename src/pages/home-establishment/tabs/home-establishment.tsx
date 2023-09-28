@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../../assets/configs/css/home-establishment.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
@@ -13,6 +13,11 @@ import TopHair from "../../../assets/configs/img/logo/top-hair-logo-white-versio
 import { Link, Outlet } from "react-router-dom";
 
 export default function HomeEstablishment() {
+  const [activeLink, setActiveLink] = useState("");
+
+  const handleLinkClick = (linkName: string) => {
+    setActiveLink(linkName);
+  };
   return (
     <>
       <div className="flex h-screen">
@@ -23,51 +28,86 @@ export default function HomeEstablishment() {
             </div>
             <Link
               aria-label="dashboard"
-              className="px-4 py-3 text-gray-100 flex items-center space-x-4 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 cursor-pointer"
+              className={`px-4 py-3 text-gray-100 flex items-center space-x-4 group cursor-pointer ${
+                activeLink === "home"
+                  ? "button-link-establishment text-white rounded-lg"
+                  : "hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 hover:text-white hover:rounded-lg"
+              }`}
               to="/establishment/home"
+              onClick={() => handleLinkClick("home")}
             >
               <HomeIcon />
               <span className="-mr-1 font-medium">Inicio</span>
             </Link>
 
             <Link
-              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              className={`px-4 py-3 text-gray-100 flex items-center space-x-4 group cursor-pointer ${
+                activeLink === "calendar"
+                  ? "button-link-establishment text-white rounded-lg"
+                  : "hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 hover:text-white hover:rounded-lg"
+              }`}
               to="/establishment/calendar"
+              onClick={() => handleLinkClick("calendar")}
             >
               <CalendarMonthIcon />
               <span>Calendário</span>
             </Link>
             <Link
-              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              className={`px-4 py-3 text-gray-100 flex items-center space-x-4 group cursor-pointer ${
+                activeLink === "reports"
+                  ? "button-link-establishment text-white rounded-lg"
+                  : "hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 hover:text-white hover:rounded-lg"
+              }`}
               to="/establishment/reports"
+              onClick={() => handleLinkClick("reports")}
             >
               <AssignmentIcon />
               <span>Relatórios</span>
             </Link>
             <Link
-              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              className={`px-4 py-3 text-gray-100 flex items-center space-x-4 group cursor-pointer ${
+                activeLink === "shop"
+                  ? "button-link-establishment text-white rounded-lg"
+                  : "hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 hover:text-white hover:rounded-lg"
+              }`}
               to="/establishment/shop"
+              onClick={() => handleLinkClick("shop")}
             >
               <StoreIcon />
               <span>Estabelecimento</span>
             </Link>
             <Link
-              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              className={`px-4 py-3 text-gray-100 flex items-center space-x-4 group cursor-pointer ${
+                activeLink === "service"
+                  ? "button-link-establishment text-white rounded-lg"
+                  : "hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 hover:text-white hover:rounded-lg"
+              }`}
               to="/establishment/service"
+              onClick={() => handleLinkClick("service")}
             >
               <BuildCircleIcon />
               <span>Serviços</span>
             </Link>
             <Link
-              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              className={`px-4 py-3 text-gray-100 flex items-center space-x-4 group cursor-pointer ${
+                activeLink === "comments"
+                  ? "button-link-establishment text-white rounded-lg"
+                  : "hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 hover:text-white hover:rounded-lg"
+              }`}
               to="/establishment/comments"
+              onClick={() => handleLinkClick("comments")}
             >
               <InsertCommentIcon />
               <span>Comentários</span>
             </Link>
             <Link
-              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 hover:rounded-lg hover:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 group cursor-pointer"
+              className={`px-4 py-3 text-gray-100 flex items-center space-x-4 group cursor-pointer ${
+                activeLink === "employees"
+                  ? "button-link-establishment text-white rounded-lg"
+                  : "hover:bg-gradient-to-r hover:from-sky-600 hover:to-cyan-400 hover:text-white hover:rounded-lg"
+              }`}
               to="/establishment/employees"
+              onClick={() => handleLinkClick("employees")}
             >
               <PeopleIcon />
               <span>Funcionários</span>

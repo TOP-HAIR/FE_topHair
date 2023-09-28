@@ -68,7 +68,7 @@ export default function Comments() {
           <h2 className="text-3xl text-white font-bold text-center">
             Comentários
           </h2>
-          <div className="">
+          <div>
             <Swiper
               navigation={true}
               loop={true}
@@ -76,7 +76,7 @@ export default function Comments() {
               slidesPerView={1}
             >
               {comments.map((comment, index) => (
-                <SwiperSlide key={index} className="text-white page-layout-1x">
+                <SwiperSlide key={index} className="text-white">
                   <div className="mx-20">
                     {/* Seus dados do comentário aqui */}
                     <img

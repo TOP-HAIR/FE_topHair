@@ -15,6 +15,7 @@ import HomeEmployees from "../../pages/home-establishment/tabs/establishment-emp
 import ReportList from "../../pages/home-establishment/tabs/establishment-reports/reports-list/report-list";
 import ReportDashboard from "../../pages/home-establishment/tabs/establishment-reports/reports-dashboard/report-dashboard";
 import ServiceList from "../../pages/home-establishment/tabs/establishment-service/service-list/service-list";
+import EditPageService from "../../pages/home-establishment/tabs/establishment-service/service-edit-page/service-edit";
 
 export default function PublicRoutes() {
   return (
@@ -92,6 +93,14 @@ export default function PublicRoutes() {
               element={
                 <PrivateRoutes>
                   <ServiceList />
+                </PrivateRoutes>
+              }
+            />
+            <Route
+              path="/establishment/service/edit"
+              element={
+                <PrivateRoutes>
+                  <EditPageService />
                 </PrivateRoutes>
               }
             />
