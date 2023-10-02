@@ -10,7 +10,7 @@ export const Loginpage = () => {
             <div className="h-screen w-screen flex justify-center items-center">
                 <div className="login-modal bg-primary-dark-cyan rounded-lg flex justify-center items-center flex-col">
                     <div className="w-full mt-2">
-                    <a href="/" className="text-white ml-3.5 text-sm text-cyan-400"><u>Voltar para o site</u></a>
+                    <a href="/" className="ml-3.5 text-sm text-cyan-400"><u>Voltar para o site</u></a>
                     </div>
                     <div className="h-full w-full">
                         <div className="w-full flex mt-4 justify-center">
@@ -29,7 +29,7 @@ export const Loginpage = () => {
                              </div>
                              <div className="w-4/5">
                                 <p className="text-white ml-3.5 text-sm mt-2">Ainda não tem uma conta ? <a className="text-cyan-400" href="/"><u>faça seu cadastro aqui</u></a></p>
-                                <button className="w-full bg-primary-cyan h-9 mt-6 rounded-sm" type="button">ENTRAR</button>
+                                <button className="button-login bg-primary-aqua w-full h-9 mt-6 rounded-sm" type="submit">ENTRAR</button>
                              </div>
                         </div>
                     </div>
