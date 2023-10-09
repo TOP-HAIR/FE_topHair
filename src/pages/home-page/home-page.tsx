@@ -1,8 +1,9 @@
 import React from "react";
 import HeaderPage from "./components/header";
 import HomeMain from "./components/main";
+import "../../assets/configs/css/home-page.css";
 
-function HomePage() {
+export default function HomePage() {
   return (
     <>
       <div className="w-auto relative bg-secondary-gray">
@@ -17,5 +18,3 @@ function HomePage() {
     </>
   );
 }
-
-export default HomePage;

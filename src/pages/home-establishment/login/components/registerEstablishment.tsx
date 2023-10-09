@@ -23,14 +23,14 @@ import {
 
 import { useToast } from '@chakra-ui/react'
 import { validEmail, validPassword, validCNPJ } from '../register/components/regex'
-import React from 'react'
+import * as React from 'react'
 import "../../../../assets/configs/css/register-page.css"
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import iconTophair from '../../../../assets/configs/img/logo/white-logo.png';
+import iconTophair from "../../../../assets/configs/img/logo/white-logo.png"
 
 
-export default function Multistep() {
+export default function Multistep(): React.JSX.Element {
   const toast = useToast()
   const [step, setStep] = useState(1)
   const [progress, setProgress] = useState(33.33)
@@ -68,13 +68,13 @@ export default function Multistep() {
   }
 
   const handlesClick = () => {
-    checkErrors();
-    console.log(hasErrors);
+   // checkErrors();
+   // console.log(hasErrors);
 
-    if (hasErrors) {
-      setIsDisabled(true)
-      return
-    }
+   // if (hasErrors) {
+    //  setIsDisabled(true)
+     // return
+    //}
 
     setStep(step + 1)
     if (step === 3) {
@@ -112,7 +112,7 @@ export default function Multistep() {
           <FormLabel fontWeight={'normal'}>
             Email
           </FormLabel>
-          <Input className='input-text-form' size="sm" type="email" placeholder="exemplo@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} autoFocus onBlur={handleBlur} />
+          <Input className='input-text-form' size="sm" type="email" placeholder="exemplo@gmail.com" />
         </FormControl>
 
         <FormControl mt="2%">
@@ -120,7 +120,7 @@ export default function Multistep() {
             Senha
           </FormLabel>
           <InputGroup size="md">
-            <Input className='input-text-form' size="sm" pr="4.5rem" type={show ? 'text' : 'password'} placeholder="**********" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <Input className='input-text-form' size="sm" pr="4.5rem" type={show ? 'text' : 'password'} placeholder="**********" />
             <InputRightElement width="4.5rem">
               <Button className='button-form-show-input' h="1.40rem" size="sm" mb="10%" mr="5%" onClick={handleClick}> {show ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />} </Button>
             </InputRightElement>
@@ -221,9 +221,9 @@ export default function Multistep() {
     )
   }
 
-  const handleBlur = () => {
-    checkErrors()
-  }
+ // const handleBlur = () => {
+  //  checkErrors()
+ // }
 
   return (
     <>
@@ -237,7 +237,6 @@ export default function Multistep() {
         bgColor={"#041720"}
         m="55px auto"
         as="form">
-        <Progress className='form-progress-bar' hasStripe value={progress} colorScheme='teal' display={'none'} mx="5%" isAnimated></Progress>
         {step === 1 ? <Form1 /> : step === 2 ? <Form2 /> : <Form3 />}
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
@@ -256,14 +255,14 @@ export default function Multistep() {
               </Button>
               <Button className='button-form-next'
                 w="6rem"
-                isDisabled={step === 3}
+                isDisabled={step === 2}
                 onClick={() => handlesClick()}
                 textColor={'teal'}
                 variant="ghost">
                 Avançar
               </Button>
             </Flex>
-            {step === 3 ? (
+            {step === 2 ? (
               <Button
                 className='button-form-register'
                 w="7rem"

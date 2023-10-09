@@ -1,4 +1,6 @@
-export const Loader = () => {
+import React from "react";
+
+export default function Loader() {
   return (
     <>
       <div className="w-full bg-primary-dark-cyan h-screen grid justify-items-center flex items-center">
@@ -12,6 +14,4 @@ export const Loader = () => {
       </div>
     </>
   );
-};
-
-export default Loader;
+}
