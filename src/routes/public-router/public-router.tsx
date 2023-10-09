@@ -10,12 +10,13 @@ import HomeCalendar from "../../pages/home-establishment/tabs/establishment-cale
 import HomeReports from "../../pages/home-establishment/tabs/establishment-reports/establishment-reports";
 import HomeShop from "../../pages/home-establishment/tabs/establishment-shop/establishment-shop";
 import HomeService from "../../pages/home-establishment/tabs/establishment-service/establishment-service";
-import HomeComments from "../../pages/home-establishment/tabs/establishment-comments/establishment-comments";
+import HomeComments from "../../pages/home-establishment/tabs/establishment-comments/comments-list/establishment-comments";
 import HomeEmployees from "../../pages/home-establishment/tabs/establishment-employees/establishment-employees";
 import ReportList from "../../pages/home-establishment/tabs/establishment-reports/reports-list/report-list";
 import ReportDashboard from "../../pages/home-establishment/tabs/establishment-reports/reports-dashboard/report-dashboard";
 import ServiceList from "../../pages/home-establishment/tabs/establishment-service/service-list/service-list";
 import EditPageService from "../../pages/home-establishment/tabs/establishment-service/service-edit-page/service-edit";
+import HomeHire from "../../pages/home-establishment/tabs/establishment-hire/establishment-hire";
 
 export default function PublicRoutes() {
   return (
@@ -118,6 +119,14 @@ export default function PublicRoutes() {
             element={
               <PrivateRoutes>
                 <HomeEmployees />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="/establishment/hireEmployees"
+            element={
+              <PrivateRoutes>
+                <HomeHire />
               </PrivateRoutes>
             }
           />
