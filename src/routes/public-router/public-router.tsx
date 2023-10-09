@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Loader from "../../components/loader";
 import HomePage from "../../pages/home-page/home-page";
-
+import ChakraProvider from "@chakra-ui/react";
 import PrivateRoutes from "../private-router/private-router";
 import HomeEstablishment from "../../pages/home-establishment/tabs/home-establishment";
 import HomeList from "../../pages/home-establishment/tabs/establishment-home/home-list/components/home-list";
@@ -17,6 +17,7 @@ import ReportDashboard from "../../pages/home-establishment/tabs/establishment-r
 import ServiceList from "../../pages/home-establishment/tabs/establishment-service/service-list/service-list";
 import EditPageService from "../../pages/home-establishment/tabs/establishment-service/service-edit-page/service-edit";
 import HomeHire from "../../pages/home-establishment/tabs/establishment-hire/establishment-hire";
+import RegisterEstablishment from "../../pages/home-establishment/login/components/registerEstablishment";
 
 export default function PublicRoutes() {
   return (
@@ -131,6 +132,14 @@ export default function PublicRoutes() {
             }
           />
         </Route>
+        <Route
+          path="/register"
+          element={
+            <ChakraProvider>
+              <RegisterEstablishment />
+            </ChakraProvider>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

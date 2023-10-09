@@ -36,7 +36,7 @@ export default function HomeMain() {
                   </Button>
                   <Button
                     className="uppercase bg-primary-aqua w-64 text-lg font-semibold"
-                    variant="contained"
+                    variant="contained" 
                   >
                     Entrar como empresa
                   </Button>
