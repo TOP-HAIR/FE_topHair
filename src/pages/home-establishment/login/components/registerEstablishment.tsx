@@ -282,7 +282,7 @@ export default function Multistep(): React.JSX.Element {
           m="55px auto"
           as="form"
         >
-          {step === 1 ? <Form1 /> : step === 2 ? <Form2 /> : <Form3 />}
+          {step === 1 ? <Form1 /> : <Form2 />}
           <ButtonGroup mt="5%" w="100%">
             <Flex w="100%" justifyContent="space-between">
               <Flex
