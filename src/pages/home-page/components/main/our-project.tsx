@@ -1,6 +1,6 @@
 import React from "react";
 
-export const OurProject = () => {
+export default function OurProject() {
   return (
     <>
       <div id="our-project" className="py-32 grid-home-width mx-auto">
@@ -125,6 +125,4 @@ export const OurProject = () => {
       </div>
     </>
   );
-};
-
-export default OurProject;
+}

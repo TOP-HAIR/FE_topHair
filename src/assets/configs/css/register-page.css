@@ -1,68 +1,45 @@
 @import "/src/assets/configs/css/color.css";
 
-.button-form-next{
-    color: white !important;
-    border-radius: 2px !important;
-    height: 35px !important;
+.button-form {
+  color: white !important;
+  border-radius: 2px !important;
+  background-color: var(--primary-aqua) !important;
+  height: 35px !important;
 }
 
-.button-form-next:hover{
-    color: var(--primary-aqua) !important;
+.button-form:hover {
+  color: var(--primary-aqua) !important;
+  background-color: white !important;
 }
 
-.button-form-back{
-    color: white !important;
-    border-radius: 2px !important;
-    background-color: var(--primary-aqua) !important;
-    height: 35px !important;
+.button-form-show-input {
+  border-radius: 2px !important;
 }
 
-.button-form-back:hover{
-    color: var(--primary-aqua) !important;
-    background-color: white !important;
+.form-progress-bar {
+  border-radius: 20px !important;
 }
 
-.button-form-register{
-    background-color: var(--primary-aqua) !important;
-    color: white !important;
-    border-radius: 2px !important; 
-    height: 35px !important;
+.input-text-form {
+  background-color: white !important;
+  border-radius: 2px !important;
+  color: black !important;
+  font-weight: bold !important;
 }
 
-.button-form-register:hover{
-    color: var(--primary-aqua) !important;
-    background-color: white !important;
+.input-text-form::placeholder {
+  font-weight: 400 !important;
 }
 
-.button-form-show-input{
-    background-color: var(--primary-aqua) !important;
-    border-radius: 2px !important;
+.form-helper-text {
+  font-size: 14px !important;
+  color: rgb(206, 206, 206) !important;
 }
 
-.form-progress-bar{
-    border-radius: 20px !important;
-}
-
-.input-text-form{
-    background-color: white !important;
-    border-radius: 2px !important;
-    color: black !important;
-    font-weight: bold !important;
-}
-
-.input-text-form::placeholder{
-    font-weight: 400 !important;
-}
-
-.form-helper-text{
-    font-size: 14px !important;
-    color: rgb(206, 206, 206) !important;
-}
-
-.form-register{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    border-radius: 4px;
-    height: 550px;
+.form-register {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 4px;
+  min-height: 550px;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-export const ProjectTeam = () => {
+export default function ProjectTeam() {
   return (
     <>
       <div className="bg-black page-layout-1x">
@@ -14,6 +14,4 @@ export const ProjectTeam = () => {
       </div>
     </>
   );
-};
-
-export default ProjectTeam;
+}

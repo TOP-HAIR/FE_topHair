@@ -1,7 +1,7 @@
 import React from "react";
 import TopHairLogo from "../../../assets/configs/img/logo/top-hair-logo.svg";
 
-export const HeaderPage = () => {
+export default function HeaderPage() {
   return (
     <>
       <div className="relative grid-home-width mx-auto z-10 ">
@@ -29,6 +29,4 @@ export const HeaderPage = () => {
       </div>
     </>
   );
-};
-
-export default HeaderPage;
+}

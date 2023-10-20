@@ -6,6 +6,9 @@ import ProjectTeam from "./main/teams";
 import Button from "@mui/material/Button";
 
 export default function HomeMain() {
+  function redirectEstablishment() {
+    window.location.href = "/login";
+  }
   return (
     <>
       <div className="relative">
@@ -36,7 +39,8 @@ export default function HomeMain() {
                   </Button>
                   <Button
                     className="uppercase bg-primary-aqua w-64 text-lg font-semibold"
-                    variant="contained" 
+                    variant="contained"
+                    onClick={redirectEstablishment}
                   >
                     Entrar como empresa
                   </Button>
