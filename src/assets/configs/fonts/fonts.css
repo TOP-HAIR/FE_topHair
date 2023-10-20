@@ -4,3 +4,7 @@
   --font-quicksand: "Quicksand", sans-serif;
   --font-dm-sans: "DM Sans", sans-serif;
 }
+
+.font-family-dm-sans {
+  font-family: var(--font-dm-sans);
+}
