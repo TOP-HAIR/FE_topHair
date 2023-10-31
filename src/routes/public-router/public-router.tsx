@@ -87,7 +87,7 @@ const RegisterEstablishment = lazy(
     )
 );
 const Loginpage = lazy(
-  () => import("../../pages/home-establishment/login/components/login")
+  () => import("../../pages/home-establishment/login/loginPage")
 );
 
 export default function PublicRoutes() {
@@ -117,103 +117,40 @@ export default function PublicRoutes() {
                 </PrivateRoutes>
               }
             >
-              <Route
-                path="/establishment/home"
-                element={
-                  <PrivateRoutes>
-                    <HomeList />
-                  </PrivateRoutes>
-                }
-              />
+              <Route path="/establishment/home" element={<HomeList />} />
               <Route
                 path="/establishment/calendar"
-                element={
-                  <PrivateRoutes>
-                    <HomeCalendar />
-                  </PrivateRoutes>
-                }
+                element={<HomeCalendar />}
               />
-              <Route
-                path="/establishment/reports"
-                element={
-                  <PrivateRoutes>
-                    <HomeReports />
-                  </PrivateRoutes>
-                }
-              >
-                <Route
-                  path="/establishment/reports"
-                  element={
-                    <PrivateRoutes>
-                      <ReportList />
-                    </PrivateRoutes>
-                  }
-                />
+              <Route path="/establishment/reports" element={<HomeReports />}>
+                <Route path="/establishment/reports" element={<ReportList />} />
                 <Route
                   path="/establishment/reports/dashboard"
-                  element={
-                    <PrivateRoutes>
-                      <ReportDashboard />
-                    </PrivateRoutes>
-                  }
+                  element={<ReportDashboard />}
                 />
               </Route>
-              <Route
-                path="/establishment/shop"
-                element={
-                  <PrivateRoutes>
-                    <HomeShop />
-                  </PrivateRoutes>
-                }
-              />
-              <Route
-                path="/establishment/service"
-                element={
-                  <PrivateRoutes>
-                    <HomeService />
-                  </PrivateRoutes>
-                }
-              >
+              <Route path="/establishment/shop" element={<HomeShop />} />
+              <Route path="/establishment/service" element={<HomeService />}>
                 <Route
                   path="/establishment/service"
-                  element={
-                    <PrivateRoutes>
-                      <ServiceList />
-                    </PrivateRoutes>
-                  }
+                  element={<ServiceList />}
                 />
                 <Route
-                  path="/establishment/service/edit"
-                  element={
-                    <PrivateRoutes>
-                      <EditPageService />
-                    </PrivateRoutes>
-                  }
+                  path="/establishment/service/edit/:id"
+                  element={<EditPageService />}
                 />
               </Route>
               <Route
                 path="/establishment/comments"
-                element={
-                  <PrivateRoutes>
-                    <HomeComments />
-                  </PrivateRoutes>
-                }
+                element={<HomeComments />}
               />
               <Route
                 path="/establishment/employees"
-                element={
-                  <PrivateRoutes>
-                    <HomeEmployees />
-                  </PrivateRoutes>
-                }
+                element={<HomeEmployees />}
               />
               <Route
                 path="/establishment/hireEmployees"
-                element={
-                  <PrivateRoutes>
-                    <HomeHire />
-                  </PrivateRoutes>
-                }
+                element={<HomeHire />}
               />
             </Route>
             <Route path="/login" element={<Loginpage />} />
