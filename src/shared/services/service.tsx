@@ -10,6 +10,7 @@ const createService = (data: ServiceEntity) => {
       return response.data;
     })
     .catch((error) => {
+      console.log(error);
       throw error;
     });
 };
@@ -22,6 +23,7 @@ const getService = () => {
       return response.data;
     })
     .catch((error) => {
+      console.log(error);
       throw error;
     });
 };
@@ -34,6 +36,7 @@ const getServiceById = (serviceId: ServiceEntity) => {
       return response.data;
     })
     .catch((error) => {
+      console.log(error);
       throw error;
     });
 };
@@ -46,6 +49,7 @@ const updateService = (serviceId: number, data: ServiceEntity) => {
       return response.data;
     })
     .catch((error) => {
+      console.log(error);
       throw error;
     });
 };
@@ -58,6 +62,7 @@ const deleteService = (serviceId: number) => {
       return response.data;
     })
     .catch((error) => {
+      console.log(error);
       throw error;
     });
 };

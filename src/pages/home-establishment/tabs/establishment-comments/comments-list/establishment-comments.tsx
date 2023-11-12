@@ -1,8 +1,8 @@
 import React from "react";
 import { Card } from "@mui/material";
 import { useState, useEffect } from "react";
-import Comment from "../../../../../entity/comments";
-import comments from "../../../../../services/comment";
+import Comment from "../../../../../shared/entity/comments";
+import comments from "../../../../../shared/services/comment";
 import CommentService from "./components/comment-service";
 
 export default function HomeComments() {
@@ -24,8 +24,8 @@ export default function HomeComments() {
   }, []);
   return (
     <>
-      <div className="w-full overflow-auto">
-        <Card className="m-4 h-screen !overflow-auto">
+      <div className="w-full h-full">
+        <Card className="h-full m-5">
           <h2 className="m-6 text-2xl font-bold">Comentários</h2>
           <div className="m-6 flex flex-wrap gap-x-5 gap-y-4">
             {comment.map((comment) => (

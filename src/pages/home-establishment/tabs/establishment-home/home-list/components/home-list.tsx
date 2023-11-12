@@ -33,8 +33,8 @@ const rows = [
 export default function HomeList() {
   return (
     <>
-      <div className="w-full ">
-        <Card className="m-4">
+      <div className="w-full h-full">
+        <Card className="h-full m-5">
           <h2 className="m-6 text-2xl font-bold">Últimos Agendamentos</h2>
           <div className="m-6">
             <TableContainer className="shadow-table" component={Paper}>
@@ -51,7 +51,9 @@ export default function HomeList() {
                   {rows.map((row) => (
                     <TableRow
                       key={row.Name}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
                     >
                       <TableCell align="center" component="th" scope="row">
                         {row.Name}
