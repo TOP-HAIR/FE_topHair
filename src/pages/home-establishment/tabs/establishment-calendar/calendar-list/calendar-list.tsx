@@ -61,7 +61,6 @@ export default function CalendarList() {
           </TableBody>
         </Table>
       </TableContainer>
-      S
     </>
   );
 }

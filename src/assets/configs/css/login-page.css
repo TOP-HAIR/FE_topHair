@@ -1,28 +1,27 @@
 @import "/src/assets/configs/css/color.css";
 
-.login-modal{
-    width: 450px;
-    height: 500px;
+.form-modal {
+  width: 450px;
+  min-height: 500px;
 }
 
-.input-login{
-    border: none;
-    outline: none;
-    padding-left: 5px;
+.input-login {
+  border: none;
+  outline: none;
+  padding-left: 5px;
 }
 
-.input-login::placeholder{
-    color: rgb(141, 141, 141);
+.input-login::placeholder {
+  color: rgb(141, 141, 141);
 }
 
-.button-login{
-    color: white;
-    border-color: var(--primary-aqua);
+.button-login {
+  color: white;
+  border-color: var(--primary-aqua);
 }
 
-.button-login:hover{
-    background-color: var(--primary-white) !important;
-    border: 1px solid var(--primary-white) !important;
-    color: var(--primary-black);
-    transition: 0.3s;
+.button-login:hover {
+  background-color: var(--primary-white) !important;
+  color: var(--primary-black);
+  transition: 0.3s;
 }

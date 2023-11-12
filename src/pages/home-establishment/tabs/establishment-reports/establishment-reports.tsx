@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 export default function HomeReports() {
   return (
     <>
-      <div className="w-full">
+      <div className="w-full h-full">
         <Outlet />
       </div>
     </>

@@ -1,5 +1,5 @@
 import React from "react";
-import Comment from "../../../../../../entity/comments";
+import Comment from "../../../../../../shared/entity/comments";
 
 export default function CommentService({ comment }: { comment: Comment }) {
   return (
