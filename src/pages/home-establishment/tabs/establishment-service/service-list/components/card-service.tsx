@@ -6,9 +6,11 @@ import Service from "../../../../../../shared/entity/service";
 export default function CardService({
   service,
   onDelete,
+  linkEdit,
 }: {
   service: Service;
   onDelete: () => void;
+  linkEdit: () => void;
 }) {
   return (
     <>
@@ -28,7 +30,7 @@ export default function CardService({
         </p>
       </div>
       <div className="absolute top-3 right-3 gap-2 flex ">
-        <BorderColorIcon className="cursor-pointer" />
+        <BorderColorIcon className="cursor-pointer" onClick={linkEdit} />
         <DeleteIcon className="cursor-pointer" onClick={onDelete} />
       </div>
     </>

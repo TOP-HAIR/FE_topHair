@@ -24,7 +24,7 @@ export default function HomeComments() {
   }, []);
   return (
     <>
-      <div className="w-full h-full">
+      <section className="w-full h-full">
         <Card className="h-full m-5">
           <h2 className="m-6 text-2xl font-bold">Comentários</h2>
           <div className="m-6 flex flex-wrap gap-x-5 gap-y-4">
@@ -38,7 +38,7 @@ export default function HomeComments() {
             ))}
           </div>
         </Card>
-      </div>
+      </section>
     </>
   );
 }
