@@ -33,7 +33,8 @@ const rows = [
 export default function HomeList() {
   return (
     <>
-      <div className="w-full h-full">
+      {" "}
+      <section className="w-full h-full">
         <Card className="h-full m-5">
           <h2 className="m-6 text-2xl font-bold">Últimos Agendamentos</h2>
           <div className="m-6">
@@ -70,7 +71,7 @@ export default function HomeList() {
             </TableContainer>
           </div>
         </Card>
-      </div>
+      </section>
     </>
   );
 }

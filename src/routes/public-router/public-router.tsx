@@ -3,18 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Loader from "../../components/loader";
 import HomePage from "../../pages/home-page/home-page";
 import PrivateRoutes from "../private-router/private-router";
-// import HomeList from "../../pages/home-establishment/tabs/establishment-home/home-list/components/home-list";
-// import HomeCalendar from "../../pages/home-establishment/tabs/establishment-calendar/establishment-calendar";
-// import HomeReports from "../../pages/home-establishment/tabs/establishment-reports/establishment-reports";
-// import ReportList from "../../pages/home-establishment/tabs/establishment-reports/reports-list/report-list";
-// import HomeShop from "../../pages/home-establishment/tabs/establishment-shop/establishment-shop";
-// import HomeService from "../../pages/home-establishment/tabs/establishment-service/establishment-service";
-// import ServiceList from "../../pages/home-establishment/tabs/establishment-service/service-list/service-list";
-// import EditPageService from "../../pages/home-establishment/tabs/establishment-service/service-edit-page/service-edit";
-// import HomeEmployees from "../../pages/home-establishment/tabs/establishment-employees/establishment-employees";
-// import HomeComments from "../../pages/home-establishment/tabs/establishment-comments/comments-list/establishment-comments";
-// import HomeHire from "../../pages/home-establishment/tabs/establishment-hire/establishment-hire";
-// import ReportDashboard from "../../pages/home-establishment/tabs/establishment-reports/reports-dashboard/report-dashboard";
+import ErrorPage404 from "../../pages/ErrorPage404";
 const HomeList = lazy(
   () =>
     import(
@@ -87,7 +76,6 @@ const ReportDashboard = lazy(
       "../../pages/home-establishment/tabs/establishment-reports/reports-dashboard/report-dashboard"
     )
 );
-// ----
 const HomeEstablishment = lazy(
   () => import("../../pages/home-establishment/tabs/home-establishment")
 );
@@ -118,6 +106,7 @@ export default function PublicRoutes() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<ErrorPage404 />} />
             <Route path="load" element={<Loader />} />
 
             <Route

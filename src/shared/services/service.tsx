@@ -15,7 +15,6 @@ const createService = (data: ServiceEntity) => {
     });
 };
 
-// Função para buscar todos os itens
 const getService = () => {
   return httpClient
     .get(serviceUrl)
@@ -28,7 +27,6 @@ const getService = () => {
     });
 };
 
-// Função para buscar um item por ID
 const getServiceById = (serviceId: ServiceEntity) => {
   return httpClient
     .get(`${serviceUrl}/${serviceId}`)
@@ -41,7 +39,6 @@ const getServiceById = (serviceId: ServiceEntity) => {
     });
 };
 
-// Função para atualizar um item por ID
 const updateService = (serviceId: number, data: ServiceEntity) => {
   return httpClient
     .put(`${serviceUrl}/${serviceId}`, data)

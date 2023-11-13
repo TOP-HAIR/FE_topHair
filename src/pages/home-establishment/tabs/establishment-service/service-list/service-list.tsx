@@ -10,12 +10,21 @@ import {
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Service from "../../../../../shared/entity/service";
+import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
+import { useNavigate } from "react-router-dom";
 
 export default function ServiceList() {
   const [services, setServices] = useState<Service[]>([]);
+  const navigate = useNavigate();
+
+  const linkNavigate = async (serviceId: number) => {
+    navigateToPage(
+      navigate,
+      `/establishment/service/edit/cod_servico=${serviceId}`
+    );
+  };
 
   useEffect(() => {
-    // Função para buscar e listar serviços
     async function listarServicos() {
       try {
         const serviceList = await getService();
@@ -59,32 +68,31 @@ export default function ServiceList() {
 
   return (
     <>
-      <div className="w-full h-full">
-        <Card className="m-5 p-6 h-full">
-          <div className="flex justify-between flex-wrap">
-            <h2 className="text-2xl font-bold">Serviços do Estabelecimento</h2>
-            <Link to="/establishment/service/edit">
-              <Button className="bg-terciary-light-green" variant="contained">
-                + Adicionar Serviço
-              </Button>
-            </Link>
-          </div>
+      <Card className="m-5 p-6 h-full">
+        <div className="flex justify-between flex-wrap">
+          <h2 className="text-2xl font-bold">Serviços do Estabelecimento</h2>
+          <Link to="/establishment/service/edit">
+            <Button className="bg-terciary-light-green" variant="contained">
+              + Adicionar Serviço
+            </Button>
+          </Link>
+        </div>
 
-          <div className="my-8 flex flex-wrap gap-x-5 gap-y-4">
-            {services.map((service) => (
-              <div
-                key={service.id}
-                className="bg-white min-w-96 w-80 grid rounded card-service p-4 relative grow"
-              >
-                <CardService
-                  service={service}
-                  onDelete={() => deletarService(service.id)}
-                />
-              </div>
-            ))}
-          </div>
-        </Card>
-      </div>
+        <div className="my-8 flex flex-wrap gap-x-5 gap-y-4">
+          {services.map((service) => (
+            <div
+              key={service.id}
+              className="bg-white min-w-96 w-80 grid rounded card-service p-4 relative grow"
+            >
+              <CardService
+                service={service}
+                onDelete={() => deletarService(service.id)}
+                linkEdit={() => linkNavigate(service.id)}
+              />
+            </div>
+          ))}
+        </div>
+      </Card>
     </>
   );
 }
