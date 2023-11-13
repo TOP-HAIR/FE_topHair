@@ -49,6 +49,10 @@ export default function Login() {
     }
   };
 
+  const inputSemEspaco = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.value = e.target.value.replace(/\s+/g, "");
+  };
+
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const trimmedValue = event.target.value.trim();
     event.target.value = trimmedValue.trim();
@@ -92,7 +96,7 @@ export default function Login() {
                   {...register("email", {
                     required: "Campo é Obrigatório",
                   })}
-                  onChange={handleEmailChange}
+                  onInput={inputSemEspaco}
                   error={Boolean(errors.email)}
                   helperText={errors.email?.message}
                 />

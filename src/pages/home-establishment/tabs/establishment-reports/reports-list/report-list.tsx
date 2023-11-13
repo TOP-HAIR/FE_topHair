@@ -95,7 +95,7 @@ export default function ReportList() {
   };
   return (
     <>
-      <Card className="h-full m-5">
+      <Card className="m-5">
         <h2 className="m-6 text-2xl font-bold">Relatório do Estabelecimento</h2>
         <div className="m-6">
           <TableContainer className="shadow-table" component={Paper}>
