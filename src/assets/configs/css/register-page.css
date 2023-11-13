@@ -1,0 +1,45 @@
+@import "/src/assets/configs/css/color.css";
+
+.button-form {
+  color: white !important;
+  border-radius: 2px !important;
+  background-color: var(--primary-aqua) !important;
+  height: 35px !important;
+}
+
+.button-form:hover {
+  color: var(--primary-aqua) !important;
+  background-color: white !important;
+}
+
+.button-form-show-input {
+  border-radius: 2px !important;
+}
+
+.form-progress-bar {
+  border-radius: 20px !important;
+}
+
+.input-text-form {
+  background-color: white !important;
+  border-radius: 2px !important;
+  color: black !important;
+  font-weight: bold !important;
+}
+
+.input-text-form::placeholder {
+  font-weight: 400 !important;
+}
+
+.form-helper-text {
+  font-size: 14px !important;
+  color: rgb(206, 206, 206) !important;
+}
+
+.form-register {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 4px;
+  min-height: 550px;
+}
