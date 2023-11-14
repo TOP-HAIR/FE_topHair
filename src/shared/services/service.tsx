@@ -1,9 +1,10 @@
-import httpClient from "./apiUrl";
+import { send } from "./apiUrl";
+import httpClient from "../services/apiUrl";
 import ServiceEntity from "../entity/service";
 
 const serviceUrl = "/service";
 
-const createService = (data: ServiceEntity) => {
+const postService = (data: ServiceEntity) => {
   return httpClient
     .post(serviceUrl, data)
     .then((response) => {
@@ -13,6 +14,10 @@ const createService = (data: ServiceEntity) => {
       console.log(error);
       throw error;
     });
+};
+
+const postTeste = (data: ServiceEntity) => {
+  return send("POST", serviceUrl, data);
 };
 
 const getService = () => {
@@ -65,7 +70,7 @@ const deleteService = (serviceId: number) => {
 };
 
 export {
-  createService,
+  postService,
   getService,
   getServiceById,
   updateService,

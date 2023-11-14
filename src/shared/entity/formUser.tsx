@@ -6,7 +6,13 @@ export interface FormProps {
 
 export interface UserLogin {
   email: string;
-  password: string;
+  senha: string;
+}
+
+export interface UserInformation {
+  cod_usuario: number;
+  email: string;
+  token: string;
 }
 
 export interface AddressData {

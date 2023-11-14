@@ -4,7 +4,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { viaCEP } from "../../../../shared/services/ExternalApis/viaCep";
 import { TextField, Link } from "@mui/material";
 import { validateCepFormat } from "../../../../shared/hooks/utils/validateInput";
-import { AddressData } from "../../../../shared/entity/form";
+import { AddressData } from "../../../../shared/entity/formUser";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage } from "../../../../shared/hooks/utils/navigatePage";
 
