@@ -267,7 +267,7 @@ export default function HomeEstablishment() {
             width: { sm: `calc(100% - ${drawerWidth}px)` },
           }}
         >
-          <div className="w-full h-full overflow-auto">
+          <div className="w-full min-h-full overflow-auto">
             <nav className="h-16 bg-white border-b border-gray-300">
               <div className="h-full flex justify-between items-center px-5">
                 <button id="menuBtn">
