@@ -1,7 +1,7 @@
 import RequestResponse from "../entity/RequestResponse";
 import httpClient from "../services/apiUrl";
 
-const post = async (requisicaoHttp: RequestResponse) => {
+const post = (requisicaoHttp: RequestResponse) => {
   if (requisicaoHttp.url === undefined) {
     throw new Error("A URL da requisição HTTP é indefinida.");
   }
@@ -10,7 +10,7 @@ const post = async (requisicaoHttp: RequestResponse) => {
     throw new Error("Dados indefinidos ou nulos.");
   }
 
-  return await httpClient
+  return httpClient
     .post(requisicaoHttp.url, requisicaoHttp.data)
     .then((response) => {
       return response.data;
@@ -21,15 +21,16 @@ const post = async (requisicaoHttp: RequestResponse) => {
     });
 };
 
-const get = async (requisicaoHttp: RequestResponse) => {
+const get = (requisicaoHttp: RequestResponse) => {
   if (requisicaoHttp.url === undefined) {
     throw new Error("A URL da requisição HTTP é indefinida.");
   }
+  // console.log(requisicaoHttp);
 
-  return await httpClient
+  return httpClient
     .get(requisicaoHttp.url)
     .then((response) => {
-      return response.data;
+      return response;
     })
     .catch((error) => {
       console.log(error);
@@ -49,7 +50,7 @@ const update = async (requisicaoHttp: RequestResponse) => {
   return await httpClient
     .put(requisicaoHttp.url, requisicaoHttp.data)
     .then((response) => {
-      return response.data;
+      return response;
     })
     .catch((error) => {
       console.log(error);

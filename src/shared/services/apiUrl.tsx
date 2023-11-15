@@ -11,11 +11,6 @@ import {
   deleteReq,
 } from "../services/RequestResponseValidation";
 
-const requisicaoHttp: RequestResponse = {
-  url: "",
-  data: [],
-  headers: "",
-};
 let env: string = "";
 
 const urlDoProjeto: string = window.location.href;
@@ -43,28 +38,29 @@ httpClient.interceptors.request.use(
   }
 );
 
-export const send = (
-  type_requisition?: String,
+export const send = async (
+  type_requisition?: string,
   url?: string,
-  data?: [],
+  data?: any[],
   headers?: string
-) => {
+): Promise<any> => {
+  const requisicaoHttp: RequestResponse = {
+    url: url,
+    data: data,
+    headers: headers,
+  };
+
   switch (type_requisition) {
     case StatusRequestResponseEnum.GET:
-      get(requisicaoHttp);
-      break;
+      return await get(requisicaoHttp);
     case StatusRequestResponseEnum.POST:
-      post(requisicaoHttp);
-      break;
+      return await post(requisicaoHttp);
     case StatusRequestResponseEnum.PUT:
-      update(requisicaoHttp);
-      break;
+      return await update(requisicaoHttp);
     case StatusRequestResponseEnum.PATCH:
-      patch(requisicaoHttp);
-      break;
+      return await patch(requisicaoHttp);
     case StatusRequestResponseEnum.DELETE:
-      deleteReq(requisicaoHttp);
-      break;
+      return await deleteReq(requisicaoHttp);
     default:
       throw new Error("Request não autorizado.");
   }

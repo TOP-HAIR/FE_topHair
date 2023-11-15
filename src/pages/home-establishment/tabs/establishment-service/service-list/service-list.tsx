@@ -1,21 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "@mui/material";
 import CardService from "./components/card-service";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import {
-  getService,
-  deleteService,
-} from "../../../../../shared/services/service";
-import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ApiService } from "../../../../../shared/services/service";
 import Swal from "sweetalert2";
 import Service from "../../../../../shared/entity/service";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
-import { useNavigate } from "react-router-dom";
 
 export default function ServiceList() {
   const [services, setServices] = useState<Service[]>([]);
   const navigate = useNavigate();
+  const apiService = new ApiService();
 
   const linkNavigate = async (serviceId: number) => {
     navigateToPage(
@@ -27,12 +23,13 @@ export default function ServiceList() {
   useEffect(() => {
     async function listarServicos() {
       try {
-        const serviceList = await getService();
-        setServices(serviceList);
+        const response = await apiService.getListaService();
+        setServices(response.data);
       } catch (error) {
         console.error("Erro ao buscar serviços:", error);
       }
     }
+
     listarServicos();
   }, []);
 
@@ -49,7 +46,7 @@ export default function ServiceList() {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          deleteService(serviceId);
+          apiService.deleteService(serviceId);
 
           const updatedServices = services.filter(
             (service) => service.id !== serviceId
