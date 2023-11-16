@@ -6,7 +6,9 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { UserLogin } from "@/shared/entity/form";
+import { UserLogin } from "../../../shared/entity/formUser";
+import { getUser } from "../../../shared/services/user";
+// import { userInfo } from "@/routes/private-router/private-router";
 import {
   TextField,
   Link,
@@ -58,8 +60,14 @@ export default function Login() {
     event.target.value = trimmedValue.trim();
   };
 
-  const onSubmit: SubmitHandler<UserLogin> = (data) =>
-    alert(JSON.stringify(data));
+  const onSubmit: SubmitHandler<UserLogin> = async (data) => {
+    try {
+      const response = await getUser(data);
+      // userInfo(response, data.email);
+    } catch (error) {
+      console.error("Erro ao chamar o endpoint:", error);
+    }
+  };
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -100,10 +108,7 @@ export default function Login() {
                   error={Boolean(errors.email)}
                   helperText={errors.email?.message}
                 />
-                <FormControl
-                  error={Boolean(errors.password)}
-                  variant="standard"
-                >
+                <FormControl error={Boolean(errors.senha)} variant="standard">
                   <InputLabel htmlFor="standard-adornment-password">
                     Password
                   </InputLabel>
@@ -112,7 +117,7 @@ export default function Login() {
                     type={showPassword ? "text" : "password"}
                     inputRef={passwordInputRef}
                     placeholder="Digite sua Senha"
-                    {...register("password", {
+                    {...register("senha", {
                       required: "Campo é obrigatório",
                     })}
                     aria-describedby="component-error-text"
@@ -129,7 +134,7 @@ export default function Login() {
                     }
                   />
                   <FormHelperText id="component-error-text">
-                    {errors.password && errors.password.message}
+                    {errors.senha && errors.senha.message}
                   </FormHelperText>
                 </FormControl>
               </ThemeProvider>

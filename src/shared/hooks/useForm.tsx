@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormProps } from "@/shared/entity/form";
+import { FormProps } from "@/shared/entity/formUser";
 
 export function useForm(steps: React.ComponentType[]): FormProps {
   const [currentStep, setCurrentStep] = useState(0);
