@@ -10,8 +10,8 @@ export default function FormPage() {
 
   return (
     <>
-      <div className="h-screen w-screen flex justify-center items-center ">
-        <Box className="px-4 py-3 form-modal bg-primary-dark-cyan rounded-lg flex justify-between items-center flex-col gap-4">
+      <div className="min-h-screen w-full flex justify-center items-center ">
+        <Box className="my-5 px-4 py-3 form-modal bg-primary-dark-cyan rounded-lg flex justify-between items-center flex-col gap-4">
           {React.createElement(currentComponent)}
           <div className="px-4 w-full flex flex-col gap-8">
             <div className="w-full gap-6 flex columns-2">
