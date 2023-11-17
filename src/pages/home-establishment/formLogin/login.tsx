@@ -8,7 +8,6 @@ import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { UserLogin } from "../../../shared/entity/formUser";
 import { getUser } from "../../../shared/services/user";
-// import { userInfo } from "@/routes/private-router/private-router";
 import {
   TextField,
   Link,
@@ -55,15 +54,9 @@ export default function Login() {
     e.target.value = e.target.value.replace(/\s+/g, "");
   };
 
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const trimmedValue = event.target.value.trim();
-    event.target.value = trimmedValue.trim();
-  };
-
   const onSubmit: SubmitHandler<UserLogin> = async (data) => {
     try {
-      const response = await getUser(data);
-      // userInfo(response, data.email);
+      await getUser(data);
     } catch (error) {
       console.error("Erro ao chamar o endpoint:", error);
     }
