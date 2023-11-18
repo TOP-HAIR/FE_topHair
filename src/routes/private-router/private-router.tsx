@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { UserInformation } from "@/shared/entity/formUser";
+import { UserInformation } from "@/shared/entity/Auth";
 
 // let [user, setUser] = useState<UserInformation[]>([]);
 

@@ -1,5 +1,5 @@
 import httpClient from "./apiUrl";
-import { UserLogin } from "../entity/formUser";
+import { UserLogin } from "../entity/Auth";
 
 const userUrl = "/login";
 

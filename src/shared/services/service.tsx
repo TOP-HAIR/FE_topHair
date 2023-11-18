@@ -1,3 +1,4 @@
+import Service from "../entity/service";
 import { send } from "./apiUrl";
 
 export class ApiService {
@@ -14,5 +15,10 @@ export class ApiService {
   async deleteService(id: number) {
     const url = this.serviceUrl + `/${id}`;
     return await send("DELETE", url);
+  }
+
+  async postService(data: Service) {
+    const url = this.serviceUrl;
+    return await send("POST", url, data);
   }
 }

@@ -1,12 +1,9 @@
-import React from "react";
-import TophairIcon from "../../../../assets/configs/img/logo/white-logo.png";
+import React, { useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { viaCEP } from "../../../../shared/services/ExternalApis/viaCep";
-import { TextField, Link } from "@mui/material";
+import { TextField } from "@mui/material";
 import { validateCepFormat } from "../../../../shared/hooks/utils/validateInput";
-import { AddressData } from "../../../../shared/entity/formUser";
-import { useNavigate } from "react-router-dom";
-import { navigateToPage } from "../../../../shared/hooks/utils/navigatePage";
+import { AddressData, EnderecoData } from "../../../../shared/entity/Auth";
 
 const darkTheme = createTheme({
   palette: {
@@ -14,28 +11,35 @@ const darkTheme = createTheme({
   },
 });
 
-export default function FormRegister2() {
+export default function FormRegister2({
+  data,
+  updateFieldHandler,
+}: EnderecoData) {
   const [cep, setCep] = React.useState("");
   const [cepError, setCepError] = React.useState<string>("");
   const [addressData, setAddressData] = React.useState<AddressData | null>(
     null
   );
-  const navigate = useNavigate();
+
+  const fetchData = async () => {
+    if (data.cep !== "" && data.cep !== null && data.cep !== undefined) {
+      try {
+        const dataCEP = await viaCEP(data.cep);
+
+        setCepError("");
+      } catch (err) {
+        setCepError("CEP não encontrado");
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
       <div className="w-full flex flex-col gap-2">
-        <Link
-          onClick={() => navigateToPage(navigate, "/")}
-          underline="hover"
-          className="cursor-pointer"
-        >
-          Voltar para o site
-        </Link>
-        <div className="w-full flex justify-center">
-          <img className="h-28 w-28" src={TophairIcon} alt="tophair-icon" />
-        </div>
-
         <div className="w-full flex gap-8 flex-col p-4">
           <ThemeProvider theme={darkTheme}>
             <TextField
@@ -44,10 +48,11 @@ export default function FormRegister2() {
               size="medium"
               type="text"
               placeholder="Digite o CEP"
-              value={cep}
+              value={data.cep}
               required
               onChange={(e) => {
                 const newCep = e.target.value;
+                updateFieldHandler("cep", e.target.value);
                 setCep(newCep);
 
                 if (!validateCepFormat(newCep)) {
@@ -58,8 +63,12 @@ export default function FormRegister2() {
               }}
               onBlur={async () => {
                 try {
-                  const data = await viaCEP(cep);
+                  const dataCEP = await viaCEP(cep);
                   setAddressData(data);
+                  updateFieldHandler("logradouro", dataCEP.logradouro);
+                  updateFieldHandler("bairro", dataCEP.bairro);
+                  updateFieldHandler("localidade", dataCEP.localidade);
+                  updateFieldHandler("uf", dataCEP.uf);
                   setCepError("");
                 } catch (err) {
                   setCepError("CEP não encontrado");
@@ -74,7 +83,8 @@ export default function FormRegister2() {
               size="medium"
               type="text"
               placeholder="Digite o Logradouro"
-              value={addressData?.logradouro || ""}
+              value={data.logradouro || ""}
+              onChange={(e) => updateFieldHandler("logradouro", e.target.value)}
               disabled={!addressData?.logradouro}
             />
             <div className="flex gap-4">
@@ -85,7 +95,8 @@ export default function FormRegister2() {
                 size="medium"
                 type="text"
                 placeholder="Digite o Bairro"
-                value={addressData?.bairro || ""}
+                value={data.bairro || ""}
+                onChange={(e) => updateFieldHandler("bairro", e.target.value)}
                 disabled={!addressData?.bairro}
               />
               <TextField
@@ -94,6 +105,8 @@ export default function FormRegister2() {
                 variant="standard"
                 size="medium"
                 type="number"
+                value={data.numero || ""}
+                onChange={(e) => updateFieldHandler("numero", e.target.value)}
                 placeholder="Número"
               />
             </div>
@@ -105,7 +118,8 @@ export default function FormRegister2() {
                 size="medium"
                 type="text"
                 placeholder="Digite o Estado"
-                value={addressData?.uf || ""}
+                value={data.uf || ""}
+                onChange={(e) => updateFieldHandler("uf", e.target.value)}
                 disabled={!addressData?.uf}
               />
               <TextField
@@ -115,7 +129,10 @@ export default function FormRegister2() {
                 size="medium"
                 type="text"
                 placeholder="Digite a Cidade"
-                value={addressData?.localidade || ""}
+                value={data.localidade || ""}
+                onChange={(e) =>
+                  updateFieldHandler("localidade", e.target.value)
+                }
                 disabled={!addressData?.localidade}
               />
             </div>
@@ -124,6 +141,10 @@ export default function FormRegister2() {
               variant="standard"
               size="medium"
               type="text"
+              value={data.complemento || ""}
+              onChange={(e) =>
+                updateFieldHandler("complemento", e.target.value)
+              }
               placeholder="Digite o complemento"
             />
           </ThemeProvider>

@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { UserLogin } from "../../../shared/entity/formUser";
+import { UserLogin } from "../../../shared/entity/Auth";
 import { getUser } from "../../../shared/services/user";
 import {
   TextField,
@@ -50,13 +50,9 @@ export default function Login() {
     }
   };
 
-  const inputSemEspaco = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.value = e.target.value.replace(/\s+/g, "");
-  };
-
   const onSubmit: SubmitHandler<UserLogin> = async (data) => {
     try {
-      await getUser(data);
+      const response = await getUser(data);
     } catch (error) {
       console.error("Erro ao chamar o endpoint:", error);
     }
@@ -97,7 +93,6 @@ export default function Login() {
                   {...register("email", {
                     required: "Campo é Obrigatório",
                   })}
-                  onInput={inputSemEspaco}
                   error={Boolean(errors.email)}
                   helperText={errors.email?.message}
                 />

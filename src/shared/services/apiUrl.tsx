@@ -41,7 +41,7 @@ httpClient.interceptors.request.use(
 export const send = async (
   type_requisition?: string,
   url?: string,
-  data?: any[],
+  data?: any,
   headers?: string
 ): Promise<any> => {
   const requisicaoHttp: RequestResponse = {
