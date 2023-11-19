@@ -1,7 +1,6 @@
 import React from "react";
 import TopHairLogo from "../../assets/configs/img/logo/top-hair-logo.svg";
 import HomeMain from "./components/main";
-import "../../assets/configs/css/home-page.css";
 import Footer from "./components/footer";
 
 export default function HomePage() {
@@ -17,22 +16,26 @@ export default function HomePage() {
           <nav className="absolute h-16 max-md:h-14 bg-white w-full shadow-home-header mt-5">
             <div className="mx-8 h-full flex justify-between space-x-4">
               <div>
-                <img className="h-full" src={TopHairLogo} alt="" />
+                <img
+                  className="h-full"
+                  src={TopHairLogo}
+                  alt="Logo da TopHair"
+                />
               </div>
-              <div className="gap-12 flex items-center uppercase max-md:hidden text-base font-bold">
-                <a className="hover-underline-animation p-3" href="#about-us">
+              <div className="gap-8 flex items-center uppercase max-md:hidden text-base font-bold">
+                <a className="hover-underline-animation p-2" href="#about-us">
                   Sobre nós
                 </a>
                 <a
-                  className="hover-underline-animation p-3"
+                  className="hover-underline-animation p-2"
                   href="#our-project"
                 >
                   Nosso Projeto
                 </a>
-                <a className="hover-underline-animation p-3" href="#comments">
+                <a className="hover-underline-animation p-2" href="#comments">
                   Comentários
                 </a>
-                <a className="hover-underline-animation p-3" href="#teams">
+                <a className="hover-underline-animation p-2" href="#teams">
                   Equipe
                 </a>
               </div>

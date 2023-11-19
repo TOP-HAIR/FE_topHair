@@ -1,8 +1,12 @@
 import React from "react";
-import Comments from "./commets";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
+import { comments, valores } from "../../../shared/hooks/utils/arrayList";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 export default function HomeMain() {
   const navigate = useNavigate();
@@ -32,6 +36,7 @@ export default function HomeMain() {
                   <Button
                     className="uppercase bg-primary-cyan max-w-72 text-md font-semibold"
                     variant="contained"
+                    onClick={() => navigateToPage(navigate, "/client-page")}
                   >
                     Entrar como cliente
                   </Button>
@@ -108,56 +113,49 @@ export default function HomeMain() {
             </div>
           </div>
 
-          <div className="page-background-about-us p-8 max-sm:p-1">
-            <div className="grid-home-width mx-auto text-center grid gap-8">
+          <div className="page-background-about-us sm:p-8 max-sm:py-8">
+            <div className="grid-home-width mx-auto text-center flex flex-col gap-8">
               <h2 className="text-2xl font-bold text-white max-sm:text-2xl">
                 Valores
               </h2>
 
-              <div className="grid grid-cols-3 gap-7 mx-7 ">
-                <div className="flex flex-col text-center gap-3 ">
-                  <img
-                    className="max-h-20 max-sm:h-12"
-                    src="../../../../src/assets/configs/img/svg/Visão.svg"
-                    alt="Icone da Visão da Empresa"
-                  />
-                  <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
-                    Visão
-                  </h3>
-                  <p className="text-white text-xl font-normal font-family-dm-sans max-sm:text-base">
-                    Oferecer uma experiência excepcional para usuários e
-                    estabelecimentos.
-                  </p>
-                </div>
-
-                <div className="flex flex-col text-center gap-3">
-                  <img
-                    className="max-h-20 max-sm:h-12"
-                    src="../../../../src/assets/configs/img/svg/Missão.svg"
-                    alt="Icone da Missão da Empresa"
-                  />
-                  <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg max-sm:text-base">
-                    Missão
-                  </h3>
-                  <p className="text-white text-xl font-normal font-family-dm-sans max-sm:text-base">
-                    Ajudar os estabelecimentos a gerenciar seus agendamentos e
-                    expandir seus negócios.
-                  </p>
-                </div>
-
-                <div className="flex flex-col text-center gap-3">
-                  <img
-                    className="max-h-20 max-sm:h-12"
-                    src="../../../../src/assets/configs/img/svg/Valores.svg"
-                    alt="Icone da Valores da Empresa"
-                  />
-                  <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
-                    Valores
-                  </h3>
-                  <p className="text-white text-xl font-normal font-family-dm-sans max-sm:text-base">
-                    Inovação, excelência e transparência nos negócios.
-                  </p>
-                </div>
+              <div className="grid grid-cols-3 gap-7 mx-7 max-sm:hidden">
+                {valores.map((valor, index) => (
+                  <div key={index} className="flex flex-col text-center gap-3 ">
+                    <img
+                      className="max-h-20 max-sm:h-12"
+                      src={valor.imagem}
+                      alt={valor.alt}
+                    />
+                    <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
+                      {valor.nome}
+                    </h3>
+                    <p className="text-white text-xl font-normal font-family-dm-sans max-sm:text-base">
+                      {valor.texto}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="block sm:hidden w-screen">
+                <Swiper navigation={true} loop={true} modules={[Navigation]}>
+                  {valores.map((valor, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="mx-20 flex flex-col gap-5">
+                        <img
+                          className="max-h-20"
+                          src={valor.imagem}
+                          alt={valor.alt}
+                        />
+                        <h3 className="color-terciary-light-green font-bold drop-shadow-2xl text-lg">
+                          {valor.nome}
+                        </h3>
+                        <p className="text-white font-normal font-family-dm-sans text-base">
+                          {valor.texto}
+                        </p>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               </div>
             </div>
           </div>
@@ -284,7 +282,38 @@ export default function HomeMain() {
             </div>
           </div>
         </div>
-        <Comments />
+        <div className="page-background-comments page-layout-1x">
+          <div className="grid-home-width py-32 mx-auto h-full flex flex-col justify-center gap-24">
+            <h2 className="text-3xl text-white font-bold text-center">
+              Comentários
+            </h2>
+            <div>
+              <Swiper
+                navigation={true}
+                loop={true}
+                modules={[Navigation]}
+                slidesPerView={1}
+              >
+                {comments.map((comment, index) => (
+                  <SwiperSlide key={index} className="text-white">
+                    <div className="mx-20">
+                      <img
+                        className="mx-auto mb-5"
+                        src={`src/assets/configs/img/img-perfil/img-perfil-${index}.png`}
+                        alt={comment.alt}
+                      />
+                      <div className="text-center">
+                        <h3 className="text-2xl mb-6">{comment.name}</h3>
+                        <p className="text-xl mb-14">{comment.text}</p>
+                        <p className="text-xl">{comment.company}</p>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

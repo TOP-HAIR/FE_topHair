@@ -4,6 +4,7 @@ import Loader from "../../components/loader";
 import HomePage from "../../pages/home-page/home-page";
 import PrivateRoutes from "../private-router/private-router";
 import ErrorPage404 from "../../pages/ErrorPage404";
+import HomeUserClient from "../../pages/home-user-client/home-user-client";
 const HomeList = lazy(
   () =>
     import(
@@ -133,6 +134,8 @@ export default function PublicRoutes() {
               <Route path="employees" element={<HomeEmployees />} />
               <Route path="hireEmployees" element={<HomeHire />} />
             </Route>
+
+            <Route path="client-page" element={<HomeUserClient />} />
 
             <Route path="login" element={<Login />} />
             <Route path="form" element={<FormPage />} />
