@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Card } from "@mui/material";
 import "../../../../../../assets/configs/css/home-page.css";
+import LoaderResponse from "@/components/loaderResponse";
 function createData(
   Name: string,
   ScheduledDate: Date,
@@ -31,47 +32,55 @@ const rows = [
 ];
 
 export default function HomeList() {
+  const [loadResponse, setloadResponse] = useState(false);
   return (
     <>
-      {" "}
-      <section className="w-full h-full">
-        <Card className="h-full m-5">
-          <h2 className="m-6 text-2xl font-bold">Últimos Agendamentos</h2>
-          <div className="m-6">
-            <TableContainer className="shadow-table" component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow className="font-bold">
-                    <TableCell align="center">Nome</TableCell>
-                    <TableCell align="center">Data Marcada</TableCell>
-                    <TableCell align="center">Horário</TableCell>
-                    <TableCell align="center">Status</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow
-                      key={row.Name}
-                      sx={{
-                        "&:last-child td, &:last-child th": { border: 0 },
-                      }}
-                    >
-                      <TableCell align="center" component="th" scope="row">
-                        {row.Name}
-                      </TableCell>
-                      <TableCell align="center">
-                        {row.ScheduledDate.toLocaleDateString()}
-                      </TableCell>
-                      <TableCell align="center">{row.Schedule}</TableCell>
-                      <TableCell align="center">{row.Status}</TableCell>
+      {loadResponse ? (
+        <LoaderResponse />
+      ) : (
+        <section className="w-full h-full">
+          <Card className="h-full m-5">
+            <h2 className="m-6 text-2xl font-bold">Últimos Agendamentos</h2>
+            <div className="m-6">
+              <TableContainer className="shadow-table">
+                <Table
+                  sx={{ minWidth: 650, minHeight: 650 }}
+                  aria-label="simple table"
+                >
+                  <TableHead>
+                    <TableRow className="font-bold">
+                      <TableCell align="center">Nome</TableCell>
+                      <TableCell align="center">Data Marcada</TableCell>
+                      <TableCell align="center">Horário</TableCell>
+                      <TableCell align="center">Status</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        </Card>
-      </section>
+                  </TableHead>
+                  <TableBody>
+                    {rows.map((row) => (
+                      <TableRow
+                        key={row.Name}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                          marginBottom: 100,
+                        }}
+                      >
+                        <TableCell align="center" component="th" scope="row">
+                          {row.Name}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.ScheduledDate.toLocaleDateString()}
+                        </TableCell>
+                        <TableCell align="center">{row.Schedule}</TableCell>
+                        <TableCell align="center">{row.Status}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+          </Card>
+        </section>
+      )}
     </>
   );
 }

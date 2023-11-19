@@ -1,13 +1,14 @@
-/* .loaderer {
-  color: #fff;
+@import "../css/color.css";
+.loaderer {
+  color: var(--primary-aqua);
   display: inline-block;
   position: relative;
   font-size: 20px;
   right: 10px;
   box-sizing: border-box;
-} */
+}
 .loaderer::after {
-  /* content: "";
+  content: "";
   width: 5px;
   height: 5px;
   background: currentColor;
@@ -15,18 +16,17 @@
   bottom: 10px;
   right: -10px;
   box-sizing: border-box;
-  animation: loadererloader 1s linear infinite; */
+  animation: loadererloader 1s linear infinite;
 }
-
 @keyframes loadererloader {
   0% {
-    box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
+    box-shadow: 10px 0 rgba(46, 157, 127, 0), 20px 0 rgba(46, 157, 127, 0);
   }
   50% {
-    box-shadow: 10px 0 white, 20px 0 rgba(255, 255, 255, 0);
+    box-shadow: 10px 0 rgb(46, 157, 127), 20px 0 rgba(46, 157, 127, 0);
   }
   100% {
-    box-shadow: 10px 0 white, 20px 0 white;
+    box-shadow: 10px 0 rgb(46, 157, 127), 20px 0 rgb(46, 157, 127);
   }
 }
 
@@ -43,7 +43,7 @@
   width: 96px;
   height: 96px;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 3px solid var(--primary-aqua);
   position: absolute;
   left: 0;
   top: 0;

@@ -5,5 +5,5 @@
 }
 
 .font-family-dm-sans {
-  font-family: var(--font-dm-sans);
+  font-family: var(--font-dm-sans) !important;
 }

@@ -7,9 +7,11 @@ import { ApiService } from "../../../../../shared/services/service";
 import Swal from "sweetalert2";
 import Service from "../../../../../shared/entity/service";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
+import LoaderResponse from "@/components/loaderResponse";
 
 export default function ServiceList() {
   const [services, setServices] = useState<Service[]>([]);
+  const [loadResponse, setloadResponse] = useState(false);
   const navigate = useNavigate();
   const apiService = new ApiService();
 
@@ -25,6 +27,7 @@ export default function ServiceList() {
       try {
         const response = await apiService.getListaService();
         setServices(response.data);
+        setloadResponse(true);
       } catch (error) {
         console.error("Erro ao buscar serviços:", error);
       }
@@ -74,21 +77,24 @@ export default function ServiceList() {
             </Button>
           </Link>
         </div>
-
-        <div className="my-8 flex flex-wrap gap-x-5 gap-y-4">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="bg-white min-w-96 w-80 grid rounded card-service p-4 relative grow"
-            >
-              <CardService
-                service={service}
-                onDelete={() => deletarService(service.id)}
-                linkEdit={() => linkNavigate(service.id)}
-              />
-            </div>
-          ))}
-        </div>
+        {!loadResponse ? (
+          <LoaderResponse />
+        ) : (
+          <div className="my-8 flex flex-wrap gap-x-5 gap-y-4">
+            {services.map((service) => (
+              <div
+                key={service.id}
+                className="bg-white min-w-96 w-80 grid rounded card-service p-4 relative grow"
+              >
+                <CardService
+                  service={service}
+                  onDelete={() => deletarService(service.id)}
+                  linkEdit={() => linkNavigate(service.id)}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </Card>
     </>
   );

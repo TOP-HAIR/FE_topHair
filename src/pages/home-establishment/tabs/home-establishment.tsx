@@ -97,8 +97,8 @@ const userSettings = [
 ];
 
 export default function HomeEstablishment() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [activeLink, setActiveLink] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState("home");
   const navigate = useNavigate();
 
   const handleLinkClick = (linkName: string) => {
@@ -128,7 +128,7 @@ export default function HomeEstablishment() {
         <img
           src={TopHair}
           style={{
-            height: mobileOpen ? "8rem" : "12rem", // Ajuste conforme necessário
+            height: mobileOpen ? "8rem" : "12rem",
           }}
           alt="Logo da TopHair"
         />
@@ -152,8 +152,8 @@ export default function HomeEstablishment() {
             className="text-white"
             sx={{
               px: 4,
-              py: 2,
-              my: 1,
+              py: 3,
+
               display: "flex",
               alignItems: "center",
               cursor: "pointer",
@@ -223,7 +223,7 @@ export default function HomeEstablishment() {
             keepMounted: true,
           }}
           sx={{
-            display: { sm: "block", md: "none" },
+            display: { xs: "block", md: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
@@ -237,7 +237,7 @@ export default function HomeEstablishment() {
         <Drawer
           variant="permanent"
           sx={{
-            display: { sm: "none", md: "block" },
+            display: { xs: "none", md: "block" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
@@ -254,7 +254,7 @@ export default function HomeEstablishment() {
   };
   return (
     <>
-      <div className="h-screen flex">
+      <div className="h-screen flex ">
         <Sidebar
           mobileOpen={mobileOpen}
           handleDrawerToggle={handleDrawerToggle}
@@ -268,26 +268,47 @@ export default function HomeEstablishment() {
           }}
         >
           <div className="w-full min-h-full overflow-auto">
-            <nav className="h-16 bg-white border-b border-gray-300">
-              <div className="h-full flex justify-between items-center px-5">
-                <button id="menuBtn">
-                  <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    edge="start"
-                    onClick={handleDrawerToggle}
-                    sx={{ mr: 2, display: { md: "none" } }}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                </button>
-                <div className="space-x-4"></div>
+            <header className="h-18 bg-gradient-to-r from-gray-200 to-white border-b border-gray-300 z-50">
+              <div className="h-full flex items-center justify-between px-10">
+                <div className="flex items-center">
+                  <button id="menuBtn" className="lg:hidden">
+                    <IconButton
+                      color="inherit"
+                      aria-label="open drawer"
+                      edge="start"
+                      onClick={handleDrawerToggle}
+                      sx={{ mr: 2, display: { md: "none" } }}
+                    >
+                      <MenuIcon />
+                    </IconButton>
+                  </button>
+                  <div className="space-x-4"></div>
+                  <h1 className="text-2xl font-semibold uppercase">
+                    {activeLink || ""}
+                  </h1>
+                </div>
+                <div className="flex items-center gap-8">
+                  <img
+                    className="h-16 w-16"
+                    src={TopHair}
+                    alt="Logo do Estabelecimento"
+                  />
+                  <div className="bg-gray-300 h-10 w-0.5 rounded-full"></div>
+                  <p className="text-2xl font-light font-family-dm-sans lg:mr-20 flex">
+                    Bem-vindo,{" "}
+                    <p className="color-primary-aqua text-2xl font-light ml-2">
+                      usuário
+                    </p>
+                  </p>
+                </div>
               </div>
-            </nav>
-            <Outlet />
-            <p className="mb-4 mt-6 text-sm text-center text-black">
-              Copyright © made by Top Hair
-            </p>
+            </header>
+            <div className="flex flex-col justify-between min-h-screen">
+              <Outlet />
+              <p className="mb-4 mt-6 text-sm text-center text-black">
+                Copyright © made by Top Hair
+              </p>
+            </div>
           </div>
         </Box>
       </div>

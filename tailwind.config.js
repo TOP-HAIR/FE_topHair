@@ -13,6 +13,9 @@ export default {
       maxWidth: {
         "screen-lg": "1024px",
       },
+      width: {
+        "0.5rem": "0.5rem",
+      },
     },
   },
   plugins: [],
