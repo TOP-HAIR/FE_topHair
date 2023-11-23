@@ -1,7 +1,7 @@
 import React from "react";
 import TopHairLogo from "../../assets/configs/img/logo/top-hair-logo.svg";
 import HomeMain from "./components/main";
-import Footer from "./components/footer";
+import Footer from "../../components/footer";
 
 export default function HomePage() {
   return (
@@ -43,7 +43,9 @@ export default function HomePage() {
           </nav>
         </div>
         <HomeMain />
-        <Footer />
+        <div className="bg-black py-20">
+          <Footer />
+        </div>
       </div>
     </>
   );

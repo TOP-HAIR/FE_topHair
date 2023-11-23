@@ -1,4 +1,4 @@
-export const comments = [
+const comments = [
   {
     alt: "Foto de imagem de perfil de um homem sorrindo",
     name: "Alan Roger dos Santos - BA",
@@ -55,7 +55,7 @@ export const comments = [
   },
 ];
 
-export const valores = [
+const valores = [
   {
     nome: "Visão",
     texto:
@@ -77,3 +77,44 @@ export const valores = [
     alt: "Icone da Valores da Empresa",
   },
 ];
+
+const estadosBrasil = [
+  { nome: "Acre", sigla: "AC" },
+  { nome: "Alagoas", sigla: "AL" },
+  { nome: "Amapá", sigla: "AP" },
+  { nome: "Amazonas", sigla: "AM" },
+  { nome: "Bahia", sigla: "BA" },
+  { nome: "Ceará", sigla: "CE" },
+  { nome: "Distrito Federal", sigla: "DF" },
+  { nome: "Espírito Santo", sigla: "ES" },
+  { nome: "Goiás", sigla: "GO" },
+  { nome: "Maranhão", sigla: "MA" },
+  { nome: "Mato Grosso", sigla: "MT" },
+  { nome: "Mato Grosso do Sul", sigla: "MS" },
+  { nome: "Minas Gerais", sigla: "MG" },
+  { nome: "Pará", sigla: "PA" },
+  { nome: "Paraíba", sigla: "PB" },
+  { nome: "Paraná", sigla: "PR" },
+  { nome: "Pernambuco", sigla: "PE" },
+  { nome: "Piauí", sigla: "PI" },
+  { nome: "Rio de Janeiro", sigla: "RJ" },
+  { nome: "Rio Grande do Norte", sigla: "RN" },
+  { nome: "Rio Grande do Sul", sigla: "RS" },
+  { nome: "Rondônia", sigla: "RO" },
+  { nome: "Roraima", sigla: "RR" },
+  { nome: "Santa Catarina", sigla: "SC" },
+  { nome: "São Paulo", sigla: "SP" },
+  { nome: "Sergipe", sigla: "SE" },
+  { nome: "Tocantins", sigla: "TO" },
+];
+
+const userLinkOwner = [
+  { nome: "André", Link: "" },
+  { nome: "Caio", Link: "" },
+  { nome: "Gabriel", Link: "" },
+  { nome: "Guilherme", Link: "" },
+  { nome: "Silvio", Link: "" },
+  { nome: "William", Link: "" },
+];
+
+export { estadosBrasil, valores, comments, userLinkOwner };
