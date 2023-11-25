@@ -1,7 +1,7 @@
 import React from "react";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Service from "../../../../../../shared/entity/service";
+import Service from "../../../../../../shared/entity/serviceEntity";
 
 export default function CardService({
   service,
@@ -15,14 +15,14 @@ export default function CardService({
   return (
     <>
       <div className="flex flex-col gap-1">
-        <h3 className="font-bold">Serviço: {service.nome}</h3>
+        <h3 className="font-bold">Serviço: {service.nomeServico}</h3>
         <p>
           <b>Tipo: </b>
           {service.tipo}
         </p>
         <p>
           <b>Valor: </b>
-          {service.valor}
+          {service.preco}
         </p>
         <p>
           <b>Descrição: </b>

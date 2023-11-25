@@ -1,15 +1,15 @@
-import Service, { DataService } from "../entity/service";
+import Service, { DataService } from "../entity/serviceEntity";
 import { send } from "./apiUrl";
 
 export class ApiService {
   private serviceUrl: string;
 
   constructor() {
-    this.serviceUrl = "/service";
+    this.serviceUrl = "/servicos";
   }
 
   async getListaService() {
-    return await send("GET", this.serviceUrl);
+    return await send("GET", this.serviceUrl + `/empresa/${1}`);
   }
 
   async deleteService(id: number) {

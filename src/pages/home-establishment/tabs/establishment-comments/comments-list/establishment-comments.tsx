@@ -1,8 +1,8 @@
 import React from "react";
 import { Card } from "@mui/material";
 import { useState, useEffect } from "react";
-import Comment from "../../../../../shared/entity/comments";
-import comments from "../../../../../shared/services/comment";
+import Comment from "../../../../../shared/entity/commentsEntity";
+// import CommentServices from "../../../../../shared/services/commentService";
 import CommentService from "./components/comment-service";
 
 export default function HomeComments() {
@@ -10,14 +10,14 @@ export default function HomeComments() {
 
   useEffect(() => {
     function listar() {
-      comments
-        .get("https://65120a8bb8c6ce52b39544b4.mockapi.io/comments")
-        .then((respostaObtida) => {
-          setComment(respostaObtida.data);
-        })
-        .catch((erroOcorrido) => {
-          console.log(erroOcorrido);
-        });
+      // comments
+      //   .get("https://65120a8bb8c6ce52b39544b4.mockapi.io/comments")
+      //   .then((respostaObtida) => {
+      //     setComment(respostaObtida.data);
+      //   })
+      //   .catch((erroOcorrido) => {
+      //     console.log(erroOcorrido);
+      //   });
     }
 
     listar();

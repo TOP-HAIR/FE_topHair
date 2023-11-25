@@ -1,4 +1,4 @@
-import { ValidRecaptchaType } from "@/shared/entity/Auth";
+import { ValidRecaptchaType } from "@/shared/entity/authEntity";
 import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 

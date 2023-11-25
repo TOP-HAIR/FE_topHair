@@ -6,8 +6,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { UserLogin } from "../../../shared/entity/Auth";
-import { getUser } from "../../../shared/services/user";
+import { UserLogin } from "../../../shared/entity/authEntity";
 import {
   TextField,
   Link,
@@ -20,6 +19,8 @@ import {
   IconButton,
   Input,
 } from "@mui/material";
+import ReCAPTCHAComponent from "@/components/reCAPTCHA";
+import { userLoginContext } from "@/shared/contexts/authContext";
 
 const darkTheme = createTheme({
   palette: {
@@ -29,13 +30,27 @@ const darkTheme = createTheme({
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [hideRecaptcha, setHideRecaptcha] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    trigger,
   } = useForm<UserLogin>();
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+
+  const updateValidRecaptcha = (value: boolean) => {
+    if (value) {
+      trigger().then(() => {
+        handleSubmit(onSubmit)();
+      });
+    }
+  };
+
+  const updateHideRecaptcha = (value: boolean) => {
+    setHideRecaptcha(true);
+  };
 
   const handleClickShowPassword = () => {
     setShowPassword((show) => !show);
@@ -51,11 +66,7 @@ export default function Login() {
   };
 
   const onSubmit: SubmitHandler<UserLogin> = async (data) => {
-    try {
-      const response = await getUser(data);
-    } catch (error) {
-      console.error("Erro ao chamar o endpoint:", error);
-    }
+    userLoginContext(data);
   };
 
   const handleMouseDownPassword = (
@@ -81,69 +92,84 @@ export default function Login() {
             <div className="w-full flex justify-center">
               <img className="h-28 w-28" src={TophairIcon} alt="tophair-icon" />
             </div>
+            {hideRecaptcha ? (
+              <ReCAPTCHAComponent updateValidRecaptcha={updateValidRecaptcha} />
+            ) : (
+              <div>
+                <div className="w-full flex gap-8 flex-col p-4">
+                  <ThemeProvider theme={darkTheme}>
+                    <TextField
+                      label="Email"
+                      variant="standard"
+                      size="medium"
+                      type="email"
+                      placeholder="Digite seu Email"
+                      {...register("email", {
+                        required: "Campo é Obrigatório",
+                      })}
+                      error={Boolean(errors.email)}
+                      helperText={errors.email?.message}
+                    />
+                    <FormControl
+                      error={Boolean(errors.senha)}
+                      variant="standard"
+                    >
+                      <InputLabel htmlFor="standard-adornment-password">
+                        Password
+                      </InputLabel>
+                      <Input
+                        id="standard-adornment-password"
+                        type={showPassword ? "text" : "password"}
+                        inputRef={passwordInputRef}
+                        placeholder="Digite sua Senha"
+                        {...register("senha", {
+                          required: "Campo é obrigatório",
+                        })}
+                        aria-describedby="component-error-text"
+                        endAdornment={
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                            >
+                              {showPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        }
+                      />
+                      <FormHelperText id="component-error-text">
+                        {errors.senha && errors.senha.message}
+                      </FormHelperText>
+                    </FormControl>
+                  </ThemeProvider>
+                </div>
 
-            <div className="w-full flex gap-8 flex-col p-4">
-              <ThemeProvider theme={darkTheme}>
-                <TextField
-                  label="Email"
-                  variant="standard"
-                  size="medium"
-                  type="email"
-                  placeholder="Digite seu Email"
-                  {...register("email", {
-                    required: "Campo é Obrigatório",
-                  })}
-                  error={Boolean(errors.email)}
-                  helperText={errors.email?.message}
-                />
-                <FormControl error={Boolean(errors.senha)} variant="standard">
-                  <InputLabel htmlFor="standard-adornment-password">
-                    Password
-                  </InputLabel>
-                  <Input
-                    id="standard-adornment-password"
-                    type={showPassword ? "text" : "password"}
-                    inputRef={passwordInputRef}
-                    placeholder="Digite sua Senha"
-                    {...register("senha", {
-                      required: "Campo é obrigatório",
-                    })}
-                    aria-describedby="component-error-text"
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                  <FormHelperText id="component-error-text">
-                    {errors.senha && errors.senha.message}
-                  </FormHelperText>
-                </FormControl>
-              </ThemeProvider>
-            </div>
-
-            <div className="w-full flex flex-col items-center gap-12">
-              <p className="text-white text-sm">
-                Ainda não tem uma conta ?{" "}
-                <Link href="/form" underline="hover">
-                  cadastre-se aqui
-                </Link>
-              </p>
-              <Button
-                variant="contained"
-                className="button-login bg-primary-aqua w-48 rounded-sm"
-                type="submit"
-                value="submit"
-              >
-                Entrar
-              </Button>
-            </div>
+                <div className="w-full flex flex-col items-center gap-12">
+                  <p className="text-white text-sm">
+                    Ainda não tem uma conta ?{" "}
+                    <Link href="/form" underline="hover">
+                      cadastre-se aqui
+                    </Link>
+                  </p>
+                  <Button
+                    variant="contained"
+                    className="button-login bg-primary-aqua w-48 rounded-sm"
+                    value="submit"
+                    type="submit"
+                    onClick={() => {
+                      updateHideRecaptcha(true);
+                    }}
+                  >
+                    Entrar
+                  </Button>
+                </div>
+              </div>
+            )}
           </form>
         </Box>
       </div>

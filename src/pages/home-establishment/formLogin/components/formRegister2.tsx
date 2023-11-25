@@ -3,7 +3,10 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { viaCEP } from "../../../../shared/services/ExternalApis/viaCep";
 import { TextField } from "@mui/material";
 import { validateCepFormat } from "../../../../shared/hooks/utils/validateInput";
-import { AddressData, EnderecoData } from "../../../../shared/entity/Auth";
+import {
+  AddressData,
+  EnderecoData,
+} from "../../../../shared/entity/authEntity";
 
 const darkTheme = createTheme({
   palette: {

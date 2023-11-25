@@ -1,4 +1,4 @@
-import RequestResponse from "../entity/RequestResponse";
+import RequestResponse from "../entity/requestResponseEntity";
 import httpClient from "../services/apiUrl";
 
 const post = (requisicaoHttp: RequestResponse) => {
@@ -16,7 +16,6 @@ const post = (requisicaoHttp: RequestResponse) => {
       return response.data;
     })
     .catch((error) => {
-      console.log(error);
       throw error;
     });
 };
@@ -25,7 +24,6 @@ const get = (requisicaoHttp: RequestResponse) => {
   if (requisicaoHttp.url === undefined) {
     throw new Error("A URL da requisição HTTP é indefinida.");
   }
-  // console.log(requisicaoHttp);
 
   return httpClient
     .get(requisicaoHttp.url)
@@ -33,7 +31,6 @@ const get = (requisicaoHttp: RequestResponse) => {
       return response;
     })
     .catch((error) => {
-      console.log(error);
       throw error;
     });
 };
@@ -53,7 +50,6 @@ const update = async (requisicaoHttp: RequestResponse) => {
       return response;
     })
     .catch((error) => {
-      console.log(error);
       throw error;
     });
 };
@@ -73,7 +69,6 @@ const patch = async (requisicaoHttp: RequestResponse) => {
       return response.data;
     })
     .catch((error) => {
-      console.log(error);
       throw error;
     });
 };
@@ -85,10 +80,9 @@ const deleteReq = async (requisicaoHttp: RequestResponse) => {
   return await httpClient
     .delete(requisicaoHttp.url)
     .then((response) => {
-      return response.data;
+      return response;
     })
     .catch((error) => {
-      console.log(error);
       throw error;
     });
 };

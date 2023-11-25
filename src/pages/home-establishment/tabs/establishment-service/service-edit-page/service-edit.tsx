@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Services, { DataService, Service } from "@/shared/entity/service";
-import { ApiService } from "@/shared/services/service";
+import Services, { DataService, Service } from "@/shared/entity/serviceEntity";
+import { ApiService } from "@/shared/services/serviceService";
 
 export default function EditPageService() {
   const navigate = useNavigate();

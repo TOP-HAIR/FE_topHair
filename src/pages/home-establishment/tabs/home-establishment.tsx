@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../../assets/configs/css/home-establishment.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -283,7 +282,7 @@ export default function HomeEstablishment() {
                     </IconButton>
                   </button>
                   <div className="space-x-4"></div>
-                  <h1 className="text-2xl font-semibold uppercase">
+                  <h1 className="text-2xl font-medium uppercase">
                     {activeLink || ""}
                   </h1>
                 </div>
@@ -294,9 +293,9 @@ export default function HomeEstablishment() {
                     alt="Logo do Estabelecimento"
                   />
                   <div className="bg-gray-300 h-10 w-0.5 rounded-full"></div>
-                  <p className="text-2xl font-light font-family-dm-sans lg:mr-20 flex">
+                  <p className="text-xl font-light lg:mr-20 flex">
                     Bem-vindo,{" "}
-                    <p className="color-primary-aqua text-2xl font-light ml-2">
+                    <p className="color-primary-aqua text-xl font-light ml-2">
                       usuário
                     </p>
                   </p>

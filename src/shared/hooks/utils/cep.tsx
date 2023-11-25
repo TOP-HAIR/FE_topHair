@@ -1,4 +1,4 @@
-import { AddressData } from "@/shared/entity/Auth";
+import { AddressData } from "@/shared/entity/authEntity";
 import { viaCEP } from "@/shared/services/ExternalApis/viaCep";
 
 export const checkCEP = (e: string) => {

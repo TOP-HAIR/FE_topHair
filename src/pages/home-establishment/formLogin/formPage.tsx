@@ -3,7 +3,7 @@ import { Box, Button, Link } from "@mui/material";
 import FormRegister1 from "./components/formRegister1";
 import FormRegister2 from "./components/formRegister2";
 import { useFormStep } from "../../../shared/hooks/useForm";
-import { Empresa } from "@/shared/entity/Auth";
+import { Empresa } from "@/shared/entity/authEntity";
 import { SubmitHandler } from "react-hook-form";
 import ReCAPTCHAComponent from "@/components/reCAPTCHA";
 import { useNavigate } from "react-router-dom";
@@ -41,10 +41,7 @@ export default function FormPage() {
   const formComponents = [
     <FormRegister1 data={data} updateFieldHandler={updateFieldHandler} />,
     <FormRegister2 data={data} updateFieldHandler={updateFieldHandler} />,
-    <ReCAPTCHAComponent
-      validRecaptcha={validRecaptcha}
-      updateValidRecaptcha={updateValidRecaptcha}
-    />,
+    <ReCAPTCHAComponent updateValidRecaptcha={updateValidRecaptcha} />,
   ];
   const { currentComponent, changeStep, currentStep } =
     useFormStep(formComponents);

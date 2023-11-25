@@ -1,16 +1,16 @@
 export interface Service {
   id: number | 0;
   tipo: string;
-  nome: string;
-  valor: number;
+  nomeServico: string;
+  preco: number;
   descricao: string;
   img: string;
 }
 
 export interface DataService {
   tipo: string;
-  nome: string;
-  valor: number;
+  nomeServico: string;
+  preco: number;
   descricao: string;
 }
 

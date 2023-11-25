@@ -40,6 +40,13 @@ export interface Empresa {
   complemento: string;
 }
 
+export interface userData {
+  userId: number;
+  nomeCompleto: string;
+  email: string;
+  token: string;
+}
+
 export interface FormRegister1Props {
   register: any;
   setValue: any;
@@ -71,6 +78,5 @@ export type EnderecoData = {
 };
 
 export type ValidRecaptchaType = {
-  validRecaptcha: boolean;
   updateValidRecaptcha: (value: boolean) => void;
 };
