@@ -3,13 +3,18 @@ import { Card } from "@mui/material";
 import CardService from "./components/card-service";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { ApiService } from "../../../../../shared/services/service";
+import { ApiService } from "../../../../../shared/services/serviceService";
 import Swal from "sweetalert2";
-import Service from "../../../../../shared/entity/service";
+import Service from "../../../../../shared/entity/serviceEntity";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
+import LoaderResponse from "@/components/loaderResponse";
+import { getServiceContext } from "@/shared/contexts/serviceContext";
+import NoContentComponent from "../../../../../components/noContent";
 
 export default function ServiceList() {
   const [services, setServices] = useState<Service[]>([]);
+  const [loadResponse, setloadResponse] = useState(false);
+  const [resLenghtValid, setResLenghtValid] = useState(false);
   const navigate = useNavigate();
   const apiService = new ApiService();
 
@@ -22,9 +27,17 @@ export default function ServiceList() {
 
   useEffect(() => {
     async function listarServicos() {
+      setloadResponse(false);
       try {
-        const response = await apiService.getListaService();
-        setServices(response.data);
+        const res = await getServiceContext();
+        if (res == undefined || res.data.length == 0) {
+          setResLenghtValid(true);
+        }
+        console.log(res);
+        if (res != undefined) {
+          setServices(res.data);
+        }
+        setloadResponse(true);
       } catch (error) {
         console.error("Erro ao buscar serviços:", error);
       }
@@ -33,7 +46,7 @@ export default function ServiceList() {
     listarServicos();
   }, []);
 
-  const deletarService = async (serviceId: number) => {
+  const deletarService = (serviceId: number) => {
     Swal.fire({
       title: "Tem certeza que deseja deletar esse serviço?",
       text: "Você não será capaz de reverter essa ação!",
@@ -43,10 +56,10 @@ export default function ServiceList() {
       cancelButtonText: "Cancelar",
       reverseButtons: false,
       width: 450,
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          apiService.deleteService(serviceId);
+          await apiService.deleteService(serviceId);
 
           const updatedServices = services.filter(
             (service) => service.id !== serviceId
@@ -74,21 +87,26 @@ export default function ServiceList() {
             </Button>
           </Link>
         </div>
-
-        <div className="my-8 flex flex-wrap gap-x-5 gap-y-4">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="bg-white min-w-96 w-80 grid rounded card-service p-4 relative grow"
-            >
-              <CardService
-                service={service}
-                onDelete={() => deletarService(service.id)}
-                linkEdit={() => linkNavigate(service.id)}
-              />
-            </div>
-          ))}
-        </div>
+        {!loadResponse ? (
+          <LoaderResponse />
+        ) : resLenghtValid ? (
+          <NoContentComponent />
+        ) : (
+          <div className="my-8 flex flex-wrap gap-x-5 gap-y-4">
+            {services.map((service) => (
+              <div
+                key={service.id}
+                className="bg-white min-w-96 w-80 grid rounded card-service p-4 relative grow"
+              >
+                <CardService
+                  service={service}
+                  onDelete={() => deletarService(service.id)}
+                  linkEdit={() => linkNavigate(service.id)}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </Card>
     </>
   );

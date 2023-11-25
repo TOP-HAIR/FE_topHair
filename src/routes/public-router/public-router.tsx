@@ -3,7 +3,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Loader from "../../components/loader";
 import HomePage from "../../pages/home-page/home-page";
 import PrivateRoutes from "../private-router/private-router";
-import ErrorPage404 from "../../pages/ErrorPage404";
+import ErrorPage404 from "../../components/ErrorPage404";
+import HomeUserClient from "../../pages/home-user-client/home-user-client";
+const HomeUserClientPage = lazy(
+  () => import("../../pages/home-user-client/home-user-page")
+);
 const HomeList = lazy(
   () =>
     import(
@@ -117,22 +121,116 @@ export default function PublicRoutes() {
                 </PrivateRoutes>
               }
             >
-              <Route path="home" element={<HomeList />} />
-              <Route path="calendar" element={<HomeCalendar />} />
-              <Route path="reports" element={<HomeReports />}>
-                <Route path="list" element={<ReportList />} />
-                <Route path="dashboard/:id" element={<ReportDashboard />} />
+              <Route
+                path="home"
+                element={
+                  <PrivateRoutes>
+                    <HomeList />
+                  </PrivateRoutes>
+                }
+              />
+              <Route
+                path="calendar"
+                element={
+                  <PrivateRoutes>
+                    <HomeCalendar />
+                  </PrivateRoutes>
+                }
+              />
+              <Route
+                path="reports"
+                element={
+                  <PrivateRoutes>
+                    <HomeReports />
+                  </PrivateRoutes>
+                }
+              >
+                <Route
+                  path="list"
+                  element={
+                    <PrivateRoutes>
+                      <ReportList />
+                    </PrivateRoutes>
+                  }
+                />
+                <Route
+                  path="dashboard/:id"
+                  element={
+                    <PrivateRoutes>
+                      <ReportDashboard />
+                    </PrivateRoutes>
+                  }
+                />
               </Route>
-              <Route path="shop" element={<HomeShop />} />
-              <Route path="service" element={<HomeService />}>
-                <Route path="list" element={<ServiceList />} />
-                <Route path="edit" element={<EditPageService />} />
-                <Route path="edit/:id" element={<EditPageService />} />
+              <Route
+                path="shop"
+                element={
+                  <PrivateRoutes>
+                    <HomeShop />
+                  </PrivateRoutes>
+                }
+              />
+              <Route
+                path="service"
+                element={
+                  <PrivateRoutes>
+                    <HomeService />
+                  </PrivateRoutes>
+                }
+              >
+                <Route
+                  path="list"
+                  element={
+                    <PrivateRoutes>
+                      <ServiceList />
+                    </PrivateRoutes>
+                  }
+                />
+                <Route
+                  path="edit"
+                  element={
+                    <PrivateRoutes>
+                      <EditPageService />
+                    </PrivateRoutes>
+                  }
+                />
+                <Route
+                  path="edit/:id"
+                  element={
+                    <PrivateRoutes>
+                      <EditPageService />
+                    </PrivateRoutes>
+                  }
+                />
               </Route>
-              <Route path="comments" element={<HomeComments />} />
-              <Route path="employees" element={<HomeEmployees />} />
-              <Route path="hireEmployees" element={<HomeHire />} />
+              <Route
+                path="comments"
+                element={
+                  <PrivateRoutes>
+                    <HomeComments />
+                  </PrivateRoutes>
+                }
+              />
+              <Route
+                path="employees"
+                element={
+                  <PrivateRoutes>
+                    <HomeEmployees />
+                  </PrivateRoutes>
+                }
+              />
+              <Route
+                path="hireEmployees"
+                element={
+                  <PrivateRoutes>
+                    <HomeHire />
+                  </PrivateRoutes>
+                }
+              />
             </Route>
+
+            <Route path="client-page" element={<HomeUserClient />} />
+            <Route path="home" element={<HomeUserClientPage />} />
 
             <Route path="login" element={<Login />} />
             <Route path="form" element={<FormPage />} />

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AddressData } from "../../entity/formUser";
+import { AddressData } from "../../entity/authEntity";
 import { enviromentsExternalApi } from "../../enviroments/envExternal";
 
 export const viaCEP = async (cep: string): Promise<AddressData> => {

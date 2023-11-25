@@ -1,8 +1,6 @@
 @import "./color.css";
 @import "./loader.css";
 @import "../fonts/fonts.css";
-@import "./home-page.css";
-@import "./login-page.css";
 
 @tailwind base;
 @tailwind components;
@@ -38,6 +36,7 @@ html {
 }
 
 .MuiCard-root {
+  min-height: 90vh;
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.25) !important;
 }
 
@@ -67,7 +66,7 @@ input[type="number"] {
 .hover-underline-animation {
   display: inline-block;
   position: relative;
-  color: black;
+  color: var(--secondary-dark-blue);
 }
 
 .hover-underline-animation::after {
@@ -87,4 +86,119 @@ input[type="number"] {
 .hover-underline-animation:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+.screen-background {
+  /* back
+  clip-path: polygon(100% 0, 0 100%, 100% 100%); */
+}
+
+.shadow-table {
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25) !important;
+}
+
+.form-modal {
+  width: 450px;
+  min-height: 350px;
+}
+
+.button-login {
+  color: var(--primary-white);
+  border-color: var(--primary-aqua);
+}
+
+.button-login:hover {
+  background-color: var(--primary-white) !important;
+  color: var(--primary-black);
+  transition: 0.3s;
+}
+
+.grid-home-width {
+  max-width: 1166px;
+}
+
+.shadow-home-header {
+  filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.35));
+}
+
+.shadow-home-form {
+  filter: drop-shadow(5px 0px 30px rgba(0, 0, 0, 0.45));
+}
+
+.shadow-about-us {
+  box-shadow: 6px 9px 20px 0px rgba(0, 0, 0, 0.55);
+}
+
+.linear-gradient-about-us {
+  background: linear-gradient(
+    180deg,
+    var(--primary-aqua) 11.83%,
+    var(--primary-cyan) 55.45%,
+    var(--primary-dark-cyan) 80.25%
+  );
+}
+
+.page-layout-1x {
+  height: 768px;
+}
+
+.page-layout-2x {
+  height: 1536px;
+}
+
+.page-home-form {
+  clip-path: polygon(0 0, 80% 0%, 100% 100%, 0% 100%);
+}
+
+.page-background-about-us {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.page-background-comments {
+  background: linear-gradient(
+    180deg,
+    var(--primary-dark-cyan) 40.1%,
+    var(--primary-black) 100%
+  );
+  box-shadow: 0px -3px 30px 22px var(--primary-dark-cyan);
+}
+
+.bg-image-home {
+  background: linear-gradient(
+      90deg,
+      var(--primary-white) 22.75%,
+      rgba(255, 255, 255, 0) 69.51%
+    ),
+    url("../img/banner-home.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media not all and (min-width: 768px) {
+  .height-image {
+    width: 400px;
+    height: 750px;
+  }
+}
+
+.page-layout-background {
+  background: var(--primary-aqua) 11.83%;
+  clip-path: polygon(0 0%, 100% 100%, 100% 100%, 0% 100%);
+}
+
+.bg-text-home-client {
+  background-clip: text;
+  background-image: linear-gradient(
+    180deg,
+    #fff 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 100% 100%;
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.linear-gradient-client {
+  background: linear-gradient(180deg, #0f3d3a 0%, #041720 100%);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 }

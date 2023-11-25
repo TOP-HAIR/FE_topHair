@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Link, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
+import { SubmitHandler, useForm } from "react-hook-form";
+import Services, { DataService, Service } from "@/shared/entity/serviceEntity";
+import { ApiService } from "@/shared/services/serviceService";
 
 export default function EditPageService() {
   const navigate = useNavigate();
+  const [fileName, setFileName] = useState("");
+  const { handleSubmit, register } = useForm<DataService>();
+  const apiService = new ApiService();
+
+  const handleFileChange = (e: any) => {
+    const fileInput = e.target;
+
+    if (fileInput.files.length > 0) {
+      setFileName(fileInput.files[0].name);
+    } else {
+      setFileName("");
+    }
+  };
+
+  const onSubmit: SubmitHandler<DataService> = (data: DataService) => {
+    const obj = {
+      tipo: data.tipo,
+      nome: data.nome,
+      valor: data.valor,
+      descricao: data.descricao,
+      img: "",
+    };
+    try {
+      apiService.postService(obj);
+    } catch (error) {
+      console.error("Erro ao excluir o serviço:", error);
+      Swal.fire("Erro", "Erro ao criar o serviço.", "error");
+    }
+  };
 
   const confirmCancel = () => {
     Swal.fire({
@@ -35,7 +67,10 @@ export default function EditPageService() {
           >
             Voltar
           </Link>
-          <form className="max-w-screen-lg text-center flex flex-col gap-12">
+          <form
+            className="max-w-screen-lg text-center flex flex-col gap-12"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <h2 className="text-2xl font-bold">Serviço</h2>
             <div className="w-full flex flex-col gap-12">
               <TextField
@@ -45,6 +80,7 @@ export default function EditPageService() {
                 className=""
                 placeholder="Digite o nome do Serviço"
                 size="small"
+                {...register("nome")}
               />
               <div className="flex wrap gap-6 justify-between">
                 <div className="flex flex-col w-1/2 gap-12">
@@ -54,6 +90,7 @@ export default function EditPageService() {
                     variant="outlined"
                     placeholder="Digite o valor do Serviço"
                     size="small"
+                    {...register("valor")}
                   />
                   <TextField
                     id="outlined-basic"
@@ -61,12 +98,17 @@ export default function EditPageService() {
                     variant="outlined"
                     placeholder="Digite o tipo do Serviço"
                     size="small"
+                    {...register("tipo")}
                   />
                 </div>
                 <label className="pointer flex gap-2.5 flex-col justify-center items-center border-dashed border-2 border-gray-400">
                   <span className="drop-title">Drop files here</span>
                   or
-                  <input type="file" accept="image/*" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
                 </label>
               </div>
 
@@ -78,6 +120,7 @@ export default function EditPageService() {
                 size="small"
                 rows={8}
                 placeholder="Descreva o Serviço"
+                {...register("descricao")}
               />
             </div>
             <div className="flex justify-between">

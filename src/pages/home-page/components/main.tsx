@@ -1,8 +1,12 @@
 import React from "react";
-import Comments from "./commets";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
+import { comments, valores } from "../../../shared/hooks/utils/arrayList";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 export default function HomeMain() {
   const navigate = useNavigate();
@@ -15,7 +19,7 @@ export default function HomeMain() {
             <div className="page-layout-1x flex items-center mx-8 ">
               <div className="flex flex-col gap-14 h-80 top-0">
                 <div className="grid gap-4">
-                  <h1 className="text-4xl uppercase font-bold max-w-lg">
+                  <h1 className="text-4xl uppercase font-bold max-w-lg max-sm:text-2xl">
                     Anime seu dia
                     <span className="color-terciary-light-green">
                       {" "}
@@ -23,20 +27,21 @@ export default function HomeMain() {
                     </span>
                     sua beleza
                   </h1>
-                  <p className="font-family-dm-sans text-xl">
+                  <p className="font-family-dm-sans text-xl max-sm:text-base">
                     Com Tophair, agende seus compromissos de beleza com
                     facilidade e estilo!
                   </p>
                 </div>
                 <div className="flex gap-5">
                   <Button
-                    className="uppercase bg-primary-cyan w-72 text-md h-10 font-semibold"
+                    className="uppercase bg-primary-cyan max-w-72 text-md font-semibold"
                     variant="contained"
+                    onClick={() => navigateToPage(navigate, "/client-page")}
                   >
                     Entrar como cliente
                   </Button>
                   <Button
-                    className="uppercase bg-primary-aqua w-72 text-md font-semibold"
+                    className="uppercase bg-primary-aqua max-w-72 text-md font-semibold"
                     variant="contained"
                     onClick={() => navigateToPage(navigate, "/login")}
                   >
@@ -55,7 +60,7 @@ export default function HomeMain() {
           <div className="grid gap-20 grid-home-width mx-auto">
             <div className="grid gap-16 mx-8 max-md:gap-12">
               <div className="text-center">
-                <h2 className="text-3xl text-white font-bold">
+                <h2 className="text-3xl text-white font-bold max-sm:text-2xl">
                   Quem somos nós
                 </h2>
               </div>
@@ -70,10 +75,10 @@ export default function HomeMain() {
                   </div>
 
                   <div className="grid gap-8">
-                    <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl">
+                    <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
                       Mercado de atuação
                     </h3>
-                    <p className="text-white text-xl font-normal font-family-dm-sans">
+                    <p className="text-white text-xl font-normal font-family-dm-sans max-sm:text-base">
                       O mercado de cuidados pessoais para homens tem vivenciado
                       um ressurgimento notável nos últimos anos, com as
                       barbearias masculinas se destacando como espaços que
@@ -85,10 +90,10 @@ export default function HomeMain() {
 
                 <div className="text-center grid max-md:gap-14 gap-24">
                   <div className="grid gap-8">
-                    <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl">
+                    <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
                       Como surgiu a ideia?
                     </h3>
-                    <p className="text-white text-xl font-normal drop-shadow-2xl">
+                    <p className="text-white text-xl font-normal drop-shadow-2xl max-sm:text-base">
                       Com o constante avanço da tecnologia e crescente
                       utilização de aplicações para obtenção de serviços,
                       pensamos em desenvolver uma aplicação que possa levar o
@@ -108,54 +113,49 @@ export default function HomeMain() {
             </div>
           </div>
 
-          <div className="page-background-about-us p-8">
-            <div className="grid-home-width mx-auto text-center grid gap-8">
-              <h2 className="text-2xl font-bold text-white">Valores</h2>
+          <div className="page-background-about-us sm:p-8 max-sm:py-8">
+            <div className="grid-home-width mx-auto text-center flex flex-col gap-8">
+              <h2 className="text-2xl font-bold text-white max-sm:text-2xl">
+                Valores
+              </h2>
 
-              <div className="grid grid-cols-3 gap-7 mx-7 ">
-                <div className="flex flex-col text-center gap-3 ">
-                  <img
-                    className="h-20"
-                    src="../../../../src/assets/configs/img/svg/Visão.svg"
-                    alt="Icone da Visão da Empresa"
-                  />
-                  <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl">
-                    Visão
-                  </h3>
-                  <p className="text-white text-xl font-normal font-family-dm-sans">
-                    Oferecer uma experiência excepcional para usuários e
-                    estabelecimentos.
-                  </p>
-                </div>
-
-                <div className="flex flex-col text-center gap-3">
-                  <img
-                    className="h-20"
-                    src="../../../../src/assets/configs/img/svg/Missão.svg"
-                    alt="Icone da Missão da Empresa"
-                  />
-                  <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl">
-                    Missão
-                  </h3>
-                  <p className="text-white text-xl font-normal font-family-dm-sans">
-                    Ajudar os estabelecimentos a gerenciar seus agendamentos e
-                    expandir seus negócios.
-                  </p>
-                </div>
-
-                <div className="flex flex-col text-center gap-3">
-                  <img
-                    className="h-20"
-                    src="../../../../src/assets/configs/img/svg/Valores.svg"
-                    alt="Icone da Valores da Empresa"
-                  />
-                  <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl">
-                    Valores
-                  </h3>
-                  <p className="text-white text-xl font-normal font-family-dm-sans">
-                    Inovação, excelência e transparência nos negócios.
-                  </p>
-                </div>
+              <div className="grid grid-cols-3 gap-7 mx-7 max-sm:hidden">
+                {valores.map((valor, index) => (
+                  <div key={index} className="flex flex-col text-center gap-3 ">
+                    <img
+                      className="max-h-20 max-sm:h-12"
+                      src={valor.imagem}
+                      alt={valor.alt}
+                    />
+                    <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
+                      {valor.nome}
+                    </h3>
+                    <p className="text-white text-xl font-normal font-family-dm-sans max-sm:text-base">
+                      {valor.texto}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="block sm:hidden w-screen">
+                <Swiper navigation={true} loop={true} modules={[Navigation]}>
+                  {valores.map((valor, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="mx-20 flex flex-col gap-5">
+                        <img
+                          className="max-h-20"
+                          src={valor.imagem}
+                          alt={valor.alt}
+                        />
+                        <h3 className="color-terciary-light-green font-bold drop-shadow-2xl text-lg">
+                          {valor.nome}
+                        </h3>
+                        <p className="text-white font-normal font-family-dm-sans text-base">
+                          {valor.texto}
+                        </p>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               </div>
             </div>
           </div>
@@ -164,8 +164,10 @@ export default function HomeMain() {
           <div className="mx-8 grid gap-44">
             <div className="text-center grid gap-24">
               <div className="grid gap-16">
-                <h2 className="text-3xl font-bold">Nosso Projeto?</h2>
-                <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans">
+                <h2 className="text-3xl font-bold max-sm:text-2xl">
+                  Nosso Projeto?
+                </h2>
+                <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans max-sm:text-base">
                   O nosso projeto foca em ser a ponte entre cliente e barbearia,
                   o objetivo da aplicação é permitir que os usuários pesquisem
                   estabelecimentos próximos localmente,e tenham a possibilidade
@@ -187,10 +189,10 @@ export default function HomeMain() {
                 <div className="grid grid-cols-2 max-md:grid-cols-1 max-lg:gap-24 gap-48">
                   <div className="grid gap-24">
                     <div className="grid gap-16">
-                      <h2 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl">
+                      <h2 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
                         Funcionalidades do cliente
                       </h2>
-                      <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans">
+                      <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans max-sm:text-base">
                         Procure o serviço ideal sem preocupações e dores de
                         cabeça, agende um horário com rapidez. Visualize
                         avaliações, comentários e quais serviços um barbeiro
@@ -205,7 +207,7 @@ export default function HomeMain() {
                           src="./src/assets/configs/img/svg/Google Maps Old.svg"
                           alt="Ícone de um mapa"
                         />
-                        <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans">
+                        <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans max-sm:text-base">
                           Busca por estabelecimentos próximos ao usuário.
                         </p>
                       </div>
@@ -215,7 +217,7 @@ export default function HomeMain() {
                           src="./src/assets/configs/img/svg/Google Calendar.svg"
                           alt="Ícone de uma calendário"
                         />
-                        <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans">
+                        <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans max-sm:text-base">
                           Facilidade e agilidade no processo de realização do
                           agendamento.
                         </p>
@@ -240,10 +242,10 @@ export default function HomeMain() {
                   />
                   <div className="grid gap-24">
                     <div className="grid gap-16">
-                      <h2 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl">
+                      <h2 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
                         Funcionalidades da barbearia
                       </h2>
-                      <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans">
+                      <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans max-sm:text-base">
                         Tenha total controle do seu negócio, dashbaords
                         detalhados e histórico dos serviços prestados com
                         faturamento mensal e mostre o seu serviço para todos,
@@ -257,7 +259,7 @@ export default function HomeMain() {
                           src="./src/assets/configs/img/svg/Tasklist.svg"
                           alt="Ícone de lista de task"
                         />
-                        <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans">
+                        <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans max-sm:text-base">
                           Visibilidade, controle de agendamento, dashboards de
                           faturamento.
                         </p>
@@ -268,7 +270,7 @@ export default function HomeMain() {
                           src="./src/assets/configs/img/svg/Edit.svg"
                           alt="Ícone de edit"
                         />
-                        <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans">
+                        <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans max-sm:text-base">
                           Customização de perfil para cada tipo de
                           estabelecimento.
                         </p>
@@ -280,7 +282,38 @@ export default function HomeMain() {
             </div>
           </div>
         </div>
-        <Comments />
+        <div className="page-background-comments page-layout-1x">
+          <div className="grid-home-width py-32 mx-auto h-full flex flex-col justify-center gap-24">
+            <h2 className="text-3xl text-white font-bold text-center">
+              Comentários
+            </h2>
+            <div>
+              <Swiper
+                navigation={true}
+                loop={true}
+                modules={[Navigation]}
+                slidesPerView={1}
+              >
+                {comments.map((comment, index) => (
+                  <SwiperSlide key={index} className="text-white">
+                    <div className="mx-20">
+                      <img
+                        className="mx-auto mb-5"
+                        src={`src/assets/configs/img/img-perfil/img-perfil-${index}.png`}
+                        alt={comment.alt}
+                      />
+                      <div className="text-center">
+                        <h3 className="text-2xl mb-6">{comment.name}</h3>
+                        <p className="text-xl mb-14">{comment.text}</p>
+                        <p className="text-xl">{comment.company}</p>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -1,19 +1,17 @@
 import React, { useRef } from "react";
-import TophairIcon from "../../../../assets/configs/img/logo/white-logo.png";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import {
   TextField,
-  Link,
   FormControl,
   InputLabel,
   InputAdornment,
   IconButton,
   Input,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { navigateToPage } from "../../../../shared/hooks/utils/navigatePage";
+
+import { EmpresaData } from "@/shared/entity/authEntity";
 
 const darkTheme = createTheme({
   palette: {
@@ -21,12 +19,14 @@ const darkTheme = createTheme({
   },
 });
 
-export default function FormRegister1() {
+export default function FormRegister1({
+  data,
+  updateFieldHandler,
+}: EmpresaData) {
   const [showPassword1, setShowPassword1] = React.useState(false);
   const [showPassword2, setShowPassword2] = React.useState(false);
   const passwordInputRef1 = useRef<HTMLInputElement>(null);
   const passwordInputRef2 = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
 
   const handleClickShowPassword = (passwordRedNumber: number) => {
     if (passwordRedNumber == 1) {
@@ -63,17 +63,6 @@ export default function FormRegister1() {
   return (
     <>
       <div className="w-full flex flex-col gap-2">
-        <Link
-          onClick={() => navigateToPage(navigate, "/")}
-          underline="hover"
-          className="cursor-pointer"
-        >
-          Voltar para o site
-        </Link>
-        <div className="w-full flex justify-center">
-          <img className="h-28 w-28" src={TophairIcon} alt="tophair-icon" />
-        </div>
-
         <div className="w-full flex gap-8 flex-col p-4">
           <ThemeProvider theme={darkTheme}>
             <TextField
@@ -81,6 +70,8 @@ export default function FormRegister1() {
               variant="standard"
               size="medium"
               type="text"
+              value={data.empresa || ""}
+              onChange={(e) => updateFieldHandler("empresa", e.target.value)}
               placeholder="Digite o nome da empresa"
             />
             <TextField
@@ -88,6 +79,8 @@ export default function FormRegister1() {
               variant="standard"
               size="medium"
               type="text"
+              value={data.email || ""}
+              onChange={(e) => updateFieldHandler("email", e.target.value)}
               placeholder="Digite seu Email"
             />
             <TextField
@@ -95,6 +88,8 @@ export default function FormRegister1() {
               variant="standard"
               size="medium"
               type="text"
+              value={data.cnpj || ""}
+              onChange={(e) => updateFieldHandler("cnpj", e.target.value)}
               placeholder="Digite seu CNPJ"
             />
             <FormControl variant="standard">
@@ -117,6 +112,8 @@ export default function FormRegister1() {
                     </IconButton>
                   </InputAdornment>
                 }
+                value={data.senha || ""}
+                onChange={(e) => updateFieldHandler("senha", e.target.value)}
               />
             </FormControl>
             <FormControl variant="standard">
@@ -138,6 +135,10 @@ export default function FormRegister1() {
                       {showPassword2 ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
+                }
+                value={data.senhaConfirmacao || ""}
+                onChange={(e) =>
+                  updateFieldHandler("senhaConfirmacao", e.target.value)
                 }
               />
             </FormControl>

@@ -10,6 +10,7 @@
   --suport-success: #28a745;
   --suport-warning: #ffc107;
   --suport-danger: #dc3545;
+  --black-suport: #0a0a0a;
 }
 
 .bg-primary-dark-cyan {
@@ -82,4 +83,12 @@
 
 .color-warning {
   color: var(--suport-warning) !important;
+}
+
+.bg-black-suport {
+  background-color: var(--black-suport) !important;
+}
+
+.color-black-suport {
+  color: var(--black-suport) !important;
 }

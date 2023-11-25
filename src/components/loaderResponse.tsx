@@ -1,13 +1,13 @@
 import React from "react";
-import "../assets/configs/css/loaderResponse.css";
+import "../assets/configs/css/loader.css";
 
 export default function LoaderResponse() {
   return (
     <>
-      <div className="w-full h-screen bg-slate-900">
-        <div className="h-48 flex flex-col justify-items-center items-center">
+      <div className="w-full min-h-screen flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center gap-2">
           <span className="loader"></span>
-          <span className="text-white inline-block relative text-2xl right-10 box-border after:content=[''] after:w-5 after:h-5 after:bg-current after:absolute after:bottom-10 after:right-[-10px] after:box-border">
+          <span className="loaderer font-family-dm-sans font-semibold">
             Loading
           </span>
         </div>
