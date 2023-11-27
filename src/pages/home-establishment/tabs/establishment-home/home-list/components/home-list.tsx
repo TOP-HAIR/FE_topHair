@@ -49,10 +49,7 @@ export default function HomeList() {
               <NoContentComponent />
             ) : (
               <TableContainer className="shadow-table">
-                <Table
-                  sx={{ minWidth: 650, minHeight: 650 }}
-                  aria-label="simple table"
-                >
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
                     <TableRow className="font-bold">
                       <TableCell align="center">Nome</TableCell>
@@ -64,18 +61,18 @@ export default function HomeList() {
                   <TableBody>
                     {ultimosServicos?.map((servico) => (
                       <TableRow
-                        key={servico.nomeCompleto}
+                        key={servico?.id}
                         sx={{
                           "&:last-child td, &:last-child th": { border: 0 },
                           marginBottom: 100,
                         }}
                       >
                         <TableCell align="center" component="th" scope="row">
-                          {servico.nomeCompleto}
+                          {servico?.nomeCompleto}
                         </TableCell>
-                        <TableCell align="center">{servico.data}</TableCell>
-                        <TableCell align="center">{servico.hora}</TableCell>
-                        <TableCell align="center">{servico.status}</TableCell>
+                        <TableCell align="center">{servico?.data}</TableCell>
+                        <TableCell align="center">{servico?.hora}</TableCell>
+                        <TableCell align="center">{servico?.status}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

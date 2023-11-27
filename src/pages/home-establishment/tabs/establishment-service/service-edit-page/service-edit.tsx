@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Link, TextField, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Services, { DataService, Service } from "@/shared/entity/serviceEntity";
 import { ApiService } from "@/shared/services/serviceService";
+import LoaderResponse from "@/components/loaderResponse";
+import { getServiceByIdContext } from "@/shared/contexts/serviceContext";
 
 export default function EditPageService() {
   const navigate = useNavigate();
   const [fileName, setFileName] = useState("");
+  const [loadResponse, setloadResponse] = useState(false);
   const { handleSubmit, register } = useForm<DataService>();
   const apiService = new ApiService();
+  const { serviceId } = useParams();
 
   const handleFileChange = (e: any) => {
     const fileInput = e.target;
@@ -23,13 +27,28 @@ export default function EditPageService() {
     }
   };
 
+  useEffect(() => {
+    async function listarServicoById() {
+      if (serviceId != undefined && serviceId != null) {
+        setloadResponse(false);
+        try {
+          const res = await getServiceByIdContext(serviceId);
+          console.log(res);
+          setloadResponse(true);
+        } catch (error) {
+          console.error("Erro ao buscar serviços:", error);
+        }
+      }
+    }
+    listarServicoById();
+  }, []);
+
   const onSubmit: SubmitHandler<DataService> = (data: DataService) => {
     const obj = {
       tipo: data.tipo,
-      nome: data.nome,
-      valor: data.valor,
+      nome: data.nomeServico,
+      valor: data.preco,
       descricao: data.descricao,
-      img: "",
     };
     try {
       apiService.postService(obj);
@@ -40,6 +59,7 @@ export default function EditPageService() {
   };
 
   const confirmCancel = () => {
+    console.log(serviceId);
     Swal.fire({
       title: "Tem certeza que deseja cancelar esse serviço?",
       icon: "warning",
@@ -80,7 +100,7 @@ export default function EditPageService() {
                 className=""
                 placeholder="Digite o nome do Serviço"
                 size="small"
-                {...register("nome")}
+                {...register("nomeServico")}
               />
               <div className="flex wrap gap-6 justify-between">
                 <div className="flex flex-col w-1/2 gap-12">
@@ -90,7 +110,7 @@ export default function EditPageService() {
                     variant="outlined"
                     placeholder="Digite o valor do Serviço"
                     size="small"
-                    {...register("valor")}
+                    {...register("preco")}
                   />
                   <TextField
                     id="outlined-basic"

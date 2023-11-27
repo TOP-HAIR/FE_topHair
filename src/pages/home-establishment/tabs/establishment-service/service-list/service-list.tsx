@@ -8,8 +8,8 @@ import Swal from "sweetalert2";
 import Service from "../../../../../shared/entity/serviceEntity";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
 import LoaderResponse from "@/components/loaderResponse";
-import { getServiceContext } from "@/shared/contexts/serviceContext";
 import NoContentComponent from "../../../../../components/noContent";
+import { getServiceContext } from "@/shared/contexts/serviceContext";
 
 export default function ServiceList() {
   const [services, setServices] = useState<Service[]>([]);
@@ -19,10 +19,7 @@ export default function ServiceList() {
   const apiService = new ApiService();
 
   const linkNavigate = async (serviceId: number) => {
-    navigateToPage(
-      navigate,
-      `/establishment/service/edit/cod_servico=${serviceId}`
-    );
+    navigateToPage(navigate, `/establishment/service/edit/${serviceId}`);
   };
 
   useEffect(() => {
@@ -33,7 +30,6 @@ export default function ServiceList() {
         if (res == undefined || res.data.length == 0) {
           setResLenghtValid(true);
         }
-        console.log(res);
         if (res != undefined) {
           setServices(res.data);
         }
@@ -62,7 +58,7 @@ export default function ServiceList() {
           await apiService.deleteService(serviceId);
 
           const updatedServices = services.filter(
-            (service) => service.id !== serviceId
+            (service) => service.idServico !== serviceId
           );
           setServices(updatedServices);
           Swal.fire("Sucesso", "Serviço excluído com sucesso.", "success");
@@ -95,13 +91,13 @@ export default function ServiceList() {
           <div className="my-8 flex flex-wrap gap-x-5 gap-y-4">
             {services.map((service) => (
               <div
-                key={service.id}
+                key={service.idServico}
                 className="bg-white min-w-96 w-80 grid rounded card-service p-4 relative grow"
               >
                 <CardService
                   service={service}
-                  onDelete={() => deletarService(service.id)}
-                  linkEdit={() => linkNavigate(service.id)}
+                  onDelete={() => deletarService(service.idServico)}
+                  linkEdit={() => linkNavigate(service.idServico)}
                 />
               </div>
             ))}
