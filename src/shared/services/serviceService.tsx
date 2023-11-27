@@ -20,7 +20,7 @@ export class ApiService {
     return await send("DELETE", url);
   }
 
-  async postService(data: DataService) {
+  async postService(data: any) {
     const url = this.serviceUrl;
     return await send("POST", url, data);
   }
