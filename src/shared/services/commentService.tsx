@@ -11,4 +11,9 @@ export class CommentServices {
     const url = this.commentUrl;
     return await send("GET", url + "/empresa/");
   }
+
+  async getComments() {
+    const url = this.commentUrl;
+    return await send("GET", url + `/empresa/${1}`);
+  }
 }

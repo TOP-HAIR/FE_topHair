@@ -9,6 +9,8 @@ import ClientHomePage from "@/pages/home-user-client/components/home-page";
 import ClientHomeEstablishment from "@/pages/home-user-client/components/home-establishment";
 import ClientHomeEstablishmentList from "@/pages/home-user-client/components/home-establishment-list";
 import ClientHomeCalendary from "@/pages/home-user-client/components/home-calendary";
+import EditEmployees from "@/pages/home-establishment/tabs/establishment-employees/employees-edit-page/employees-edit";
+import EmployeesList from "@/pages/home-establishment/tabs/establishment-employees/employees-list/employees-list";
 const HomeUserClientPage = lazy(
   () => import("../../pages/home-user-client/home-user-page")
 );
@@ -70,12 +72,6 @@ const HomeComments = lazy(
   () =>
     import(
       "../../pages/home-establishment/tabs/establishment-comments/comments-list/establishment-comments"
-    )
-);
-const HomeHire = lazy(
-  () =>
-    import(
-      "../../pages/home-establishment/tabs/establishment-hire/establishment-hire"
     )
 );
 const ReportDashboard = lazy(
@@ -222,15 +218,32 @@ export default function PublicRoutes() {
                     <HomeEmployees />
                   </PrivateRoutes>
                 }
-              />
-              <Route
-                path="hireEmployees"
-                element={
-                  <PrivateRoutes>
-                    <HomeHire />
-                  </PrivateRoutes>
-                }
-              />
+              >
+                <Route
+                  path="list"
+                  element={
+                    <PrivateRoutes>
+                      <EmployeesList />
+                    </PrivateRoutes>
+                  }
+                />
+                <Route
+                  path="add"
+                  element={
+                    <PrivateRoutes>
+                      <EditEmployees />
+                    </PrivateRoutes>
+                  }
+                />
+                <Route
+                  path="add/:id"
+                  element={
+                    <PrivateRoutes>
+                      <EditEmployees />
+                    </PrivateRoutes>
+                  }
+                />
+              </Route>
             </Route>
 
             <Route path="client-page" element={<HomeUserClient />} />

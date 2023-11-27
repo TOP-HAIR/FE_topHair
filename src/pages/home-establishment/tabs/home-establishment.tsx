@@ -68,15 +68,9 @@ const links = [
   },
   {
     key: "employees",
-    to: "/establishment/employees",
+    to: "/establishment/employees/list",
     text: "Funcionários",
     icon: <PeopleIcon />,
-  },
-  {
-    key: "hireEmployees",
-    to: "/establishment/hireEmployees",
-    text: "Contratar",
-    icon: <GroupAddIcon />,
   },
 ];
 
