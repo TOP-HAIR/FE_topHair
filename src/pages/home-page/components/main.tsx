@@ -282,9 +282,9 @@ export default function HomeMain() {
             </div>
           </div>
         </div>
-        <div className="page-background-comments page-layout-1x">
+        <div id="comments" className="page-background-comments page-layout-1x">
           <div className="grid-home-width py-32 mx-auto h-full flex flex-col justify-center gap-24">
-            <h2 className="text-3xl text-white font-bold text-center">
+            <h2 className="text-3xl text-white font-bold text-center max-sm:text-2xl">
               Comentários
             </h2>
             <div>
@@ -303,9 +303,15 @@ export default function HomeMain() {
                         alt={comment.alt}
                       />
                       <div className="text-center">
-                        <h3 className="text-2xl mb-6">{comment.name}</h3>
-                        <p className="text-xl mb-14">{comment.text}</p>
-                        <p className="text-xl">{comment.company}</p>
+                        <h3 className="text-2xl mb-6 max-sm:text-lg">
+                          {comment.name}
+                        </h3>
+                        <p className="text-xl mb-14 max-sm:text-base">
+                          {comment.text}
+                        </p>
+                        <p className="text-xl max-sm:text-base">
+                          {comment.company}
+                        </p>
                       </div>
                     </div>
                   </SwiperSlide>

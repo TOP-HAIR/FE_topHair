@@ -11,6 +11,9 @@ export class ApiService {
   async getListaService() {
     return await send("GET", this.serviceUrl + `/empresa/${1}`);
   }
+  async getListaServiceById(id: number) {
+    return await send("GET", this.serviceUrl + `/${id}`);
+  }
 
   async deleteService(id: number) {
     const url = this.serviceUrl + `/${id}`;

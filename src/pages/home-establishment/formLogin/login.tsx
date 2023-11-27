@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { UserLogin } from "../../../shared/entity/authEntity";
+
 import {
   TextField,
   Link,
@@ -66,7 +67,11 @@ export default function Login() {
   };
 
   const onSubmit: SubmitHandler<UserLogin> = async (data) => {
-    userLoginContext(data);
+    userLoginContext(data).then((resultado) => {
+      if (!resultado) {
+        setHideRecaptcha(false);
+      }
+    });
   };
 
   const handleMouseDownPassword = (

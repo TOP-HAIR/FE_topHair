@@ -1,5 +1,5 @@
 export interface Service {
-  id: number | 0;
+  idServico: number | 0;
   tipo: string;
   nomeServico: string;
   preco: number;

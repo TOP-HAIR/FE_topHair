@@ -5,6 +5,10 @@ import HomePage from "../../pages/home-page/home-page";
 import PrivateRoutes from "../private-router/private-router";
 import ErrorPage404 from "../../components/ErrorPage404";
 import HomeUserClient from "../../pages/home-user-client/home-user-client";
+import ClientHomePage from "@/pages/home-user-client/components/home-page";
+import ClientHomeEstablishment from "@/pages/home-user-client/components/home-establishment";
+import ClientHomeEstablishmentList from "@/pages/home-user-client/components/home-establishment-list";
+import ClientHomeCalendary from "@/pages/home-user-client/components/home-calendary";
 const HomeUserClientPage = lazy(
   () => import("../../pages/home-user-client/home-user-page")
 );
@@ -195,7 +199,7 @@ export default function PublicRoutes() {
                   }
                 />
                 <Route
-                  path="edit/:id"
+                  path="edit/:serviceId"
                   element={
                     <PrivateRoutes>
                       <EditPageService />
@@ -230,7 +234,15 @@ export default function PublicRoutes() {
             </Route>
 
             <Route path="client-page" element={<HomeUserClient />} />
-            <Route path="home" element={<HomeUserClientPage />} />
+            <Route path="client" element={<HomeUserClientPage />}>
+              <Route path="home" element={<ClientHomePage />} />
+              <Route
+                path="establishment"
+                element={<ClientHomeEstablishment />}
+              />
+              <Route path="list" element={<ClientHomeEstablishmentList />} />
+              <Route path="calendary" element={<ClientHomeCalendary />} />
+            </Route>
 
             <Route path="login" element={<Login />} />
             <Route path="form" element={<FormPage />} />
