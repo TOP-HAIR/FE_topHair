@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -8,7 +8,6 @@ import BuildCircleIcon from "@mui/icons-material/BuildCircle";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import PeopleIcon from "@mui/icons-material/People";
 import LogoutIcon from "@mui/icons-material/Logout";
-import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import SettingsIcon from "@mui/icons-material/Settings";
 import TopHair from "../../../assets/configs/img/logo/top-hair-logo-white-version 2.svg";
 import { useNavigate, Outlet } from "react-router-dom";
@@ -92,7 +91,18 @@ const userSettings = [
 export default function HomeEstablishment() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
+  const [userName, setUserName] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const usuarioString = sessionStorage.getItem("dataLocal");
+
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      const { nomeCompleto } = usuario;
+      setUserName(nomeCompleto);
+    }
+  }, []);
 
   const handleLinkClick = (linkName: string) => {
     setActiveLink(linkName);
@@ -290,7 +300,7 @@ export default function HomeEstablishment() {
                   <p className="text-xl font-light lg:mr-20 flex">
                     Bem-vindo,{" "}
                     <p className="color-primary-aqua text-xl font-light ml-2">
-                      usuário
+                      {userName}.
                     </p>
                   </p>
                 </div>

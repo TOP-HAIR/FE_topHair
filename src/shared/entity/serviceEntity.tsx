@@ -8,10 +8,9 @@ export interface Service {
 }
 
 export interface DataService {
-  tipo: string;
+  // tipo: string;
   nomeServico: string;
   preco: number;
   descricao: string;
+  qtdTempoServico: string;
 }
-
-export default Service;

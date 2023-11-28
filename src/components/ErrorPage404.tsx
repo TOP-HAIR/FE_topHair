@@ -11,7 +11,7 @@ export default function ErrorPage404() {
   return (
     <>
       <header className="w-full fixed h-20 bg-primary-dark-cyan flex justify-center">
-        <div className="grid-home-width w-full flex justify-between">
+        <div className="grid-home-width w-full flex justify-between px-4">
           <a className="h-full" href="/">
             <img className="h-full" src={logoTopHair} alt="Logo da TopHair" />
           </a>
@@ -40,7 +40,7 @@ export default function ErrorPage404() {
         </div>
       </header>
       <main className="w-full min-h-screen flex flex-col justify-center items-center">
-        <div className="flex flex-row justify-center items-center gap-20">
+        <div className="flex flex-row justify-center items-center gap-20 flex-wrap-reverse pt-20">
           <div className="h-96 w-80 bg-white card-service rounded flex flex-col p-4 gap-4 justify-between">
             <h2 className="text-4xl font-medium">Oops...</h2>
             <div className="flex flex-col gap-3">

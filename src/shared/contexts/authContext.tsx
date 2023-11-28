@@ -8,10 +8,6 @@ const authService = new AuthService();
 export const userLoginContext = async (data: UserLogin) => {
   try {
     const user = await authService.postUserLogin(data);
-    if (user != undefined && user != null) {
-      const data = await authService.getEmpresaInfo(user?.userId);
-      sessionStorage.setItem("dataEmpresa", JSON.stringify(data));
-    }
     loginStorage(user);
     return true;
   } catch (error) {
@@ -38,8 +34,18 @@ export const userRegisterContext = async (data: Empresa) => {
   }
 };
 
-const loginStorage = (data: userData) => {
+const loginStorage = async (data: userData) => {
   sessionStorage.setItem("dataLocal", JSON.stringify(data));
   httpClient.defaults.headers.Authorization = `Bearer ${data.token}`;
+
+  if (data !== undefined && data !== null) {
+    try {
+      const empresaData = await authService.getEmpresaInfo(data.userId);
+      sessionStorage.setItem("dataEmpresa", JSON.stringify(empresaData));
+    } catch (error) {
+      console.error("Erro ao obter informações da empresa:", error);
+    }
+  }
+
   window.location.href = "/establishment/home";
 };
