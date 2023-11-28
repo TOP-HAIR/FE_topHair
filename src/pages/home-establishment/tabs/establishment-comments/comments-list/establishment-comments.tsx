@@ -17,6 +17,7 @@ export default function HomeComments() {
       setloadResponse(false);
       try {
         const res = await getCommentContext();
+        console.log(res);
         if (res == undefined || res.data.length == 0) {
           setResLenghtValid(true);
         }
@@ -44,7 +45,7 @@ export default function HomeComments() {
             <div className="m-6 flex flex-wrap gap-x-5 gap-y-4">
               {comment.map((comment) => (
                 <div
-                  key={comment.id}
+                  key={comment.idAvaliacao}
                   className="w-96 max-w-xs grid rounded card-service p-4 relative gap-4"
                 >
                   <CommentService comment={comment} />

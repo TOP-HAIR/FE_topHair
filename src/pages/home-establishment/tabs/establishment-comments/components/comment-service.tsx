@@ -10,9 +10,11 @@ export default function CommentService({ comment }: { comment: Comment }) {
           src={comment.imagem}
           alt="Imagem Perfil Usuário"
         />
-        <h3 className="font-semibold text-lg ">{comment.nome}</h3>
+        <h3 className="font-semibold text-lg ">
+          {comment?.usuario?.nomeCompleto}
+        </h3>
       </div>
-      <p className=" font-family-dm-sans">{comment.descricao}</p>
+      <p className=" font-family-dm-sans">{comment.comentario}</p>
     </>
   );
 }

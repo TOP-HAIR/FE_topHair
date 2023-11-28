@@ -59,22 +59,26 @@ export default function HomeList() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {ultimosServicos?.map((servico) => (
-                      <TableRow
-                        key={servico?.id}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                          marginBottom: 100,
-                        }}
-                      >
-                        <TableCell align="center" component="th" scope="row">
-                          {servico?.nomeCompleto}
-                        </TableCell>
-                        <TableCell align="center">{servico?.data}</TableCell>
-                        <TableCell align="center">{servico?.hora}</TableCell>
-                        <TableCell align="center">{servico?.status}</TableCell>
-                      </TableRow>
-                    ))}
+                    {ultimosServicos
+                      ?.filter((servico) => servico != null)
+                      .map((servico) => (
+                        <TableRow
+                          key={servico?.id}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                            marginBottom: 100,
+                          }}
+                        >
+                          <TableCell align="center" component="th" scope="row">
+                            {servico?.nomeCompleto}
+                          </TableCell>
+                          <TableCell align="center">{servico?.data}</TableCell>
+                          <TableCell align="center">{servico?.hora}</TableCell>
+                          <TableCell align="center">
+                            {servico?.status}
+                          </TableCell>
+                        </TableRow>
+                      ))}
                   </TableBody>
                 </Table>
               </TableContainer>
