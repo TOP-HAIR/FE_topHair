@@ -5,12 +5,12 @@ import HomePage from "../../pages/home-page/home-page";
 import PrivateRoutes from "../private-router/private-router";
 import ErrorPage404 from "../../components/ErrorPage404";
 import HomeUserClient from "../../pages/home-user-client/home-user-client";
-import ClientHomePage from "@/pages/home-user-client/components/home-page";
-import ClientHomeEstablishment from "@/pages/home-user-client/components/home-establishment";
-import ClientHomeEstablishmentList from "@/pages/home-user-client/components/home-establishment-list";
-import ClientHomeCalendary from "@/pages/home-user-client/components/home-calendary";
-import EditEmployees from "@/pages/home-establishment/tabs/establishment-employees/employees-edit-page/employees-edit";
-import EmployeesList from "@/pages/home-establishment/tabs/establishment-employees/employees-list/employees-list";
+import ClientHomePage from "../../pages/home-user-client/components/home-page";
+import ClientHomeEstablishment from "../../pages/home-user-client/components/home-establishment";
+import ClientHomeEstablishmentList from "../../pages/home-user-client/components/home-establishment-list";
+import ClientHomeCalendary from "../../pages/home-user-client/components/home-calendary";
+import EditEmployees from "../../pages/home-establishment/tabs/establishment-employees/employees-edit-page/employees-edit";
+import EmployeesList from "../../pages/home-establishment/tabs/establishment-employees/employees-list/employees-list";
 const HomeUserClientPage = lazy(
   () => import("../../pages/home-user-client/home-user-page")
 );

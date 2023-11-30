@@ -5,11 +5,11 @@ import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { ApiService } from "../../../../../shared/services/serviceService";
 import Swal from "sweetalert2";
-import Service from "../../../../../shared/entity/serviceEntity";
+import {Service} from "../../../../../shared/entity/serviceEntity";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
-import LoaderResponse from "@/components/loaderResponse";
+import LoaderResponse from "../../../../../components/loaderResponse";
 import NoContentComponent from "../../../../../components/noContent";
-import { getServiceContext } from "@/shared/contexts/serviceContext";
+import { getServiceContext } from "../../../../../shared/contexts/serviceContext";
 
 export default function ServiceList() {
   const [services, setServices] = useState<Service[]>([]);

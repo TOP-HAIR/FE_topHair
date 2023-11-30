@@ -1,7 +1,7 @@
 import { Button, Card } from "@mui/material";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LoaderResponse from "@/components/loaderResponse";
+import LoaderResponse from "../../../../../components/loaderResponse";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
 import NoContentComponent from "../../../../../components/noContent";
 

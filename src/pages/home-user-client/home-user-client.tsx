@@ -12,7 +12,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ArticleIcon from "@mui/icons-material/Article";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { estadosBrasil } from "@/shared/hooks/utils/arrayList";
+import { estadosBrasil } from "../../shared/hooks/utils/arrayList";
 import "swiper/css";
 import "swiper/css/navigation";
 import Header from "./components/header";

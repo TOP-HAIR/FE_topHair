@@ -1,7 +1,7 @@
 import React from "react";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Service from "../../../../../../shared/entity/serviceEntity";
+import {Service} from "../../../../../../shared/entity/serviceEntity";
 
 export default function CardService({
   service,

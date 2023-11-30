@@ -20,8 +20,8 @@ import {
   IconButton,
   Input,
 } from "@mui/material";
-import ReCAPTCHAComponent from "@/components/reCAPTCHA";
-import { userLoginContext } from "@/shared/contexts/authContext";
+import ReCAPTCHAComponent from "../../../components/reCAPTCHA";
+import { userLoginContext } from "../../../shared/contexts/authContext";
 
 const darkTheme = createTheme({
   palette: {
