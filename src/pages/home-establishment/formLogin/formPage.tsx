@@ -3,9 +3,9 @@ import { Box, Button, Link } from "@mui/material";
 import FormRegister1 from "./components/formRegister1";
 import FormRegister2 from "./components/formRegister2";
 import { useFormStep } from "../../../shared/hooks/useForm";
-import { Empresa } from "@/shared/entity/authEntity";
+import { Empresa } from "../../../shared/entity/authEntity";
 import { SubmitHandler } from "react-hook-form";
-import ReCAPTCHAComponent from "@/components/reCAPTCHA";
+import ReCAPTCHAComponent from "../../../components/reCAPTCHA";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
 import TophairIcon from "../../../assets/configs/img/logo/white-logo.png";
@@ -98,7 +98,7 @@ export default function FormPage() {
                   <Button
                     variant="contained"
                     className="w-full button-login bg-primary-aqua rounded-sm"
-                    onClick={(e) => changeStep(currentStep - 1, e)}
+                    onClick={(e: any) => changeStep(currentStep - 1, e)}
                   >
                     Voltar
                   </Button>
@@ -108,7 +108,7 @@ export default function FormPage() {
                 <Button
                   variant="contained"
                   className="w-1/2 button-login bg-primary-aqua rounded-sm"
-                  onClick={(e) => changeStep(currentStep + 1, e)}
+                  onClick={(e: any) => changeStep(currentStep + 1, e)}
                 >
                   Próximo
                 </Button>

@@ -7,8 +7,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Card } from "@mui/material";
 import LoaderResponse from "../../../../../../components/loaderResponse";
-import { homeTableContext } from "@/shared/contexts/homeContext";
-import { AgendamentosData } from "@/shared/entity/homeEntity";
+import { homeTableContext } from "../../../../../../shared/contexts/homeContext";
+import { AgendamentosData } from "../../../../../../shared/entity/homeEntity";
 import NoContentComponent from "../../../../../../components/noContent";
 
 export default function HomeList() {

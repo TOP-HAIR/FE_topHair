@@ -4,10 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { DataService } from "@/shared/entity/serviceEntity";
-import { ApiService } from "@/shared/services/serviceService";
-import LoaderResponse from "@/components/loaderResponse";
-import { getServiceByIdContext } from "@/shared/contexts/serviceContext";
+import { DataService } from "../../../../../shared/entity/serviceEntity";
+import { ApiService } from "../../../../../shared/services/serviceService";
+import LoaderResponse from "../../../../../components/loaderResponse";
+import { getServiceByIdContext } from "../../../../../shared/contexts/serviceContext";
 import {
   formatTime,
   inputSemEspaco,

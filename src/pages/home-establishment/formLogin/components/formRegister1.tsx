@@ -11,7 +11,7 @@ import {
   Input,
 } from "@mui/material";
 
-import { EmpresaData } from "@/shared/entity/authEntity";
+import { EmpresaData } from "../../../../shared/entity/authEntity";
 
 const darkTheme = createTheme({
   palette: {

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, Card, TextField, Button } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { navigateToPage } from "@/shared/hooks/utils/navigatePage";
+import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
 import { SubmitHandler, useForm } from "react-hook-form";
-import LoaderResponse from "@/components/loaderResponse";
+import LoaderResponse from "../../../../../components/loaderResponse";
 
 export default function EditEmployees() {
   const { handleSubmit, register } = useForm();

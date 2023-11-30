@@ -1,6 +1,6 @@
-import { UserLogin, userData, Empresa } from "@/shared/entity/authEntity";
-import httpClient from "@/shared/services/apiUrl";
-import { AuthService } from "@/shared/services/authService";
+import { UserLogin, userData, Empresa } from "../entity/authEntity";
+import httpClient from "../services/apiUrl";
+import { AuthService } from "../services/authService";
 import { toast } from "react-toastify";
 
 const authService = new AuthService();

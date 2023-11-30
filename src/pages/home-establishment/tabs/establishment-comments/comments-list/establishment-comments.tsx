@@ -3,9 +3,9 @@ import { Card } from "@mui/material";
 import { useState, useEffect } from "react";
 import Comment from "../../../../../shared/entity/commentsEntity";
 import CommentService from "../components/comment-service";
-import LoaderResponse from "@/components/loaderResponse";
+import LoaderResponse from "../../../../../components/loaderResponse";
 import NoContentComponent from "../../../../../components/noContent";
-import { getCommentContext } from "@/shared/contexts/commentsContext";
+import { getCommentContext } from "../../../../../shared/contexts/commentsContext";
 
 export default function HomeComments() {
   const [loadResponse, setloadResponse] = useState(false);
