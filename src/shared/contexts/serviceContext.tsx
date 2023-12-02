@@ -2,6 +2,13 @@ import { ApiService } from "../services/serviceService";
 
 const apiService = new ApiService();
 
+const objetoString = sessionStorage.getItem("dataEmpresa");
+if (objetoString !== null) {
+  const objeto = JSON.parse(objetoString);
+  const idEmpresa = objeto.idEmpresa;
+  apiService.idEmpresa = idEmpresa;
+}
+
 export const getServiceContext = async () => {
   try {
     return await apiService.getListaService();

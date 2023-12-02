@@ -1,9 +1,11 @@
 import { send } from "./apiUrl";
+import { AuthService } from "./authService";
 
-export class CommentServices {
+export class CommentServices extends AuthService {
   private commentUrl: string;
 
   constructor() {
+    super();
     this.commentUrl = "/avaliacoes";
   }
 
@@ -14,6 +16,6 @@ export class CommentServices {
 
   async getComments() {
     const url = this.commentUrl;
-    return await send("GET", url + `/empresa/${1}`);
+    return await send("GET", url + `/empresa/${this.idEmpresa}`);
   }
 }

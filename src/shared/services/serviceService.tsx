@@ -1,15 +1,17 @@
-import Service, { DataService } from "../entity/serviceEntity";
+import { Service, DataService } from "../entity/serviceEntity";
 import { send } from "./apiUrl";
+import { AuthService } from "./authService";
 
-export class ApiService {
+export class ApiService extends AuthService {
   private serviceUrl: string;
 
   constructor() {
+    super();
     this.serviceUrl = "/servicos";
   }
 
   async getListaService() {
-    return await send("GET", this.serviceUrl + `/empresa/${1}`);
+    return await send("GET", this.serviceUrl + `/empresa/${this.idEmpresa}`);
   }
   async getListaServiceById(id: number) {
     return await send("GET", this.serviceUrl + `/${id}`);

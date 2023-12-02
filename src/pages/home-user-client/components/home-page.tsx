@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navigation } from "swiper/modules";
 import FiltroCabeloImg from "../../../assets/configs/img/Rectangle 472.png";
 import FiltroBarbaImg from "../../../assets/configs/img/Rectangle 473.png";
 import FiltroTinturaImg from "../../../assets/configs/img/Rectangle 474.png";
 import { Breadcrumbs, Link, Rating, Typography } from "@mui/material";
 import { SwiperSlide, Swiper } from "swiper/react";
+import { getTop5EmpresasContext } from "@/shared/contexts/empresaContext";
+import {
+  EmpresaAvaliacao,
+  EmpresaComNiveis,
+} from "@/shared/entity/empresaEntity";
 
 export default function ClientHomePage() {
+  const [loadResponse, setloadResponse] = useState(false);
+  const [empresaAvaliacao, setEmpresaAvaliacao] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function listarTop5Avaliacoes() {
+      setloadResponse(false);
+      try {
+        const res = await getTop5EmpresasContext();
+        console.log(res);
+        const avaliacoes = res[0]?.avaliacoes || [];
+        console.log(res);
+        setEmpresaAvaliacao(res);
+        console.log(empresaAvaliacao);
+
+        setloadResponse(true);
+      } catch (error) {
+        console.error("Erro ao buscar serviços:", error);
+      }
+    }
+
+    listarTop5Avaliacoes();
+  }, []);
+
   return (
     <>
       <div className="px-4 w-full flex justify-center">
@@ -42,18 +70,18 @@ export default function ClientHomePage() {
             modules={[Navigation]}
             slidesPerView={3}
           >
-            {/* {valores.map((valor, index) => ( */}
-            <SwiperSlide className="mx-5 min-h-">
-              <div className="my-8 p-2 flex flex-col items-center justify-center gap-2 card-service">
-                <h3 className="font-bold drop-shadow-2xl text-lg">faitls</h3>
-                <img className="h-20 w-20 bg-black rounded-full" />
-                <Rating name="read-only" value={4} readOnly />
-                <p className="text-black font-normal font-family-dm-sans text-base">
-                  awdwad
-                </p>
-              </div>
-            </SwiperSlide>
-            {/* ))} */}
+            {empresaAvaliacao.map((valor, index) => (
+              <SwiperSlide className="mx-5 min-h-">
+                <div className="my-8 p-2 flex flex-col items-center justify-center gap-2 card-service">
+                  <h3 className="font-bold drop-shadow-2xl text-lg">faitls</h3>
+                  <img className="h-20 w-20 bg-black rounded-full" />
+                  <Rating name="read-only" value={4} readOnly />
+                  <p className="text-black font-normal font-family-dm-sans text-base">
+                    awdwad
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </section>

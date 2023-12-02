@@ -41,12 +41,12 @@ const links = [
     text: "Calendário",
     icon: <CalendarMonthIcon />,
   },
-  {
-    key: "reports",
-    to: "/establishment/reports/list",
-    text: "Relatórios",
-    icon: <AssignmentIcon />,
-  },
+  // {
+  //   key: "reports",
+  //   to: "/establishment/reports/list",
+  //   text: "Relatórios",
+  //   icon: <AssignmentIcon />,
+  // },
   {
     key: "shop",
     to: "/establishment/shop",
