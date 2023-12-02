@@ -9,9 +9,8 @@ import {
   InputAdornment,
   IconButton,
   Input,
+  FormHelperText,
 } from "@mui/material";
-
-import { EmpresaData } from "../../../../shared/entity/authEntity";
 
 const darkTheme = createTheme({
   palette: {
@@ -19,10 +18,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function FormRegister1({
-  data,
-  updateFieldHandler,
-}: EmpresaData) {
+export default function FormRegister1({ register, errors, getValues }: any) {
   const [showPassword1, setShowPassword1] = React.useState(false);
   const [showPassword2, setShowPassword2] = React.useState(false);
   const passwordInputRef1 = useRef<HTMLInputElement>(null);
@@ -70,34 +66,46 @@ export default function FormRegister1({
               variant="standard"
               size="medium"
               type="text"
-              value={data.empresa || ""}
-              onChange={(e) => updateFieldHandler("empresa", e.target.value)}
+              {...register("empresa", {
+                required: "Este campo é obrigatório",
+              })}
               placeholder="Digite o nome da empresa"
+              error={Boolean(errors.empresa)}
+              helperText={errors.empresa?.message}
             />
             <TextField
               label="Email"
               variant="standard"
               size="medium"
               type="text"
-              value={data.email || ""}
-              onChange={(e) => updateFieldHandler("email", e.target.value)}
+              {...register("email", {
+                required: "Este campo é obrigatório",
+              })}
               placeholder="Digite seu Email"
+              error={Boolean(errors.email)}
+              helperText={errors.email?.message}
             />
             <TextField
-              label="CPNJ"
+              label="CNPJ"
               variant="standard"
               size="medium"
               type="text"
-              value={data.cnpj || ""}
-              onChange={(e) => updateFieldHandler("cnpj", e.target.value)}
+              {...register("cnpj", {
+                required: "Este campo é obrigatório",
+                pattern: {
+                  value: /\d/,
+                  message: "Deve conter pelo menos um número",
+                },
+              })}
               placeholder="Digite seu CNPJ"
+              error={Boolean(errors.cnpj)}
+              helperText={errors.cnpj?.message}
             />
             <FormControl variant="standard">
               <InputLabel htmlFor="standard-adornment-password">
                 Password
               </InputLabel>
               <Input
-                id="standard-adornment-password"
                 type={showPassword1 ? "text" : "password"}
                 inputRef={passwordInputRef1}
                 placeholder="Digite sua Senha"
@@ -112,16 +120,28 @@ export default function FormRegister1({
                     </IconButton>
                   </InputAdornment>
                 }
-                value={data.senha || ""}
-                onChange={(e) => updateFieldHandler("senha", e.target.value)}
+                {...register("senha", {
+                  required: "Este campo é obrigatório",
+                  pattern: {
+                    value:
+                      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z\d!@#$%^&*(),.?":{}|<>]*$/,
+                    message:
+                      "Deve conter pelo menos uma letra, um número e um caractere especial",
+                  },
+                })}
+                error={Boolean(errors.senha)}
               />
+              {errors.senha && (
+                <FormHelperText className="text-red-500">
+                  {errors.senha?.message}
+                </FormHelperText>
+              )}
             </FormControl>
             <FormControl variant="standard">
               <InputLabel htmlFor="standard-adornment-password">
                 Confirme sua Senha:
               </InputLabel>
               <Input
-                id="standard-adornment-password"
                 type={showPassword2 ? "text" : "password"}
                 inputRef={passwordInputRef2}
                 placeholder="Repita sua Senha"
@@ -136,11 +156,19 @@ export default function FormRegister1({
                     </IconButton>
                   </InputAdornment>
                 }
-                value={data.senhaConfirmacao || ""}
-                onChange={(e) =>
-                  updateFieldHandler("senhaConfirmacao", e.target.value)
-                }
+                {...register("senhaConfirmacao", {
+                  required: "Este campo é obrigatório",
+                  validate: (value: string) =>
+                    value === getValues("senha") || "As senhas não coincidem",
+                })}
+                error={Boolean(errors.senhaConfirmacao)}
+                helperText={errors.senhaConfirmacao?.message}
               />
+              {errors.senhaConfirmacao && (
+                <FormHelperText className="text-red-500">
+                  {errors.senhaConfirmacao?.message}
+                </FormHelperText>
+              )}
             </FormControl>
           </ThemeProvider>
         </div>

@@ -2,9 +2,9 @@ import axios from "axios";
 import { AddressData } from "../../entity/authEntity";
 import { enviromentsExternalApi } from "../../enviroments/envExternal";
 
-export const viaCEP = async (cep: string): Promise<AddressData> => {
-  const response = await axios.get(
+export const viaCEP = (cep: string) => {
+  const response = axios.get(
     `${enviromentsExternalApi.api.viaCepApi}/${cep}/json`
   );
-  return response.data;
+  return response;
 };

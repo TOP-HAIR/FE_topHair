@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import TophairIcon from "../../../assets/configs/img/logo/white-logo.png";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -66,7 +66,10 @@ export default function Login() {
     }
   };
 
-  const onSubmit: SubmitHandler<UserLogin> = async (data) => {
+  const onSubmit: SubmitHandler<UserLogin> = async (data, event) => {
+    if (event) {
+      event.preventDefault();
+    }
     userLoginContext(data).then((resultado) => {
       if (!resultado) {
         setHideRecaptcha(false);

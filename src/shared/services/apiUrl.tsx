@@ -10,7 +10,6 @@ import {
   patch,
   deleteReq,
 } from "../services/RequestResponseValidation";
-import Swal from "sweetalert2";
 
 let env: string = "";
 
@@ -57,13 +56,10 @@ httpClient.interceptors.response.use(
       if (error.response?.status === 401) {
         console.log(error.response.status);
         sessionStorage.clear();
-        window.location.href = "/login";
         throw new Error("Usuário não Autorizado");
       }
       if (error.response?.status === 403) {
         console.log(error.response.status);
-        sessionStorage.clear();
-        Swal.fire("Sessão Expirada").then(sessionStorage.delete("dataLocal"));
         throw new Error("Caso o erro persista, contate o administrador");
       }
     }

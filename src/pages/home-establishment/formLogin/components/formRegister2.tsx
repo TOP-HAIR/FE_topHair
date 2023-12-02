@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { viaCEP } from "../../../../shared/services/ExternalApis/viaCep";
 import { TextField } from "@mui/material";
 import { validateCepFormat } from "../../../../shared/hooks/utils/validateInput";
-import {
-  AddressData,
-  EnderecoData,
-} from "../../../../shared/entity/authEntity";
-
+import { AddressData } from "../../../../shared/entity/authEntity";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -15,30 +11,38 @@ const darkTheme = createTheme({
 });
 
 export default function FormRegister2({
-  data,
-  updateFieldHandler,
-}: EnderecoData) {
+  register,
+  setValue,
+  getValues,
+  errors,
+}: any) {
   const [cep, setCep] = React.useState("");
   const [cepError, setCepError] = React.useState<string>("");
-  const [addressData, setAddressData] = React.useState<AddressData | null>(
-    null
+
+  const handleSetData = useCallback(
+    (data: AddressData) => {
+      setValue("bairro", data.bairro);
+      setValue("localidade", data.localidade);
+      setValue("uf", data.uf);
+      setValue("logradouro", data.logradouro);
+    },
+    [register]
   );
-
-  const fetchData = async () => {
-    if (data.cep !== "" && data.cep !== null && data.cep !== undefined) {
-      try {
-        const dataCEP = await viaCEP(data.cep);
-
-        setCepError("");
-      } catch (err) {
-        setCepError("CEP não encontrado");
-      }
+  const fetchCepData = async () => {
+    try {
+      const dataCEP = await viaCEP(cep);
+      handleSetData(dataCEP.data);
+      console.log(dataCEP.data);
+    } catch (err) {
+      console.error("Erro ao buscar CEP:", err);
     }
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (cep) {
+      setValue("cep", cep);
+    }
+  }, [cep]);
 
   return (
     <>
@@ -51,11 +55,11 @@ export default function FormRegister2({
               size="medium"
               type="text"
               placeholder="Digite o CEP"
-              value={data.cep}
-              required
+              {...register("cep", {
+                required: "Este campo é obrigatório",
+              })}
               onChange={(e) => {
                 const newCep = e.target.value;
-                updateFieldHandler("cep", e.target.value);
                 setCep(newCep);
 
                 if (!validateCepFormat(newCep)) {
@@ -64,31 +68,22 @@ export default function FormRegister2({
                   setCepError("");
                 }
               }}
-              onBlur={async () => {
-                try {
-                  const dataCEP = await viaCEP(cep);
-                  setAddressData(data);
-                  updateFieldHandler("logradouro", dataCEP.logradouro);
-                  updateFieldHandler("bairro", dataCEP.bairro);
-                  updateFieldHandler("localidade", dataCEP.localidade);
-                  updateFieldHandler("uf", dataCEP.uf);
-                  setCepError("");
-                } catch (err) {
-                  setCepError("CEP não encontrado");
-                }
-              }}
-              error={Boolean(cepError)}
-              helperText={cepError}
+              onBlur={() => fetchCepData()}
+              maxLength={9}
+              error={Boolean(errors.cep)}
+              helperText={errors.cep?.message}
             />
             <TextField
               label="Logradouro"
               variant="standard"
               size="medium"
               type="text"
-              placeholder="Digite o Logradouro"
-              value={data.logradouro || ""}
-              onChange={(e) => updateFieldHandler("logradouro", e.target.value)}
-              disabled={!addressData?.logradouro}
+              {...register("logradouro", {
+                required: "Este campo é obrigatório",
+              })}
+              error={Boolean(errors.logradouro)}
+              helperText={errors.logradouro?.message}
+              focused
             />
             <div className="flex gap-4">
               <TextField
@@ -97,10 +92,12 @@ export default function FormRegister2({
                 variant="standard"
                 size="medium"
                 type="text"
-                placeholder="Digite o Bairro"
-                value={data.bairro || ""}
-                onChange={(e) => updateFieldHandler("bairro", e.target.value)}
-                disabled={!addressData?.bairro}
+                {...register("bairro", {
+                  required: "Este campo é obrigatório",
+                })}
+                error={Boolean(errors.bairro)}
+                helperText={errors.bairro?.message}
+                focused
               />
               <TextField
                 className="w-1/4"
@@ -108,8 +105,15 @@ export default function FormRegister2({
                 variant="standard"
                 size="medium"
                 type="number"
-                value={data.numero || ""}
-                onChange={(e) => updateFieldHandler("numero", e.target.value)}
+                {...register("numero", {
+                  required: "Este campo é obrigatório",
+                  pattern: {
+                    value: /\d/,
+                    message: "Deve conter pelo menos um número",
+                  },
+                })}
+                error={Boolean(errors.numero)}
+                helperText={errors.numero?.message}
                 placeholder="Número"
               />
             </div>
@@ -120,10 +124,12 @@ export default function FormRegister2({
                 variant="standard"
                 size="medium"
                 type="text"
-                placeholder="Digite o Estado"
-                value={data.uf || ""}
-                onChange={(e) => updateFieldHandler("uf", e.target.value)}
-                disabled={!addressData?.uf}
+                {...register("uf", {
+                  required: "Este campo é obrigatório",
+                })}
+                focused
+                error={Boolean(errors.uf)}
+                helperText={errors.uf?.message}
               />
               <TextField
                 className="w-2/4"
@@ -131,12 +137,12 @@ export default function FormRegister2({
                 variant="standard"
                 size="medium"
                 type="text"
-                placeholder="Digite a Cidade"
-                value={data.localidade || ""}
-                onChange={(e) =>
-                  updateFieldHandler("localidade", e.target.value)
-                }
-                disabled={!addressData?.localidade}
+                {...register("localidade", {
+                  required: "Este campo é obrigatório",
+                })}
+                error={Boolean(errors.localidade)}
+                helperText={errors.localidade?.message}
+                focused
               />
             </div>
             <TextField
@@ -144,10 +150,7 @@ export default function FormRegister2({
               variant="standard"
               size="medium"
               type="text"
-              value={data.complemento || ""}
-              onChange={(e) =>
-                updateFieldHandler("complemento", e.target.value)
-              }
+              {...register("complemento")}
               placeholder="Digite o complemento"
             />
           </ThemeProvider>

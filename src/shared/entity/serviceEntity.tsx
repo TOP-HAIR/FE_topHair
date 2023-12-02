@@ -8,7 +8,7 @@ export interface Service {
 }
 
 export interface DataService {
-  // tipo: string;
+  categoria: string;
   nomeServico: string;
   preco: number;
   descricao: string;
