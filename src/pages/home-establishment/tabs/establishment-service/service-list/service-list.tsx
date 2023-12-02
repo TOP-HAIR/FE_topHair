@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { ApiService } from "../../../../../shared/services/serviceService";
 import Swal from "sweetalert2";
-import {Service} from "../../../../../shared/entity/serviceEntity";
+import { Service } from "../../../../../shared/entity/serviceEntity";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
 import LoaderResponse from "../../../../../components/loaderResponse";
 import NoContentComponent from "../../../../../components/noContent";
@@ -33,6 +33,7 @@ export default function ServiceList() {
         if (res != undefined) {
           setServices(res.data);
         }
+        console.log(res);
         setloadResponse(true);
       } catch (error) {
         console.error("Erro ao buscar serviços:", error);

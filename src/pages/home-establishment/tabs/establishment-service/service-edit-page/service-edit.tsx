@@ -12,7 +12,7 @@ import {
   formatTime,
   inputSemEspaco,
   inputSomenteNumero,
-} from "@/shared/hooks/utils/validateInput";
+} from "../../../../../shared/hooks/utils/validateInput";
 
 export default function EditPageService() {
   const navigate = useNavigate();
@@ -134,6 +134,16 @@ export default function EditPageService() {
                       }}
                     />
                   </div>
+
+                  <TextField
+                    id="outlined-basic"
+                    label="Categoria"
+                    variant="outlined"
+                    multiline
+                    size="small"
+                    placeholder="Descreva o Serviço"
+                    {...register("categoria")}
+                  />
 
                   <TextField
                     id="outlined-basic"

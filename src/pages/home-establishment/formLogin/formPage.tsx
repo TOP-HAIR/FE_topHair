@@ -4,11 +4,15 @@ import FormRegister1 from "./components/formRegister1";
 import FormRegister2 from "./components/formRegister2";
 import { useFormStep } from "../../../shared/hooks/useForm";
 import { Empresa } from "../../../shared/entity/authEntity";
-import { SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import ReCAPTCHAComponent from "../../../components/reCAPTCHA";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
 import TophairIcon from "../../../assets/configs/img/logo/white-logo.png";
+import {
+  cadastroEstabelecimento,
+  userRegisterContext,
+} from "@/shared/contexts/authContext";
 
 const form: Empresa = {
   empresa: "",
@@ -26,48 +30,49 @@ const form: Empresa = {
 };
 
 export default function FormPage() {
-  const [data, setData] = useState(form);
-  const [validRecaptcha, setValidRecaptcha] = useState(false);
+  const {
+    handleSubmit,
+    register,
+    setValue,
+    getValues,
+    formState: { errors },
+    trigger,
+  } = useForm<Empresa>();
 
-  const updateFieldHandler = (key: string, value: string) => {
-    setData((prev) => {
-      return { ...prev, [key]: value };
-    });
-  };
   const updateValidRecaptcha = (value: boolean) => {
-    setValidRecaptcha(true);
+    if (value) {
+      trigger().then(() => {
+        handleSubmit(onSubmit)();
+      });
+    }
   };
 
   const formComponents = [
-    <FormRegister1 data={data} updateFieldHandler={updateFieldHandler} />,
-    <FormRegister2 data={data} updateFieldHandler={updateFieldHandler} />,
+    <FormRegister1 register={register} getValues={getValues} errors={errors} />,
+    <FormRegister2
+      register={register}
+      setValue={setValue}
+      getValues={getValues}
+      errors={errors}
+    />,
     <ReCAPTCHAComponent updateValidRecaptcha={updateValidRecaptcha} />,
   ];
+
+  const onSubmit = (data: any) => {
+    userRegisterContext(data).then((resultado) => {
+      console.log(resultado);
+    });
+    console.log("Form data submitted:", data);
+  };
+
   const { currentComponent, changeStep, currentStep } =
     useFormStep(formComponents);
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<Empresa> = async (dataObj: Empresa) => {
-    try {
-      let obj = {
-        empresa: dataObj.empresa,
-        email: dataObj.email,
-        cnpj: dataObj.cnpj,
-        senha: dataObj.senha,
-        senhaConfirmacao: dataObj.senhaConfirmacao,
-        endereco: {
-          cep: dataObj.cep,
-          logradouro: dataObj.logradouro,
-          bairro: dataObj.bairro,
-          numero: dataObj.numero,
-          uf: dataObj.uf,
-          localidade: dataObj.localidade,
-          complemento: dataObj.complemento,
-        },
-      };
-      console.log(obj);
-    } catch (error) {
-      console.error("Erro ao chamar o endpoint:", error);
+  const handleNextStep = async (e: any) => {
+    const isValid = await trigger();
+    if (isValid) {
+      changeStep(currentStep + 1, e);
     }
   };
 
@@ -75,7 +80,7 @@ export default function FormPage() {
     <>
       <div className="min-h-screen w-full flex justify-center items-center ">
         <Box className="my-5 px-4 py-3 form-modal bg-primary-dark-cyan rounded-lg flex justify-between items-center flex-col gap-4">
-          <form className="w-full h-full">
+          <form className="w-full h-full" onSubmit={handleSubmit(onSubmit)}>
             <Link
               onClick={() => navigateToPage(navigate, "/")}
               underline="hover"
@@ -94,33 +99,35 @@ export default function FormPage() {
             <div className="px-4 w-full flex flex-col gap-8">
               <div className="w-full gap-6 flex columns-2">
                 <div className="w-1/2">
-                  {/* {currentStep === 1 && ( */}
-                  <Button
-                    variant="contained"
-                    className="w-full button-login bg-primary-aqua rounded-sm"
-                    onClick={(e: any) => changeStep(currentStep - 1, e)}
-                  >
-                    Voltar
-                  </Button>
-                  {/* // )} */}
+                  {currentStep === 1 && (
+                    <Button
+                      variant="contained"
+                      className="w-full button-login bg-primary-aqua rounded-sm"
+                      onClick={(e: any) => changeStep(currentStep - 1, e)}
+                    >
+                      Voltar
+                    </Button>
+                  )}
                 </div>
-                {/* {currentStep === 0 && ( */}
-                <Button
-                  variant="contained"
-                  className="w-1/2 button-login bg-primary-aqua rounded-sm"
-                  onClick={(e: any) => changeStep(currentStep + 1, e)}
-                >
-                  Próximo
-                </Button>
-                {/* // )} */}
-                {/* {currentStep === 1 && !isDadosObjEmpty && (
+                {currentStep === 0 && (
                   <Button
                     variant="contained"
                     className="w-1/2 button-login bg-primary-aqua rounded-sm"
+                    onClick={handleNextStep}
+                  >
+                    Próximo
+                  </Button>
+                )}
+                {currentStep === 1 && (
+                  <Button
+                    variant="contained"
+                    className="w-1/2 button-login bg-primary-aqua rounded-sm"
+                    onClick={(e: any) => changeStep(currentStep + 1, e)}
                   >
                     Cadastrar
                   </Button>
-                )} */}
+                )}
+                <button type="submit">adaw</button>
               </div>
               <p className="text-center text-white text-xs">
                 Copyright © made by Top Hair

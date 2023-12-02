@@ -26,3 +26,8 @@ export interface EmpresaComNiveis {
   razaoSocial: string;
   niveis: number[];
 }
+
+export interface EmpresaCadastro {
+  razaoSocial: string;
+  cnpj: string;
+}

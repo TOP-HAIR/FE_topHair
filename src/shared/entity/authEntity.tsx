@@ -22,7 +22,17 @@ export interface AddressData {
   numero: number;
   uf: string;
   localidade: string;
-  complemento: string;
+  complemento: string | "";
+}
+
+export interface AddressDataResponse {
+  cep: string;
+  logradouro: string;
+  bairro: string;
+  numero: number;
+  estado: string;
+  cidade: string;
+  complemento: string | "";
 }
 
 export interface Empresa {
@@ -53,30 +63,13 @@ export interface FormRegister1Props {
   errors: any;
 }
 
-export type EmpresaData = {
-  data: {
-    empresa: string;
-    email: string;
-    cnpj: string;
-    senha: string;
-    senhaConfirmacao: string;
-  };
-  updateFieldHandler: (key: string, value: string) => void;
-};
-
-export type EnderecoData = {
-  data: {
-    cep: string;
-    logradouro: string;
-    bairro: string;
-    numero: number;
-    uf: string;
-    localidade: string;
-    complemento: string;
-  };
-  updateFieldHandler: (key: string, value: string) => void;
-};
-
 export type ValidRecaptchaType = {
   updateValidRecaptcha: (value: boolean) => void;
 };
+
+export interface dataUser {
+  nomeCompleto: string;
+  email: string;
+  senha: string;
+  isProfissional: boolean;
+}
