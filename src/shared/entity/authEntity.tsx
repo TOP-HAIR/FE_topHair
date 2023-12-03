@@ -9,6 +9,15 @@ export interface UserLogin {
   senha: string;
 }
 
+export interface dadosEmployee {
+  cpf: string;
+  email: string;
+  idUsuario: number;
+  isProfissional: boolean | null;
+  nomeCompleto: string;
+  telefone: string;
+}
+
 export interface UserInformation {
   cod_usuario: number;
   email: string;

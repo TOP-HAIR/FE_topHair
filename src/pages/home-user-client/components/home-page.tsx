@@ -6,14 +6,16 @@ import FiltroTinturaImg from "../../../assets/configs/img/Rectangle 474.png";
 import { Breadcrumbs, Link, Rating, Typography } from "@mui/material";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { getTop5EmpresasContext } from "../../../shared/contexts/empresaContext";
-import {
-  EmpresaAvaliacao,
-  EmpresaComNiveis,
-} from "@/shared/entity/empresaEntity";
+import MapBoxComponent from "@/components/mapbox";
 
 export default function ClientHomePage() {
   const [loadResponse, setloadResponse] = useState(false);
   const [empresaAvaliacao, setEmpresaAvaliacao] = useState<any[]>([]);
+  const initialViewport = {
+    latitude: 28.6448,
+    longitude: 77.216,
+    zoom: 5,
+  };
 
   useEffect(() => {
     async function listarTop5Avaliacoes() {
@@ -21,14 +23,10 @@ export default function ClientHomePage() {
       try {
         const res = await getTop5EmpresasContext();
         console.log(res);
-        const avaliacoes = res[0]?.avaliacoes || [];
-        console.log(res);
         setEmpresaAvaliacao(res);
-        console.log(empresaAvaliacao);
-
         setloadResponse(true);
       } catch (error) {
-        console.error("Erro ao buscar serviços:", error);
+        console.error("Erro ao buscar top 5 empresas:", error);
       }
     }
 
@@ -70,14 +68,16 @@ export default function ClientHomePage() {
             modules={[Navigation]}
             slidesPerView={3}
           >
-            {empresaAvaliacao.map((valor, index) => (
+            {empresaAvaliacao.map((valor) => (
               <SwiperSlide className="mx-5 min-h-">
                 <div className="my-8 p-2 flex flex-col items-center justify-center gap-2 card-service">
                   <h3 className="font-bold drop-shadow-2xl text-lg">faitls</h3>
                   <img className="h-20 w-20 bg-black rounded-full" />
                   <Rating name="read-only" value={4} readOnly />
-                  <p className="text-black font-normal font-family-dm-sans text-base">
-                    awdwad
+                  <p className="text-black text-center font-normal font-family-dm-sans text-base p-3">
+                    {valor.endereco?.logradouro}, {valor.endereco?.numero} -
+                    {valor.endereco?.bairro}, {valor.endereco?.cidade} -{" "}
+                    {valor.endereco?.estado}, {valor.endereco?.cep}
                   </p>
                 </div>
               </SwiperSlide>
@@ -119,6 +119,9 @@ export default function ClientHomePage() {
           <h2 className="text-3xl font-bold">Veja no Mapa</h2>
           <hr className="h-0.5 bg-gray-500" />
         </div>
+      </section>
+      <section className="w-full h-96 pb-8">
+        <MapBoxComponent></MapBoxComponent>
       </section>
     </>
   );
