@@ -1,5 +1,6 @@
 import React from "react";
 import Comment from "../../../../../shared/entity/commentsEntity";
+import { Rating } from "@mui/material";
 
 export default function CommentService({ comment }: { comment: Comment }) {
   return (
@@ -10,9 +11,12 @@ export default function CommentService({ comment }: { comment: Comment }) {
           src={comment.imagem}
           alt="Imagem Perfil Usuário"
         />
-        <h3 className="font-semibold text-lg ">
-          {comment?.usuario?.nomeCompleto}
-        </h3>
+        <div>
+          <h3 className="font-semibold text-lg ">
+            {comment?.usuario?.nomeCompleto}
+          </h3>
+          <Rating name="read-only" value={comment?.nivel} readOnly />
+        </div>
       </div>
       <p className=" font-family-dm-sans">{comment.comentario}</p>
     </>

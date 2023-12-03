@@ -15,6 +15,16 @@ export class EmpresaService extends AuthService {
     return await send("GET", url + "/top5-avaliadas-por-estado?estado=SP");
   }
 
+  async getEployeesEmpresa() {
+    const url = this.authUrl;
+    return await send("GET", url + `/empresa/${this.idEmpresa}`);
+  }
+
+  async deleteEployeeEmpresa(idUser: number) {
+    const url = this.authUrl;
+    return await send("DELETE", url + `/${idUser}`);
+  }
+
   async getEmpresaInfo() {
     const url = this.empresaUrl;
     return await send("GET", url + `/usuario/${this.idUser}`);
