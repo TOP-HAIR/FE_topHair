@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Breadcrumbs, Button, Link, Typography } from "@mui/material";
 import CardEstablishment from "./card-establishment";
 import { getEmpresaEstadoContext } from "../../../shared/contexts/empresaContext";
-import NotFoundClientComponent from "@/components/NotFound";
-import LoaderResponse from "@/components/loaderResponse";
+import NotFoundClientComponent from "../../../components/NotFound";
+import LoaderResponse from "../../../components/loaderResponse";
 
 export default function ClientHomeEstablishmentList() {
   const [loadResponse, setloadResponse] = useState(false);
