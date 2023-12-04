@@ -1,5 +1,3 @@
-import moment from "moment";
-
 // Validações Inputs válidos
 export const validateCepFormat = (value: string): boolean => {
   const cepRegex = /^\d{5}-\d{3}$/;

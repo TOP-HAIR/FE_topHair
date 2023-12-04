@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { ApiService } from "../services/serviceService";
 
 const apiService = new ApiService();
@@ -51,8 +50,7 @@ export const getExportarServicoContext = async () => {
   }
 };
 
-export const getEmpresaEstadoFiltroContext = async () => {
-  const { filtro } = useParams();
+export const getEmpresaEstadoFiltroContext = async (filtro: string) => {
   try {
     if (filtro) {
       const estado = localStorage.getItem("estado");

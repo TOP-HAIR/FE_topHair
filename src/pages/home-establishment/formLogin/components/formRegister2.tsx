@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { viaCEP } from "../../../../shared/services/ExternalApis/viaCep";
 import { TextField } from "@mui/material";
@@ -10,12 +10,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function FormRegister2({
-  register,
-  setValue,
-  getValues,
-  errors,
-}: any) {
+export default function FormRegister2({ register, setValue, errors }: any) {
   const [cep, setCep] = React.useState("");
   const [cepError, setCepError] = React.useState<string>("");
 

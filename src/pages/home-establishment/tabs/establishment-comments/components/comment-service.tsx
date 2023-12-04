@@ -1,5 +1,5 @@
 import React from "react";
-import Comment from "../../../../../shared/entity/commentsEntity";
+import { Comment } from "../../../../../shared/entity/commentsEntity";
 import { Rating } from "@mui/material";
 
 export default function CommentService({ comment }: { comment: Comment }) {

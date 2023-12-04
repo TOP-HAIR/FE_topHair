@@ -11,21 +11,6 @@ import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
 import TophairIcon from "../../../assets/configs/img/logo/white-logo.png";
 import { userRegisterContext } from "../../../shared/contexts/authContext";
 
-const form: Empresa = {
-  empresa: "",
-  email: "",
-  cnpj: "",
-  senha: "",
-  senhaConfirmacao: "",
-  cep: "",
-  logradouro: "",
-  bairro: "",
-  numero: 0,
-  uf: "",
-  localidade: "",
-  complemento: "",
-};
-
 export default function FormPage() {
   const {
     handleSubmit,
@@ -46,12 +31,7 @@ export default function FormPage() {
 
   const formComponents = [
     <FormRegister1 register={register} getValues={getValues} errors={errors} />,
-    <FormRegister2
-      register={register}
-      setValue={setValue}
-      getValues={getValues}
-      errors={errors}
-    />,
+    <FormRegister2 register={register} setValue={setValue} errors={errors} />,
     <ReCAPTCHAComponent updateValidRecaptcha={updateValidRecaptcha} />,
   ];
 

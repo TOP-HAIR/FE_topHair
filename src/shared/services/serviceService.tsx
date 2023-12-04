@@ -1,4 +1,4 @@
-import { Service, DataService } from "../entity/serviceEntity";
+import { Service } from "../entity/serviceEntity";
 import { send } from "./apiUrl";
 import { AuthService } from "./authService";
 

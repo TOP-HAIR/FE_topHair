@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "@mui/material";
 import { useState, useEffect } from "react";
-import Comment from "../../../../../shared/entity/commentsEntity";
+import { Comment } from "../../../../../shared/entity/commentsEntity";
 import CommentService from "../components/comment-service";
 import LoaderResponse from "../../../../../components/loaderResponse";
 import NoContentComponent from "../../../../../components/noContent";

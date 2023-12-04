@@ -1,5 +1,4 @@
 import axios from "axios";
-import { AddressData } from "../../entity/authEntity";
 import { enviromentsExternalApi } from "../../enviroments/envExternal";
 
 export const viaCEP = (cep: string) => {

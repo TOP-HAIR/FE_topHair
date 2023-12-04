@@ -1,4 +1,4 @@
-import React, { FormEvent, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import TophairIcon from "../../../assets/configs/img/logo/white-logo.png";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -50,7 +50,7 @@ export default function Login() {
   };
 
   const updateHideRecaptcha = (value: boolean) => {
-    setHideRecaptcha(true);
+    setHideRecaptcha(value);
   };
 
   const handleClickShowPassword = () => {
