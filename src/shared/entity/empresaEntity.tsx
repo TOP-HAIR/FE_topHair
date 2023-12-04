@@ -31,3 +31,13 @@ export interface EmpresaCadastro {
   razaoSocial: string;
   cnpj: string;
 }
+
+export interface EmployeeCadastro {
+  cpf: string;
+  nomeCompleto: string;
+  email: string;
+  senha: string;
+  telefone: string;
+  isProfissional: boolean;
+  idEmpresa: number;
+}

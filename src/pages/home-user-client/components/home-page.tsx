@@ -6,7 +6,7 @@ import FiltroTinturaImg from "../../../assets/configs/img/Rectangle 474.png";
 import { Breadcrumbs, Link, Rating, Typography } from "@mui/material";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { getTop5EmpresasContext } from "../../../shared/contexts/empresaContext";
-import MapBoxComponent from "@/components/mapbox";
+import MapBoxComponent from "../../../components/mapbox";
 
 export default function ClientHomePage() {
   const [loadResponse, setloadResponse] = useState(false);

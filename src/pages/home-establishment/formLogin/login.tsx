@@ -41,16 +41,16 @@ export default function Login() {
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
-  const updateValidRecaptcha = (value: boolean) => {
-    if (value) {
-      trigger().then(() => {
-        handleSubmit(onSubmit)();
-      });
-    }
-  };
+  // const updateValidRecaptcha = (value: boolean) => {
+  //   if (value) {
+  //     trigger().then(() => {
+  //       handleSubmit(onSubmit)();
+  //     });
+  //   }
+  // };
 
   const updateHideRecaptcha = (value: boolean) => {
-    setHideRecaptcha(true);
+    setHideRecaptcha(false);
   };
 
   const handleClickShowPassword = () => {
@@ -100,84 +100,86 @@ export default function Login() {
             <div className="w-full flex justify-center">
               <img className="h-28 w-28" src={TophairIcon} alt="tophair-icon" />
             </div>
-            {hideRecaptcha ? (
+            {/* {hideRecaptcha ? (
               <ReCAPTCHAComponent updateValidRecaptcha={updateValidRecaptcha} />
-            ) : (
-              <div>
-                <div className="w-full flex gap-8 flex-col p-4">
-                  <ThemeProvider theme={darkTheme}>
-                    <TextField
-                      label="Email"
-                      variant="standard"
-                      size="medium"
-                      type="email"
-                      placeholder="Digite seu Email"
-                      {...register("email", {
-                        required: "Campo é Obrigatório",
-                      })}
-                      error={Boolean(errors.email)}
-                      helperText={errors.email?.message}
-                    />
-                    <FormControl
-                      error={Boolean(errors.senha)}
-                      variant="standard"
-                    >
-                      <InputLabel htmlFor="standard-adornment-password">
-                        Password
-                      </InputLabel>
-                      <Input
-                        id="standard-adornment-password"
-                        type={showPassword ? "text" : "password"}
-                        inputRef={passwordInputRef}
-                        placeholder="Digite sua Senha"
-                        {...register("senha", {
-                          required: "Campo é obrigatório",
-                        })}
-                        aria-describedby="component-error-text"
-                        endAdornment={
-                          <InputAdornment position="end">
-                            <IconButton
-                              aria-label="toggle password visibility"
-                              onClick={handleClickShowPassword}
-                              onMouseDown={handleMouseDownPassword}
-                            >
-                              {showPassword ? (
-                                <VisibilityOff />
-                              ) : (
-                                <Visibility />
-                              )}
-                            </IconButton>
-                          </InputAdornment>
-                        }
-                      />
-                      <FormHelperText id="component-error-text">
-                        {errors.senha && errors.senha.message}
-                      </FormHelperText>
-                    </FormControl>
-                  </ThemeProvider>
-                </div>
+            ) : ( */}
 
-                <div className="w-full flex flex-col items-center gap-12">
-                  <p className="text-white text-sm">
-                    Ainda não tem uma conta ?{" "}
-                    <Link href="/form" underline="hover">
-                      cadastre-se aqui
-                    </Link>
-                  </p>
-                  <Button
-                    variant="contained"
-                    className="button-login bg-primary-aqua w-48 rounded-sm"
-                    value="submit"
-                    type="submit"
-                    onClick={() => {
-                      updateHideRecaptcha(true);
-                    }}
+            <div>
+              <div className="w-full flex gap-8 flex-col p-4">
+                <ThemeProvider theme={darkTheme}>
+                  <TextField
+                    label="Email"
+                    variant="standard"
+                    size="medium"
+                    type="email"
+                    placeholder="Digite seu Email"
+                    {...register("email", {
+                      required: "Campo é Obrigatório",
+                    })}
+                    error={Boolean(errors.email)}
+                    helperText={errors.email?.message}
+                  />
+                  <FormControl
+                    error={Boolean(errors.senha)}
+                    variant="standard"
                   >
-                    Entrar
-                  </Button>
-                </div>
+                    <InputLabel htmlFor="standard-adornment-password">
+                      Password
+                    </InputLabel>
+                    <Input
+                      id="standard-adornment-password"
+                      type={showPassword ? "text" : "password"}
+                      inputRef={passwordInputRef}
+                      placeholder="Digite sua Senha"
+                      {...register("senha", {
+                        required: "Campo é obrigatório",
+                      })}
+                      aria-describedby="component-error-text"
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                          >
+                            {showPassword ? (
+                              <VisibilityOff />
+                            ) : (
+                              <Visibility />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                    />
+                    <FormHelperText id="component-error-text">
+                      {errors.senha && errors.senha.message}
+                    </FormHelperText>
+                  </FormControl>
+                </ThemeProvider>
               </div>
-            )}
+
+              <div className="w-full flex flex-col items-center gap-12">
+                <p className="text-white text-sm">
+                  Ainda não tem uma conta ?{" "}
+                  <Link href="/form" underline="hover">
+                    cadastre-se aqui
+                  </Link>
+                </p>
+                <Button
+                  variant="contained"
+                  className="button-login bg-primary-aqua w-48 rounded-sm"
+                  value="submit"
+                  type="submit"
+                  onClick={() => {
+                    // updateHideRecaptcha(true);
+                    handleSubmit(onSubmit);
+                  }}
+                >
+                  Entrar
+                </Button>
+              </div>
+            </div>
+            {/* )} */}
           </form>
         </Box>
       </div>

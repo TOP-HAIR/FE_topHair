@@ -12,7 +12,7 @@ import TophairIcon from "../../../assets/configs/img/logo/white-logo.png";
 import {
   cadastroEstabelecimento,
   userRegisterContext,
-} from "@/shared/contexts/authContext";
+} from "../../../shared/contexts/authContext";
 
 const form: Empresa = {
   empresa: "",
@@ -40,7 +40,7 @@ export default function FormPage() {
   } = useForm<Empresa>();
 
   const updateValidRecaptcha = (value: boolean) => {
-    if (value) {
+    if (!value) {
       trigger().then(() => {
         handleSubmit(onSubmit)();
       });

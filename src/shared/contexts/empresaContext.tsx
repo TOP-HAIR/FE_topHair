@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import { EmpresaService } from "../services/empresaService";
+import { EmployeeCadastro } from "../entity/empresaEntity";
 
 const empresaService = new EmpresaService();
 
@@ -9,6 +10,15 @@ if (objetoString !== null) {
   const idEmpresa = objeto.idEmpresa;
   empresaService.idEmpresa = idEmpresa;
 }
+
+export const employeeRegisterContext = async (data: EmployeeCadastro) => {
+  try {
+    const response = await empresaService.createEmployee(data);
+    console.log(response)
+  } catch (error) {
+    console.log(error)
+  }
+};
 
 export const getTop5EmpresasContext = async () => {
   try {

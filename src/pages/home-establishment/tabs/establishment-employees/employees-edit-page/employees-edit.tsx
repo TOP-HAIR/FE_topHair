@@ -4,10 +4,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
 import { SubmitHandler, useForm } from "react-hook-form";
-import LoaderResponse from "../../../../../components/loaderResponse";
+import { EmployeeCadastro } from "@/shared/entity/empresaEntity";
+
+import { employeeRegisterContext } from "../../../../../shared/contexts/empresaContext";
+
+interface EmployeeRegister extends EmployeeCadastro {
+  confirmarSenha: string;
+}
 
 export default function EditEmployees() {
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, watch, formState: { errors } } = useForm<EmployeeRegister>();
   const [loadResponse, setloadResponse] = useState(false);
   const navigate = useNavigate();
   const { employeeId } = useParams();
@@ -26,12 +32,17 @@ export default function EditEmployees() {
     listarUsuarioById();
   }, []);
 
-  const onSubmit: SubmitHandler = () => {
-    try {
-    } catch (error) {
-      console.error("Erro ao criar o usuário:", error);
-      Swal.fire("Erro", "Erro ao criar usuário.", "error");
-    }
+  const onSubmit: SubmitHandler<EmployeeRegister> = async (data, event) => {
+    event && event.preventDefault();
+    const { confirmarSenha: _, ...newdata } = data;
+    newdata.isProfissional = true;
+    employeeRegisterContext(newdata).then(response => console.log(response));
+    // try {
+
+    // } catch (error) {
+    //   console.error("Erro ao criar o usuário:", error);
+    //   Swal.fire("Erro", "Erro ao criar usuário.", "error");
+    // }
   };
 
   const confirmCancel = () => {
@@ -76,6 +87,9 @@ export default function EditEmployees() {
                     variant="outlined"
                     placeholder="Digite o CPF"
                     size="small"
+                    {...register("cpf", { required: "cpf é obrigatório" })}
+                    error={Boolean(errors.cpf)}
+                    helperText={errors.cpf?.message ?? ""}
                   />
 
                   <TextField
@@ -84,6 +98,9 @@ export default function EditEmployees() {
                     variant="outlined"
                     placeholder="Digite o nome"
                     size="small"
+                    {...register("nomeCompleto", { required: "nome é obrigatório" })}
+                    error={Boolean(errors.nomeCompleto)}
+                    helperText={errors.nomeCompleto?.message || ""}
                   />
                   <TextField
                     id="outlined-basic"
@@ -91,6 +108,9 @@ export default function EditEmployees() {
                     variant="outlined"
                     placeholder="Digite o email"
                     size="small"
+                    {...register("email", { required: "email é obrigatório" })}
+                    error={Boolean(errors.email)}
+                    helperText={errors.email?.message || ""}
                   />
 
                   <TextField
@@ -99,6 +119,9 @@ export default function EditEmployees() {
                     variant="outlined"
                     placeholder="Digite sua senha"
                     size="small"
+                    {...register("senha", { required: "senha é obrigatória" })}
+                    error={Boolean(errors.senha)}
+                    helperText={errors.senha?.message || ""}
                   />
 
                   <TextField
@@ -107,6 +130,16 @@ export default function EditEmployees() {
                     variant="outlined"
                     placeholder="Digite sua senha"
                     size="small"
+                    {...register("confirmarSenha", {
+                      required: true,
+                      validate: (val: string) => {
+                        if (watch('senha') != val) {
+                          return "senhas não são iguais";
+                        }
+                      },
+                    })}
+                    error={Boolean(errors.confirmarSenha)}
+                    helperText={errors.confirmarSenha?.message || ""}
                   />
 
                   <TextField
@@ -115,15 +148,12 @@ export default function EditEmployees() {
                     variant="outlined"
                     placeholder="Digite o numero de telefone"
                     size="small"
+                    {...register("telefone", { required: "telefone é obrigatório" })}
+                    error={Boolean(errors.telefone)}
+                    helperText={errors.telefone?.message || ""}
                   />
 
-                  <TextField
-                    id="outlined-basic"
-                    label="Especialidade"
-                    variant="outlined"
-                    placeholder="Digite a especialidade do profissional"
-                    size="small"
-                  />
+
                 </div>
               </div>
             </div>

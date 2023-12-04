@@ -1,14 +1,19 @@
-import { EmpresaCadastro } from "../entity/empresaEntity";
+import { EmployeeCadastro, EmpresaCadastro } from "../entity/empresaEntity";
 import { send } from "./apiUrl";
 import { AuthService } from "./authService";
 
 export class EmpresaService extends AuthService {
   private empresaUrl: string;
 
+  private usuarioUrl: string;
+
   constructor() {
     super();
     this.empresaUrl = "/empresas";
+    this.usuarioUrl = "/usuarios";
   }
+
+
 
   async getTop5Empresas() {
     const url = this.empresaUrl;
@@ -18,6 +23,12 @@ export class EmpresaService extends AuthService {
   async getEployeesEmpresa() {
     const url = this.authUrl;
     return await send("GET", url + `/empresa/${this.idEmpresa}`);
+  }
+
+  async createEmployee(data: EmployeeCadastro) {
+    const url = this.usuarioUrl;
+    data.idEmpresa = this.idEmpresa;
+    return await send("POST", url + "/cadastrar", data)
   }
 
   async deleteEployeeEmpresa(idUser: number) {
