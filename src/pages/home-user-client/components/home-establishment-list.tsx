@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Breadcrumbs, Button, Link, Typography } from "@mui/material";
+import { Breadcrumbs, Link, Typography } from "@mui/material";
 import CardEstablishment from "./card-establishment";
 import { getEmpresaEstadoContext } from "../../../shared/contexts/empresaContext";
 import NotFoundClientComponent from "../../../components/NotFound";
@@ -36,15 +36,17 @@ export default function ClientHomeEstablishmentList() {
       setloadResponse(false);
       try {
         setEmpresas([]);
-        const res = await getEmpresaEstadoFiltroContext();
-        if (res == undefined || res.length == 0) {
-          setResLenghtValid(true);
+        if (filtro) {
+          const res = await getEmpresaEstadoFiltroContext(filtro);
+          if (res == undefined || res.length == 0) {
+            setResLenghtValid(true);
+          }
+          if (res != undefined) {
+            setEmpresas(res);
+          }
+          console.log(res);
+          setloadResponse(true);
         }
-        if (res != undefined) {
-          setEmpresas(res);
-        }
-        console.log(res);
-        setloadResponse(true);
       } catch (error) {
         console.error("Erro ao buscar serviços:", error);
       }

@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper";
 function createData(
   Name: string,
   ScheduledDate: Date,
-  Schedule: String,
+  Schedule: string,
   Status: string
 ) {
   return { Name, ScheduledDate, Schedule, Status };

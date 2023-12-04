@@ -42,13 +42,13 @@ export const userRegisterContext = async (data: Empresa) => {
 export const cadastroEstabelecimento = async (data: Empresa) => {
   if (data !== undefined && data !== null) {
     try {
-      let objEmpresa = {
+      const objEmpresa = {
         razaoSocial: data.empresa,
         cnpj: data.cnpj,
       };
       const dataEmpresa = await empresaService.postEmpresaCadastro(objEmpresa);
 
-      let objEndereco = {
+      const objEndereco = {
         cep: data.cep,
         logradouro: data.logradouro,
         bairro: data.bairro,
@@ -65,7 +65,7 @@ export const cadastroEstabelecimento = async (data: Empresa) => {
         dataEndereco.idEndereco
       );
 
-      let objUsuario = {
+      const objUsuario = {
         nomeCompleto: data.empresa,
         email: data.email,
         senha: data.senha,

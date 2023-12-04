@@ -1,4 +1,4 @@
-interface Comment {
+export interface Comment {
   idAvaliacao: number;
   comentario: string;
   nivel: number;
@@ -7,5 +7,3 @@ interface Comment {
     nomeCompleto: string;
   };
 }
-
-export default Comment;

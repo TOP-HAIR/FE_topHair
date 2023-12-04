@@ -1,7 +1,7 @@
 import { Card } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { getAgendaMesesAgendadosContext } from "@/shared/contexts/agendaContext";
+import { getAgendaMesesAgendadosContext } from "../../../../shared/contexts/agendaContext";
 import LoaderResponse from "../../../../components/loaderResponse";
 import NoContentComponent from "../../../../components/noContent";
 

@@ -16,7 +16,7 @@ const HomeUserClientPage = lazy(
 const HomeList = lazy(
   () =>
     import(
-      "../../pages/home-establishment/tabs/establishment-home/home-list/components/home-list"
+      "../../pages/home-establishment/tabs/establishment-home/home-list/home-list"
     )
 );
 const HomeCalendar = lazy(
