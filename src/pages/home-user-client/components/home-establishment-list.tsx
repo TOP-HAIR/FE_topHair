@@ -60,7 +60,7 @@ export default function ClientHomeEstablishmentList() {
   return (
     <>
       <div className="w-full">
-        <div className="w-full">
+        <div className="w-full flex justify-center">
           <div className="grid-home-width w-full flex justify-between">
             <Breadcrumbs className="px-4 pt-24 pb-4" aria-label="breadcrumb">
               <Link underline="hover" color="inherit" href="/client">

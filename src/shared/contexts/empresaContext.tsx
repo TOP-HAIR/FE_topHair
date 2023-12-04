@@ -98,6 +98,15 @@ export const getTop5EmpresasContext = async () => {
   }
 };
 
+export const getEmployeeByIdContext = async (id: string) => {
+  try {
+    const idNumber = parseInt(id);
+    return await empresaService.getEmployeeById(idNumber);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const employeeRegisterContext = async (data: EmployeeCadastro) => {
   try {
     const obj = {

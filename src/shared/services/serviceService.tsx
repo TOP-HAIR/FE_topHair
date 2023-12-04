@@ -14,6 +14,15 @@ export class ApiService extends AuthService {
     return await send("GET", this.serviceUrl + `/empresa/${this.idEmpresa}`);
   }
 
+  async getVincularService(id: number) {
+    console.log(id);
+    console.log(this.idEmpresa);
+    return await send(
+      "PUT",
+      this.serviceUrl + `/vincular-empresa/${id}/${this.idEmpresa}`
+    );
+  }
+
   async getEmpresaEstadoFiltro(estado: string = "", tipoServico: string = "") {
     return await send(
       "GET",
