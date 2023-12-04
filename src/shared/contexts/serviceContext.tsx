@@ -32,11 +32,11 @@ export const getExportarServicoContext = async () => {
     const res = await apiService.getExportarServicoService();
     console.log(res);
     if (res.data) {
-      const blob = new Blob([res.data], { type: "text/csv" }); // Alterado para "text/csv"
+      const blob = new Blob([res.data], { type: res.headers["content-type"] });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "funcionarios.csv"; // Alterado para a extensão ".csv"
+      a.download = "Servicos.csv";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
