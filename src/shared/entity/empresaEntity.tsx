@@ -45,3 +45,15 @@ export interface Avaliacao {
     isProfissional: boolean;
   };
 }
+
+export interface EmployeeCadastro {
+  cpf: string;
+  nomeCompleto: string;
+  email: string;
+  senha: string;
+  telefone: string;
+  isProfissional: boolean;
+  empresa?: {
+    idEmpresa: number;
+  };
+}
