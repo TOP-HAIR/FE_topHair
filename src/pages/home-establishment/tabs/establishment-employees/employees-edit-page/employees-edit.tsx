@@ -6,7 +6,10 @@ import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
 import { SubmitHandler, useForm } from "react-hook-form";
 import LoaderResponse from "../../../../../components/loaderResponse";
 import { EmployeeCadastro } from "../../../../../shared/entity/empresaEntity";
-import { employeeRegisterContext } from "../../../../../shared/contexts/empresaContext";
+import {
+  employeeRegisterContext,
+  getEmployeeByIdContext,
+} from "../../../../../shared/contexts/empresaContext";
 
 interface EmployeeRegister extends EmployeeCadastro {
   confirmarSenha: string;
@@ -17,17 +20,25 @@ export default function EditEmployees() {
     handleSubmit,
     register,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<EmployeeRegister>();
   const [loadResponse, setloadResponse] = useState(false);
   const navigate = useNavigate();
-  const { employeeId } = useParams();
+  const { idEmployee } = useParams();
 
   useEffect(() => {
     async function listarUsuarioById() {
-      if (employeeId != undefined && employeeId != null) {
+      console.log(idEmployee);
+      if (idEmployee != undefined && idEmployee != null) {
         setloadResponse(false);
         try {
+          const res = await getEmployeeByIdContext(idEmployee);
+          console.log(res);
+          // setValue("cpf", res.data?.nomeServico);
+          // setValue("nomeCompleto", res.data?.preco);
+          // setValue("email", res.data?.qtdTempoServico);
+          // setValue("telefone", res.data?.descricao);
           setloadResponse(true);
         } catch (error) {
           console.error("Erro ao buscar serviços:", error);
@@ -42,9 +53,11 @@ export default function EditEmployees() {
     try {
       const { confirmarSenha: _, ...newdata } = data;
       newdata.isProfissional = true;
-      employeeRegisterContext(newdata).then((response) =>
-        console.log(response)
-      );
+      employeeRegisterContext(newdata).then((response) => {
+        Swal.fire("Sucesso", "Usuário criado com sucesso.", "success");
+        navigateToPage(navigate, -1);
+        console.log(response);
+      });
     } catch (error) {
       console.error("Erro ao criar o usuário:", error);
       Swal.fire("Erro", "Erro ao criar usuário.", "error");

@@ -5,9 +5,11 @@ import Swal from "sweetalert2";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { DataService } from "../../../../../shared/entity/serviceEntity";
-import { ApiService } from "../../../../../shared/services/serviceService";
 import LoaderResponse from "../../../../../components/loaderResponse";
-import { getServiceByIdContext } from "../../../../../shared/contexts/serviceContext";
+import {
+  getServiceByIdContext,
+  postServiceEstablishmentContext,
+} from "../../../../../shared/contexts/serviceContext";
 import {
   formatTime,
   inputSemEspaco,
@@ -18,7 +20,6 @@ export default function EditPageService() {
   const navigate = useNavigate();
   const [loadResponse, setloadResponse] = useState(false);
   const { handleSubmit, register, setValue } = useForm<DataService>();
-  const apiService = new ApiService();
   const { idServico } = useParams();
 
   useEffect(() => {
@@ -39,22 +40,30 @@ export default function EditPageService() {
           console.error("Erro ao buscar serviços:", error);
         }
       }
+      setloadResponse(true);
     }
     listarServicoById();
   }, []);
 
-  const onSubmit: SubmitHandler<DataService> = (data: DataService) => {
+  const onSubmit: SubmitHandler<DataService> = async (data: DataService) => {
     const obj = {
-      // tipo: data.tipo,
+      tipoServico: data.categoria,
       nomeServico: data.nomeServico,
       preco: data.preco,
       descricao: data.descricao,
-      qtdTempoServico: data.qtdTempoServico,
+      qtdTempoServico: data.qtdTempoServico + ":00",
     };
+    console.log(obj);
     try {
-      apiService.postService(obj);
+      if (idServico != undefined && idServico != null) {
+      }
+      await postServiceEstablishmentContext(obj);
+
+      Swal.fire("Sucess", "Sucesso ao criar o serviço.", "success");
+
+      navigateToPage(navigate, -1);
     } catch (error) {
-      console.error("Erro ao excluir o serviço:", error);
+      console.error("Erro ao criar o serviço:", error);
       Swal.fire("Erro", "Erro ao criar o serviço.", "error");
     }
   };

@@ -34,6 +34,11 @@ export class EmpresaService extends AuthService {
     return await send("GET", url + `/estado?estado=${estado}`);
   }
 
+  async getEmployeeById(id: number) {
+    const url = this.authUrl;
+    return await send("GET", url + `/${id}`);
+  }
+
   async getExportarEmployees() {
     const url = this.authUrl;
     return await send("GET", url + `/exportar-txt/${this.idEmpresa}`);
