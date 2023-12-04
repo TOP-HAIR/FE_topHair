@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-// import ReactMapGL, { ViewState } from "react-map-gl";
 import ReactMapGL from "react-map-gl";
 
 function MapBoxComponent() {

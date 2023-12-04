@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { ApiService } from "../services/serviceService";
 
 const apiService = new ApiService();
@@ -44,6 +45,26 @@ export const getExportarServicoContext = async () => {
       console.log(res);
     } else {
       console.error("A resposta não contém dados");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getEmpresaEstadoFiltroContext = async () => {
+  const { filtro } = useParams();
+  try {
+    if (filtro) {
+      const estado = localStorage.getItem("estado");
+
+      if (estado) {
+        const res = await apiService.getEmpresaEstadoFiltro(estado, filtro);
+        if (res == undefined || res.data.length == 0) {
+          return;
+        }
+        console.log(res.data);
+        return res.data;
+      }
     }
   } catch (error) {
     console.log(error);

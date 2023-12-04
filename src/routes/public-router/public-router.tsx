@@ -257,6 +257,10 @@ export default function PublicRoutes() {
                 element={<ClientHomeEstablishment />}
               />
               <Route path="list" element={<ClientHomeEstablishmentList />} />
+              <Route
+                path="list/:filtro"
+                element={<ClientHomeEstablishmentList />}
+              />
             </Route>
 
             <Route path="login" element={<Login />} />

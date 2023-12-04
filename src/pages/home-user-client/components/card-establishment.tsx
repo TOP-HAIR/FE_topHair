@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function CardEstablishment(empresa: any) {
+export default function CardEstablishment({ empresa }: { empresa: any }) {
+  console.log("Dados da empresa ao iniciar o componente:", empresa);
   return (
     <>
       <div className="w-full">
@@ -9,7 +10,7 @@ export default function CardEstablishment(empresa: any) {
           <div className="h-full w-4/5 p-2 flex flex-col gap-4">
             <div className="flex items-center gap-4">
               <div className="rounded-full h-12 w-12 bg-black"></div>
-              <p className="text-xl">{empresa.razaoSocial}</p>
+              <p className="text-xl">{empresa?.razaoSocial}</p>
             </div>
             <p className="text-lg">
               {empresa.endereco?.logradouro}, {empresa.endereco?.numero} -

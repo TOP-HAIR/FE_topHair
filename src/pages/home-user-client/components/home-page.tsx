@@ -117,19 +117,34 @@ export default function ClientHomePage() {
           <h2 className="text-3xl font-bold">Explore por Categorias</h2>
           <hr className="h-0.5 bg-gray-500" />
           <div className="w-full flex justify-center gap-8 py-10">
-            <div className="relative cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-105">
+            <div
+              className="relative cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-105"
+              onClick={() => {
+                linkNavigate(`/client/list/cabelo`);
+              }}
+            >
               <img src={FiltroCabeloImg} alt="Imagem para Filtro por Cabelo" />
               <h3 className="text-2xl font-family-dm-sans font-medium absolute text-white bottom-8 left-24 ">
                 Cabelo
               </h3>
             </div>
-            <div className="relative cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-105">
+            <div
+              className="relative cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-105"
+              onClick={() => {
+                linkNavigate(`/client/list/barba`);
+              }}
+            >
               <img src={FiltroBarbaImg} alt="Imagem para Filtro por Barba" />
               <h3 className="text-2xl font-family-dm-sans font-medium absolute text-white bottom-8 left-24 ">
                 Barba
               </h3>
             </div>
-            <div className="relative cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-105">
+            <div
+              className="relative cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-105"
+              onClick={() => {
+                linkNavigate(`/client/list/tintura`);
+              }}
+            >
               <img
                 src={FiltroTinturaImg}
                 alt="Imagem para Filtro por Tintura"

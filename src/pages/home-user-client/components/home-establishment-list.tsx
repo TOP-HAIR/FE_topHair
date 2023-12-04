@@ -4,22 +4,26 @@ import CardEstablishment from "./card-establishment";
 import { getEmpresaEstadoContext } from "../../../shared/contexts/empresaContext";
 import NotFoundClientComponent from "../../../components/NotFound";
 import LoaderResponse from "../../../components/loaderResponse";
+import { useParams } from "react-router-dom";
+import { getEmpresaEstadoFiltroContext } from "../../../shared/contexts/serviceContext";
 
 export default function ClientHomeEstablishmentList() {
   const [loadResponse, setloadResponse] = useState(false);
   const [resLenghtValid, setResLenghtValid] = useState(false);
   const [empresas, setEmpresas] = useState<any[]>([]);
+  const { filtro } = useParams();
 
   useEffect(() => {
     async function listarEmpresa() {
       setloadResponse(false);
       try {
         const res = await getEmpresaEstadoContext();
-        if (res == undefined || res.data.length == 0) {
+        console.log(res);
+        if (res == undefined || res.length == 0) {
           setResLenghtValid(true);
         }
         if (res != undefined) {
-          setEmpresas(res.data);
+          setEmpresas(res);
         }
         console.log(res);
         setloadResponse(true);
@@ -28,11 +32,32 @@ export default function ClientHomeEstablishmentList() {
       }
     }
 
-    listarEmpresa();
+    async function listarFiltroEmpresa() {
+      setloadResponse(false);
+      try {
+        setEmpresas([]);
+        const res = await getEmpresaEstadoFiltroContext();
+        if (res == undefined || res.length == 0) {
+          setResLenghtValid(true);
+        }
+        if (res != undefined) {
+          setEmpresas(res);
+        }
+        console.log(res);
+        setloadResponse(true);
+      } catch (error) {
+        console.error("Erro ao buscar serviços:", error);
+      }
+    }
+    if (filtro) {
+      listarFiltroEmpresa();
+    } else {
+      listarEmpresa();
+    }
   }, []);
   return (
     <>
-      <div className="w-full h-screen">
+      <div className="w-full">
         <div className="w-full">
           <div className="grid-home-width w-full flex justify-between">
             <Breadcrumbs className="px-4 pt-24 pb-4" aria-label="breadcrumb">
@@ -44,7 +69,6 @@ export default function ClientHomeEstablishmentList() {
               </Link>
               <Typography color="text.primary">Estabelecimentos</Typography>
             </Breadcrumbs>
-            <Button className="color-primary-cyan" variant="outlined"></Button>
           </div>
         </div>
         <section className="flex justify-center">
@@ -57,7 +81,7 @@ export default function ClientHomeEstablishmentList() {
             ) : resLenghtValid ? (
               <NotFoundClientComponent />
             ) : (
-              <div>
+              <div className="flex flex-col gap-4 pb-20">
                 {empresas.map((empresa) => (
                   <div key={empresa.idEmpresa} className="w-full">
                     <CardEstablishment empresa={empresa} />
