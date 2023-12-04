@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import { EmpresaService } from "../services/empresaService";
 import axios from "axios";
+import { EmployeeCadastro } from "../entity/empresaEntity";
 
 const empresaService = new EmpresaService();
 
@@ -92,6 +93,25 @@ export const getTop5EmpresasContext = async () => {
     } else {
       window.location.href = "/client-page";
     }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const employeeRegisterContext = async (data: EmployeeCadastro) => {
+  try {
+    const obj = {
+      cpf: data.cpf,
+      nomeCompleto: data.nomeCompleto,
+      email: data.email,
+      senha: data.senha,
+      telefone: data.telefone,
+      empresa: {
+        idEmpresa: empresaService.idEmpresa,
+      },
+    };
+    const response = await empresaService.createEmployee(obj);
+    console.log(response);
   } catch (error) {
     console.log(error);
   }

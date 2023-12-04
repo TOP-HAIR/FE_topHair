@@ -1,4 +1,4 @@
-import { EmpresaCadastro } from "../entity/empresaEntity";
+import { EmployeeCadastro, EmpresaCadastro } from "../entity/empresaEntity";
 import { send } from "./apiUrl";
 import { AuthService } from "./authService";
 
@@ -18,6 +18,10 @@ export class EmpresaService extends AuthService {
       "GET",
       url + `/top5-avaliadas-por-estado?estado=${estado}`
     );
+  }
+  async createEmployee(data: any) {
+    const url = super.authUrl;
+    return await send("POST", url + "/cadastrar", data);
   }
 
   async getAvaliacoesEmpresaById(idEmpresa: number) {
