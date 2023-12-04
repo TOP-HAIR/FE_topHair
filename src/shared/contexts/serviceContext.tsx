@@ -30,16 +30,21 @@ export const getListaClientContext = async (id: string = "") => {
 export const getExportarServicoContext = async () => {
   try {
     const res = await apiService.getExportarServicoService();
-    const blob = new Blob([res.data], { type: "text/plain" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "funcionarios.txt";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
     console.log(res);
+    if (res.data) {
+      const blob = new Blob([res.data], { type: "text/csv" }); // Alterado para "text/csv"
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "funcionarios.csv"; // Alterado para a extensão ".csv"
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+      console.log(res);
+    } else {
+      console.error("A resposta não contém dados");
+    }
   } catch (error) {
     console.log(error);
   }
