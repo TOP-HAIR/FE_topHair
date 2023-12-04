@@ -74,12 +74,12 @@ const links = [
 ];
 
 const userSettings = [
-  {
-    key: "settings",
-    to: "/",
-    text: "Configurações",
-    icon: <SettingsIcon />,
-  },
+  // {
+  //   key: "settings",
+  //   to: "/",
+  //   text: "Configurações",
+  //   icon: <SettingsIcon />,
+  // },
   {
     key: "logout",
     to: "/",
@@ -138,73 +138,76 @@ export default function HomeEstablishment() {
       </div>
       <Divider sx={{ backgroundColor: "#6d6d6d33", height: "2px" }} />
       <List
-        className="w-full"
+        className="h-full w-full"
         style={{
-          height: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
         }}
       >
-        {links.map(({ key, to, text, icon }) => (
-          <ListItem
-            key={key}
-            button
-            selected={activeLink === key}
-            onClick={() => linkActiveNavigate(key, to)}
-            className="text-white"
-            sx={{
-              px: 4,
-              py: 3,
-
-              display: "flex",
-              alignItems: "center",
-              cursor: "pointer",
-              background:
-                activeLink === key
-                  ? "linear-gradient(to right, #0184c8, #24ceef)"
-                  : "none",
-              "&:hover": {
-                background: "linear-gradient(to right, #0184c8, #24ceef)",
-                backgroundColor: "#0184c8",
-                color: "#ffffff",
-              },
-            }}
-          >
-            <ListItemIcon sx={{ color: "white" }}>{icon}</ListItemIcon>
-            <ListItemText sx={{ color: "white" }} primary={text} />
-          </ListItem>
-        ))}
+        <div>
+          {links.map(({ key, to, text, icon }) => (
+            <ListItem
+              key={key}
+              button
+              selected={activeLink === key}
+              onClick={() => linkActiveNavigate(key, to)}
+              className="text-white"
+              sx={{
+                px: 4,
+                py: 3,
+                my: 2,
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+                background:
+                  activeLink === key
+                    ? "linear-gradient(to right, #0184c8, #24ceef)"
+                    : "none",
+                "&:hover": {
+                  background: "linear-gradient(to right, #0184c8, #24ceef)",
+                  backgroundColor: "#0184c8",
+                  color: "#ffffff",
+                },
+              }}
+            >
+              <ListItemIcon sx={{ color: "white" }}>{icon}</ListItemIcon>
+              <ListItemText sx={{ color: "white" }} primary={text} />
+            </ListItem>
+          ))}
+        </div>
         <Divider sx={{ backgroundColor: "#6d6d6d33", height: "2px" }} />
-        {userSettings.map(({ key, to, text, icon }) => (
-          <ListItem
-            key={key}
-            button
-            selected={activeLink === key}
-            onClick={() => linkActiveNavigate(key, to)}
-            className="text-white"
-            sx={{
-              px: 4,
-              py: 2,
-              my: 1,
-              display: "flex",
-              alignItems: "center",
-              cursor: "pointer",
-              background:
-                activeLink === key
-                  ? "linear-gradient(to right, #0184c8, #24ceef)"
-                  : "none",
-              "&:hover": {
-                background: "linear-gradient(to right, #0184c8, #24ceef)",
-                backgroundColor: "#0184c8",
-                color: "#ffffff",
-              },
-            }}
-          >
-            <ListItemIcon sx={{ color: "white" }}>{icon}</ListItemIcon>
-            <ListItemText sx={{ color: "white" }} primary={text} />
-          </ListItem>
-        ))}
+        <div className="mt-auto w-full">
+          {userSettings.map(({ key, to, text, icon }) => (
+            <ListItem
+              key={key}
+              button
+              selected={activeLink === key}
+              onClick={() => linkActiveNavigate(key, to)}
+              className="text-white"
+              sx={{
+                px: 4,
+                py: 3,
+                my: 1,
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+                background:
+                  activeLink === key
+                    ? "linear-gradient(to right, #0184c8, #24ceef)"
+                    : "none",
+                "&:hover": {
+                  background: "linear-gradient(to right, #0184c8, #24ceef)",
+                  backgroundColor: "#0184c8",
+                  color: "#ffffff",
+                },
+              }}
+            >
+              <ListItemIcon sx={{ color: "white" }}>{icon}</ListItemIcon>
+              <ListItemText sx={{ color: "white" }} primary={text} />
+            </ListItem>
+          ))}
+        </div>
       </List>
     </aside>
   );

@@ -1,8 +1,35 @@
 import { Card } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { getAgendaMesesAgendadosContext } from "@/shared/contexts/agendaContext";
+import LoaderResponse from "../../../../components/loaderResponse";
+import NoContentComponent from "../../../../components/noContent";
 
 export default function HomeCalendar() {
+  const [loadResponse, setloadResponse] = useState(false);
+  const [resLenghtValid, setResLenghtValid] = useState(false);
+  const [meses, setMeses] = useState<string[]>([]);
+
+  useEffect(() => {
+    async function listarAvaliacoes() {
+      setloadResponse(false);
+      try {
+        const res = await getAgendaMesesAgendadosContext();
+        console.log(res);
+        if (res == undefined || res.data.length == 0) {
+          setResLenghtValid(true);
+        }
+        if (res != undefined) {
+          setMeses(res.data);
+        }
+        setloadResponse(true);
+      } catch (error) {
+        console.error("Erro ao buscar serviços:", error);
+      }
+    }
+
+    listarAvaliacoes();
+  }, []);
   return (
     <>
       <section className="w-full h-full">
@@ -11,59 +38,27 @@ export default function HomeCalendar() {
             Selecione o card para visualizar
           </h2>
           <div className="m-6">
-            <div className="w-64 h-48 rounded-md bg-black shadow-xl shadow-slate-300 border-2 mb-6 mr-6 float-left">
-              <div className="w-full h-12 bg-white flex justify-center items-center">
-                <p className="text-xl font-bold">junho</p>
+            {!loadResponse ? (
+              <LoaderResponse />
+            ) : resLenghtValid ? (
+              <NoContentComponent />
+            ) : (
+              <div className="w-full flex flex-wrap gap-10 ">
+                {meses.map((mes) => (
+                  <div
+                    key={mes}
+                    className="min-w-96 w-80 rounded-md bg-black card-service border-2 grow cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-105"
+                  >
+                    <div className="w-full h-12 bg-white flex justify-center items-center">
+                      <p className="text-xl font-bold">{mes}</p>
+                    </div>
+                    <div className="w-full h-48 bg-[#0f3d3a] flex justify-center items-center">
+                      <CalendarMonthIcon className="w-24 h-24 text-white" />
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="w-full h-4/5 bg-[#0f3d3a] flex justify-center items-center">
-                <CalendarMonthIcon className="w-24 h-24 text-white" />
-              </div>
-            </div>
-
-            <div className="w-64 h-48 rounded-md bg-black shadow-xl shadow-slate-300 border-2 mb-6 mr-6 float-left">
-              <div className="w-full h-12 bg-white flex justify-center items-center">
-                <p className="text-xl font-bold">julho</p>
-              </div>
-              <div className="w-full h-4/5 bg-[#0f3d3a] flex justify-center items-center">
-                <CalendarMonthIcon className="w-24 h-24 text-white" />
-              </div>
-            </div>
-
-            <div className="w-64 h-48 rounded-md bg-black shadow-xl shadow-slate-300 border-2 mb-6 mr-6 float-left">
-              <div className="w-full h-12 bg-white flex justify-center items-center">
-                <p className="text-xl font-bold">Agosto</p>
-              </div>
-              <div className="w-full h-4/5 bg-[#0f3d3a] flex justify-center items-center">
-                <CalendarMonthIcon className="w-24 h-24 text-white" />
-              </div>
-            </div>
-
-            <div className="w-64 h-48 rounded-md bg-black shadow-xl shadow-slate-300 border-2 mb-6 mr-6 float-left">
-              <div className="w-full h-12 bg-white flex justify-center items-center">
-                <p className="text-xl font-bold">Setembro</p>
-              </div>
-              <div className="w-full h-4/5 bg-[#0f3d3a] flex justify-center items-center">
-                <CalendarMonthIcon className="w-24 h-24 text-white" />
-              </div>
-            </div>
-
-            <div className="w-64 h-48 rounded-md bg-black shadow-xl shadow-slate-300 border-2 mb-6 mr-6 float-left">
-              <div className="w-full h-12 bg-white flex justify-center items-center">
-                <p className="text-xl font-bold">Outubro</p>
-              </div>
-              <div className="w-full h-4/5 bg-[#0f3d3a] flex justify-center items-center">
-                <CalendarMonthIcon className="w-24 h-24 text-white" />
-              </div>
-            </div>
-
-            <div className="w-64 h-48 rounded-md bg-black shadow-xl shadow-slate-300 border-2 mb-6 mr-6 float-left">
-              <div className="w-full h-12 bg-white flex justify-center items-center">
-                <p className="text-xl font-bold">Novembro</p>
-              </div>
-              <div className="w-full h-4/5 bg-[#0f3d3a] flex justify-center items-center">
-                <CalendarMonthIcon className="w-24 h-24 text-white" />
-              </div>
-            </div>
+            )}
           </div>
         </Card>
       </section>

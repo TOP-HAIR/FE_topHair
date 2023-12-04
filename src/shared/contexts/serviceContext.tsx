@@ -3,7 +3,6 @@ import { ApiService } from "../services/serviceService";
 const apiService = new ApiService();
 
 const objetoString = sessionStorage.getItem("dataEmpresa");
-console.log(objetoString);
 if (objetoString !== null) {
   const objeto = JSON.parse(objetoString);
   const idEmpresa = objeto.idEmpresa;
@@ -14,6 +13,33 @@ if (objetoString !== null) {
 export const getServiceContext = async () => {
   try {
     return await apiService.getListaService();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getListaClientContext = async (id: string = "") => {
+  try {
+    const idNumber = parseInt(id);
+    return await apiService.getListaClientService(idNumber);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getExportarServicoContext = async () => {
+  try {
+    const res = await apiService.getExportarServicoService();
+    const blob = new Blob([res.data], { type: "text/plain" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "funcionarios.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+    console.log(res);
   } catch (error) {
     console.log(error);
   }

@@ -17,6 +17,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Header from "./components/header";
 import Footer from "../../components/footer";
+import { navigateToPage } from "../../shared/hooks/utils/navigatePage";
+import { useNavigate } from "react-router-dom";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -31,6 +33,13 @@ const MenuProps = {
 
 export default function HomeUserClient() {
   const [estadoSigla, setEstadoSigla] = useState<string>("");
+  const navigate = useNavigate();
+
+  const linkNavigate = async (estado: string) => {
+    localStorage.setItem("estado", estado);
+    console.log("redirecionando a página cliente ...");
+    navigateToPage(navigate, "/client/home");
+  };
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     setEstadoSigla(event.target.value);
@@ -125,6 +134,9 @@ export default function HomeUserClient() {
                     p: "10px",
                   }}
                   aria-label="search"
+                  onClick={() => {
+                    linkNavigate(estadoSigla);
+                  }}
                 >
                   <SearchIcon />
                 </IconButton>

@@ -42,11 +42,11 @@ export default function HomeComments() {
           ) : resLenghtValid ? (
             <NoContentComponent />
           ) : (
-            <div className="m-6 flex flex-wrap gap-x-5 gap-y-4">
+            <div className="m-6 grid grid-col-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
               {comment.map((comment) => (
                 <div
                   key={comment.idAvaliacao}
-                  className="w-96 max-w-xs grid rounded card-service p-4 relative gap-4"
+                  className="w-full grid rounded card-service p-4 relative gap-4 grow"
                 >
                   <CommentService comment={comment} />
                 </div>

@@ -15,7 +15,10 @@ export default function CommentService({ comment }: { comment: Comment }) {
           <h3 className="font-semibold text-lg ">
             {comment?.usuario?.nomeCompleto}
           </h3>
-          <Rating name="read-only" value={comment?.nivel} readOnly />
+          <div className="flex gap-2">
+            <Rating name="read-only" value={comment?.nivel} readOnly />
+            <p className="font-extralight">{comment?.nivel}</p>
+          </div>
         </div>
       </div>
       <p className=" font-family-dm-sans">{comment.comentario}</p>

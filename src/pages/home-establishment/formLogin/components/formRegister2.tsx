@@ -35,6 +35,7 @@ export default function FormRegister2({
       console.log(dataCEP.data);
     } catch (err) {
       console.error("Erro ao buscar CEP:", err);
+      setCepError("Erro ao buscar CEP:");
     }
   };
 
@@ -57,6 +58,13 @@ export default function FormRegister2({
               placeholder="Digite o CEP"
               {...register("cep", {
                 required: "Este campo é obrigatório",
+                maxLength: {
+                  value: 9,
+                },
+                minLength: {
+                  value: 8,
+                  message: "CEP deve ter pelo menos 5 caracteres",
+                },
               })}
               onChange={(e) => {
                 const newCep = e.target.value;
@@ -69,7 +77,6 @@ export default function FormRegister2({
                 }
               }}
               onBlur={() => fetchCepData()}
-              maxLength={9}
               error={Boolean(errors.cep)}
               helperText={errors.cep?.message}
             />

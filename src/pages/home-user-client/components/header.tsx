@@ -7,7 +7,7 @@ export default function Header() {
       <header className="h-20 w-full bg-black-suport flex justify-center fixed z-50">
         <div className="grid-home-width w-full px-8">
           <div className="w-full h-full flex justify-between items-center">
-            <a className="h-full" href="/">
+            <a className="h-full" href="/client-home">
               <img className="h-full" src={TopHairLogo} alt="Logo da TopHair" />
             </a>
 

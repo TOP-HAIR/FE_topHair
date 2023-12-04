@@ -3,18 +3,21 @@ import { Navigation } from "swiper/modules";
 import FiltroCabeloImg from "../../../assets/configs/img/Rectangle 472.png";
 import FiltroBarbaImg from "../../../assets/configs/img/Rectangle 473.png";
 import FiltroTinturaImg from "../../../assets/configs/img/Rectangle 474.png";
-import { Breadcrumbs, Link, Rating, Typography } from "@mui/material";
+import { Breadcrumbs, Button, Link, Rating, Typography } from "@mui/material";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { getTop5EmpresasContext } from "../../../shared/contexts/empresaContext";
-import MapBoxComponent from "@/components/mapbox";
+import MapBoxComponent from "../../../components/mapbox";
+import bannerClient from "../../../assets/configs/img/banner-client.png";
+import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
+import { useNavigate } from "react-router-dom";
 
 export default function ClientHomePage() {
   const [loadResponse, setloadResponse] = useState(false);
   const [empresaAvaliacao, setEmpresaAvaliacao] = useState<any[]>([]);
-  const initialViewport = {
-    latitude: 28.6448,
-    longitude: 77.216,
-    zoom: 5,
+  const navigate = useNavigate();
+
+  const linkNavigate = async (path: string) => {
+    navigateToPage(navigate, path);
   };
 
   useEffect(() => {
@@ -37,24 +40,40 @@ export default function ClientHomePage() {
     <>
       <div className="px-4 w-full flex justify-center">
         <div className="grid-home-width w-full">
-          <Breadcrumbs className="pt-24 pb-4" aria-label="breadcrumb">
-            <Link underline="hover" color="inherit" href="/">
-              MUI
+          <Breadcrumbs className="px-4 pt-24 pb-4" aria-label="breadcrumb">
+            <Link underline="hover" color="inherit" href="/client-page">
+              Home
             </Link>
-            <Link
-              underline="hover"
-              color="inherit"
-              href="/material-ui/getting-started/installation/"
-            >
-              Core
-            </Link>
-            <Typography color="text.primary">Breadcrumbs</Typography>
+            <Typography color="text.primary">Página Inicial</Typography>
           </Breadcrumbs>
         </div>
       </div>
 
-      <section className="linear-gradient-client flex justify-center">
-        <img className="max-h-96 w-full h-96" src="" alt="" />
+      <section className="linear-gradient-client w-full flex justify-center image-banner-client">
+        <div className="grid-home-width w-full flex justify-between px-20 items-center">
+          <div className="h-72 w-96 bg-white p-5 flex flex-col justify-between">
+            <h3 className="text-2xl font-semibold">
+              Ache o lugar que mais se adeque a você!!!
+            </h3>
+            <p className="text-medium font-family-dm-sans font-light">
+              "Na barbearia certa, estilo e inspiração se entrelaçam,
+              transformando cada visita em uma experiência autêntica e única."
+            </p>
+            <Button
+              className="text-white px-8 py-3 text-sm bg-primary-cyan w-full"
+              onClick={() => {
+                linkNavigate("/client/list");
+              }}
+            >
+              Procurar
+            </Button>
+          </div>
+          <img
+            className="max-h-96 h-96"
+            src={bannerClient}
+            alt="Homem com braços cruzados"
+          />
+        </div>
       </section>
       <section className="px-4 flex justify-center mt-10 py-15">
         <div className="grid-home-width w-full">
@@ -68,10 +87,18 @@ export default function ClientHomePage() {
             modules={[Navigation]}
             slidesPerView={3}
           >
-            {empresaAvaliacao.map((valor) => (
-              <SwiperSlide className="mx-5 min-h-">
-                <div className="my-8 p-2 flex flex-col items-center justify-center gap-2 card-service">
-                  <h3 className="font-bold drop-shadow-2xl text-lg">faitls</h3>
+            {empresaAvaliacao?.map((valor) => (
+              <SwiperSlide className="mx-5">
+                <div
+                  key={valor?.idEmpresa}
+                  className="my-8 p-2 flex flex-col items-center justify-center gap-2 card-service cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-95"
+                  onClick={() => {
+                    linkNavigate(`/client/establishment/${valor?.idEmpresa}`);
+                  }}
+                >
+                  <h3 className="font-bold drop-shadow-2xl text-lg">
+                    {valor.razaoSocial}
+                  </h3>
                   <img className="h-20 w-20 bg-black rounded-full" />
                   <Rating name="read-only" value={4} readOnly />
                   <p className="text-black text-center font-normal font-family-dm-sans text-base p-3">
@@ -90,19 +117,19 @@ export default function ClientHomePage() {
           <h2 className="text-3xl font-bold">Explore por Categorias</h2>
           <hr className="h-0.5 bg-gray-500" />
           <div className="w-full flex justify-center gap-8 py-10">
-            <div className="relative">
+            <div className="relative cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-105">
               <img src={FiltroCabeloImg} alt="Imagem para Filtro por Cabelo" />
               <h3 className="text-2xl font-family-dm-sans font-medium absolute text-white bottom-8 left-24 ">
                 Cabelo
               </h3>
             </div>
-            <div className="relative">
+            <div className="relative cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-105">
               <img src={FiltroBarbaImg} alt="Imagem para Filtro por Barba" />
               <h3 className="text-2xl font-family-dm-sans font-medium absolute text-white bottom-8 left-24 ">
                 Barba
               </h3>
             </div>
-            <div className="relative">
+            <div className="relative cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-105">
               <img
                 src={FiltroTinturaImg}
                 alt="Imagem para Filtro por Tintura"

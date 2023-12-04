@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Button, Link } from "@mui/material";
 import FormRegister1 from "./components/formRegister1";
 import FormRegister2 from "./components/formRegister2";
 import { useFormStep } from "../../../shared/hooks/useForm";
 import { Empresa } from "../../../shared/entity/authEntity";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import ReCAPTCHAComponent from "../../../components/reCAPTCHA";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
 import TophairIcon from "../../../assets/configs/img/logo/white-logo.png";
-import {
-  cadastroEstabelecimento,
-  userRegisterContext,
-} from "@/shared/contexts/authContext";
+import { userRegisterContext } from "../../../shared/contexts/authContext";
 
 const form: Empresa = {
   empresa: "",
@@ -122,12 +119,11 @@ export default function FormPage() {
                   <Button
                     variant="contained"
                     className="w-1/2 button-login bg-primary-aqua rounded-sm"
-                    onClick={(e: any) => changeStep(currentStep + 1, e)}
+                    onClick={handleNextStep}
                   >
                     Cadastrar
                   </Button>
                 )}
-                <button type="submit">adaw</button>
               </div>
               <p className="text-center text-white text-xs">
                 Copyright © made by Top Hair
