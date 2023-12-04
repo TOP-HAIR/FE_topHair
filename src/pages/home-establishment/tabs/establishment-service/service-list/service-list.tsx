@@ -100,7 +100,7 @@ export default function ServiceList() {
                 exportCsv();
               }}
             >
-              <BallotOutlinedIcon /> Exportar .txt
+              <BallotOutlinedIcon /> Exportar .csv
             </Button>
             <Link to="/establishment/service/edit">
               <Button className="bg-terciary-light-green" variant="contained">

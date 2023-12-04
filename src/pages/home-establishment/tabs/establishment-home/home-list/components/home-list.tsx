@@ -70,7 +70,7 @@ export default function HomeList() {
                           }}
                         >
                           <TableCell align="center" component="th" scope="row">
-                            {servico?.nomeCompleto}
+                            {servico?.nomeUsuario}
                           </TableCell>
                           <TableCell align="center">{servico?.data}</TableCell>
                           <TableCell align="center">{servico?.hora}</TableCell>
