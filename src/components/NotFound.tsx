@@ -2,7 +2,7 @@ import React from "react";
 import noContent from "../assets/configs/img/svg/noContent.svg";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { navigateToPage } from "@/shared/hooks/utils/navigatePage";
+import { navigateToPage } from "../shared/hooks/utils/navigatePage";
 
 export default function NotFoundClientComponent() {
   const navigate = useNavigate();
