@@ -34,6 +34,7 @@ const MenuProps = {
 export default function HomeUserClient() {
   const [estadoSigla, setEstadoSigla] = useState<string>("");
   const navigate = useNavigate();
+  const headerValue = "client-page";
 
   const linkNavigate = async (estado: string) => {
     localStorage.setItem("estado", estado);
@@ -47,7 +48,7 @@ export default function HomeUserClient() {
 
   return (
     <>
-      <Header />
+      <Header header={headerValue} />
       <main className="w-full flex flex-col">
         <section className="bg-black page-layout-1x w-full flex justify-center ">
           <div className="mt-10 grid-home-width max-md:columns-2 w-full h-full flex">
