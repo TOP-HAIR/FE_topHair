@@ -13,6 +13,19 @@ export class ApiService extends AuthService {
   async getListaService() {
     return await send("GET", this.serviceUrl + `/empresa/${this.idEmpresa}`);
   }
+
+  async getListaClientService(idEmpresa: number) {
+    return await send("GET", this.serviceUrl + `/empresa/${idEmpresa}`);
+  }
+
+  async getExportarServicoService() {
+    return await send("GET", this.serviceUrl + `/exportar-csv`);
+  }
+
+  async postImportService(obj: any) {
+    return await send("POST", this.authUrl + `/importacao`, obj);
+  }
+
   async getListaServiceById(id: number) {
     return await send("GET", this.serviceUrl + `/${id}`);
   }

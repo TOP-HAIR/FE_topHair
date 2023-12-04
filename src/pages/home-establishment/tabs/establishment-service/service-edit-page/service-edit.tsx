@@ -19,14 +19,15 @@ export default function EditPageService() {
   const [loadResponse, setloadResponse] = useState(false);
   const { handleSubmit, register, setValue } = useForm<DataService>();
   const apiService = new ApiService();
-  const { serviceId } = useParams();
+  const { idServico } = useParams();
 
   useEffect(() => {
     async function listarServicoById() {
-      if (serviceId != undefined && serviceId != null) {
+      console.log(idServico);
+      if (idServico != undefined && idServico != null) {
         setloadResponse(false);
         try {
-          const res = await getServiceByIdContext(serviceId);
+          const res = await getServiceByIdContext(idServico);
           setValue("nomeServico", res.data?.nomeServico);
           setValue("preco", res.data?.preco);
           setValue("qtdTempoServico", res.data?.qtdTempoServico);
@@ -59,7 +60,6 @@ export default function EditPageService() {
   };
 
   const confirmCancel = () => {
-    console.log(serviceId);
     Swal.fire({
       title: "Tem certeza que deseja cancelar esse serviço?",
       icon: "warning",

@@ -31,3 +31,17 @@ export interface EmpresaCadastro {
   razaoSocial: string;
   cnpj: string;
 }
+
+export interface Avaliacao {
+  idAvaliacao: number;
+  nivel: number;
+  comentario: string;
+  usuario: {
+    idUsuario: number;
+    cpf: string;
+    nomeCompleto: string;
+    email: string;
+    telefone: string;
+    isProfissional: boolean;
+  };
+}

@@ -9,7 +9,11 @@ import { Service } from "../../../../../shared/entity/serviceEntity";
 import { navigateToPage } from "../../../../../shared/hooks/utils/navigatePage";
 import LoaderResponse from "../../../../../components/loaderResponse";
 import NoContentComponent from "../../../../../components/noContent";
-import { getServiceContext } from "../../../../../shared/contexts/serviceContext";
+import {
+  getExportarServicoContext,
+  getServiceContext,
+} from "../../../../../shared/contexts/serviceContext";
+import BallotOutlinedIcon from "@mui/icons-material/BallotOutlined";
 
 export default function ServiceList() {
   const [services, setServices] = useState<Service[]>([]);
@@ -42,6 +46,16 @@ export default function ServiceList() {
 
     listarServicos();
   }, []);
+
+  const exportCsv = async () => {
+    try {
+      await getExportarServicoContext();
+      Swal.fire("Sucesso!", "Arquivo Exportado com sucesso!!!", "success");
+    } catch (error) {
+      Swal.fire("Errp!", "Erro ao exportar arquivo!!!", "error");
+      console.error("Erro ao buscar funcionários", error);
+    }
+  };
 
   const deletarService = (serviceId: number) => {
     Swal.fire({
@@ -78,22 +92,33 @@ export default function ServiceList() {
       <Card className="m-5 p-6 h-full">
         <div className="flex justify-between flex-wrap">
           <h2 className="text-2xl font-bold">Serviços do Estabelecimento</h2>
-          <Link to="/establishment/service/edit">
-            <Button className="bg-terciary-light-green" variant="contained">
-              + Adicionar Serviço
+          <div className="flex flex-wrap gap-4 md:px-6 sm:px-6">
+            <Button
+              className="border-lime-700 color-primary-cyan"
+              variant="outlined"
+              onClick={() => {
+                exportCsv();
+              }}
+            >
+              <BallotOutlinedIcon /> Exportar .txt
             </Button>
-          </Link>
+            <Link to="/establishment/service/edit">
+              <Button className="bg-terciary-light-green" variant="contained">
+                + Adicionar Serviço
+              </Button>
+            </Link>
+          </div>
         </div>
         {!loadResponse ? (
           <LoaderResponse />
         ) : resLenghtValid ? (
           <NoContentComponent />
         ) : (
-          <div className="my-8 flex flex-wrap gap-x-5 gap-y-4">
+          <div className="my-8 grid grid-col-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
             {services.map((service) => (
               <div
                 key={service.idServico}
-                className="bg-white min-w-96 w-80 grid rounded card-service p-4 relative grow"
+                className="bg-white w-full grid rounded card-service p-4 relative grow cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-95"
               >
                 <CardService
                   service={service}

@@ -13,21 +13,16 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import {
   deleteEmployee,
+  getExportarEmployeeContext,
   getListEmployees,
+  postImportarEmployeesContext,
 } from "../../../../../shared/contexts/empresaContext";
 import { dadosEmployee } from "../../../../../shared/entity/authEntity";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Swal from "sweetalert2";
-
-function createData(
-  Name: string,
-  ScheduledDate: Date,
-  Schedule: String,
-  Status: string
-) {
-  return { Name, ScheduledDate, Schedule, Status };
-}
+import BallotOutlinedIcon from "@mui/icons-material/BallotOutlined";
+import FileCopyOutlinedIcon from "@mui/icons-material/FileCopyOutlined";
 
 export default function EmployeesList() {
   const [loadResponse, setloadResponse] = useState(false);
@@ -84,6 +79,25 @@ export default function EmployeesList() {
     });
   };
 
+  const exportTxt = async () => {
+    try {
+      await getExportarEmployeeContext();
+      Swal.fire("Sucesso!", "Arquivo Exportado com sucesso!!!", "success");
+    } catch (error) {
+      Swal.fire("Errp!", "Erro ao exportar arquivo!!!", "error");
+      console.error("Erro ao buscar funcionários", error);
+    }
+  };
+
+  const importarTxt = async () => {
+    try {
+      await postImportarEmployeesContext();
+      Swal.fire("Sucesso!", "Arquivo Importar com sucesso!!", "success");
+    } catch (error) {
+      console.error("Erro ao buscar funcionários", error);
+    }
+  };
+
   const linkNavigate = async (idUser: number) => {
     navigateToPage(navigate, `/establishment/employees/add/${idUser}`);
   };
@@ -94,11 +108,32 @@ export default function EmployeesList() {
           <h2 className="m-6 text-2xl font-bold">
             Profissionais do estabelecimento
           </h2>
-          <Link to="/establishment/employees/add">
-            <Button className="bg-terciary-light-green" variant="contained">
-              + Adicionar Profissional
+          <div className="flex flex-wrap gap-4 md:px-6 sm:px-6">
+            <Button
+              className="border-lime-700 color-primary-cyan"
+              variant="outlined"
+              onClick={() => {
+                importarTxt();
+              }}
+            >
+              <FileCopyOutlinedIcon /> Importar .txt
             </Button>
-          </Link>
+            <Button
+              className="border-lime-700 color-primary-cyan"
+              variant="outlined"
+              onClick={() => {
+                exportTxt();
+              }}
+            >
+              <BallotOutlinedIcon /> Exportar .txt
+            </Button>
+
+            <Link to="/establishment/employees/add">
+              <Button className="bg-terciary-light-green" variant="contained">
+                + Adicionar Profissional
+              </Button>
+            </Link>
+          </div>
         </div>
         <div className="m-6">
           {!loadResponse ? (

@@ -8,7 +8,6 @@ import HomeUserClient from "../../pages/home-user-client/home-user-client";
 import ClientHomePage from "../../pages/home-user-client/components/home-page";
 import ClientHomeEstablishment from "../../pages/home-user-client/components/home-establishment";
 import ClientHomeEstablishmentList from "../../pages/home-user-client/components/home-establishment-list";
-import ClientHomeCalendary from "../../pages/home-user-client/components/home-calendary";
 import EditEmployees from "../../pages/home-establishment/tabs/establishment-employees/employees-edit-page/employees-edit";
 import EmployeesList from "../../pages/home-establishment/tabs/establishment-employees/employees-list/employees-list";
 const HomeUserClientPage = lazy(
@@ -95,6 +94,10 @@ const FormPage = lazy(
 export default function PublicRoutes() {
   const [loading, setLoading] = useState(true);
 
+  if (!window.location.href.includes("establishment")) {
+    sessionStorage.clear();
+  }
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -154,7 +157,7 @@ export default function PublicRoutes() {
                   }
                 />
                 <Route
-                  path="dashboard/:id"
+                  path="dashboard/:idDashboard"
                   element={
                     <PrivateRoutes>
                       <ReportDashboard />
@@ -195,7 +198,7 @@ export default function PublicRoutes() {
                   }
                 />
                 <Route
-                  path="edit/:serviceId"
+                  path="edit/:idServico"
                   element={
                     <PrivateRoutes>
                       <EditPageService />
@@ -236,7 +239,7 @@ export default function PublicRoutes() {
                   }
                 />
                 <Route
-                  path="add/:id"
+                  path="add/:idEmployee"
                   element={
                     <PrivateRoutes>
                       <EditEmployees />
@@ -250,11 +253,10 @@ export default function PublicRoutes() {
             <Route path="client" element={<HomeUserClientPage />}>
               <Route path="home" element={<ClientHomePage />} />
               <Route
-                path="establishment"
+                path="establishment/:idEmpresa"
                 element={<ClientHomeEstablishment />}
               />
               <Route path="list" element={<ClientHomeEstablishmentList />} />
-              <Route path="calendary" element={<ClientHomeCalendary />} />
             </Route>
 
             <Route path="login" element={<Login />} />

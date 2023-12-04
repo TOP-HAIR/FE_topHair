@@ -1,7 +1,7 @@
 import React from "react";
 import noContent from "../assets/configs/img/svg/noContent.svg";
 
-export default function LoaderResponse() {
+export default function NoContentComponent() {
   return (
     <>
       <div className="w-full min-h-screen flex flex-col justify-center items-center">

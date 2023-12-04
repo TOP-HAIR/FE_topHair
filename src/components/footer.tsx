@@ -9,6 +9,7 @@ import { navigateToPage } from "../shared/hooks/utils/navigatePage";
 
 export default function Footer() {
   const navigate = useNavigate();
+
   return (
     <>
       <footer

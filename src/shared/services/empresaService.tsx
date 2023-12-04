@@ -4,15 +4,35 @@ import { AuthService } from "./authService";
 
 export class EmpresaService extends AuthService {
   private empresaUrl: string;
+  private avaliacaoUrl: string;
 
   constructor() {
     super();
     this.empresaUrl = "/empresas";
+    this.avaliacaoUrl = "/avaliacoes";
   }
 
-  async getTop5Empresas() {
+  async getTop5Empresas(estado: string) {
     const url = this.empresaUrl;
-    return await send("GET", url + "/top5-avaliadas-por-estado?estado=SP");
+    return await send(
+      "GET",
+      url + `/top5-avaliadas-por-estado?estado=${estado}`
+    );
+  }
+
+  async getAvaliacoesEmpresaById(idEmpresa: number) {
+    const url = this.avaliacaoUrl;
+    return await send("GET", url + `/empresa/${idEmpresa}`);
+  }
+
+  async getEmpresaEstado(estado: string = "") {
+    const url = this.empresaUrl;
+    return await send("GET", url + `/estado?estado=${estado}`);
+  }
+
+  async getExportarEmployees() {
+    const url = this.authUrl;
+    return await send("GET", url + `/exportar-txt/${this.idEmpresa}`);
   }
 
   async getEployeesEmpresa() {
@@ -28,6 +48,11 @@ export class EmpresaService extends AuthService {
   async getEmpresaInfo() {
     const url = this.empresaUrl;
     return await send("GET", url + `/usuario/${this.idUser}`);
+  }
+
+  async getEmpresaById(idEmpresa: number) {
+    const url = this.empresaUrl;
+    return await send("GET", url + `/buscar-por-id/${idEmpresa}`);
   }
 
   async postEmpresaCadastro(data: EmpresaCadastro) {
