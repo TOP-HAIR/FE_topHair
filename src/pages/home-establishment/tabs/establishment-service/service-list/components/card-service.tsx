@@ -18,7 +18,7 @@ export default function CardService({
         <h3 className="font-bold">Serviço: {service.nomeServico}</h3>
         <p>
           <b>Tipo: </b>
-          {service.tipo}
+          {service.categoria}
         </p>
         <p>
           <b>Valor: </b>
