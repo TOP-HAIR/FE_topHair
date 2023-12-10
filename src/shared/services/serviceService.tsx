@@ -56,8 +56,9 @@ export class ApiService extends AuthService {
     return await send("POST", url, data);
   }
 
-  async putService(data: Service) {
+  async putService(data: Service, id: string) {
+    console.log(data);
     const url = this.serviceUrl;
-    return await send("PUT", url, data);
+    return await send("PUT", url + `/${id}`, data);
   }
 }

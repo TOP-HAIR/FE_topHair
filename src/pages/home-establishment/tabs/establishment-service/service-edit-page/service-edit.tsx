@@ -9,6 +9,7 @@ import LoaderResponse from "../../../../../components/loaderResponse";
 import {
   getServiceByIdContext,
   postServiceEstablishmentContext,
+  putServiceEstablishmentContext,
 } from "../../../../../shared/contexts/serviceContext";
 import {
   formatTime,
@@ -19,7 +20,12 @@ import {
 export default function EditPageService() {
   const navigate = useNavigate();
   const [loadResponse, setloadResponse] = useState(false);
-  const { handleSubmit, register, setValue } = useForm<DataService>();
+  const {
+    handleSubmit,
+    register,
+    setValue,
+    formState: { errors },
+  } = useForm<DataService>();
   const { idServico } = useParams();
 
   useEffect(() => {
@@ -31,6 +37,7 @@ export default function EditPageService() {
           const res = await getServiceByIdContext(idServico);
           setValue("nomeServico", res.data?.nomeServico);
           setValue("preco", res.data?.preco);
+          setValue("categoria", res.data?.preco);
           setValue("qtdTempoServico", res.data?.qtdTempoServico);
           setValue("descricao", res.data?.descricao);
 
@@ -46,25 +53,42 @@ export default function EditPageService() {
   }, []);
 
   const onSubmit: SubmitHandler<DataService> = async (data: DataService) => {
+    let tempoServico = data.qtdTempoServico;
+    if (idServico == undefined && idServico == null) {
+      tempoServico += ":00";
+    }
     const obj = {
-      tipoServico: data.categoria,
-      nomeServico: data.nomeServico,
+      categoria: data.categoria,
+      nomeServico: data.nomeServico.trim(),
       preco: data.preco,
-      descricao: data.descricao,
-      qtdTempoServico: data.qtdTempoServico + ":00",
+      descricao: data.descricao.trim(),
+      qtdTempoServico: tempoServico,
     };
-    console.log(obj);
-    try {
-      if (idServico != undefined && idServico != null) {
+
+    if (idServico == undefined && idServico == null) {
+      try {
+        await postServiceEstablishmentContext(obj);
+
+        Swal.fire("Sucess", "Sucesso ao criar o serviço.", "success");
+
+        navigateToPage(navigate, -1);
+      } catch (error) {
+        console.error("Erro ao criar o serviço:", error);
+        Swal.fire("Erro", "Erro ao criar o serviço.", "error");
       }
-      await postServiceEstablishmentContext(obj);
+    } else {
+      if (idServico != undefined && idServico != null) {
+        try {
+          await putServiceEstablishmentContext(obj, idServico);
 
-      Swal.fire("Sucess", "Sucesso ao criar o serviço.", "success");
+          Swal.fire("Sucess", "Sucesso ao atualizar o serviço.", "success");
 
-      navigateToPage(navigate, -1);
-    } catch (error) {
-      console.error("Erro ao criar o serviço:", error);
-      Swal.fire("Erro", "Erro ao criar o serviço.", "error");
+          navigateToPage(navigate, -1);
+        } catch (error) {
+          console.error("Erro ao atualizar o serviço:", error);
+          Swal.fire("Erro", "Erro ao atualizar o serviço.", "error");
+        }
+      }
     }
   };
 
@@ -113,7 +137,11 @@ export default function EditPageService() {
                     className=""
                     placeholder="Digite o nome do Serviço"
                     size="small"
-                    {...register("nomeServico")}
+                    {...register("nomeServico", {
+                      required: "Campo é Obrigatório",
+                    })}
+                    error={Boolean(errors.nomeServico)}
+                    helperText={errors.nomeServico?.message}
                   />
                   <div className="flex gap-6 w-full">
                     <TextField
@@ -123,10 +151,14 @@ export default function EditPageService() {
                       variant="outlined"
                       placeholder="Digite o valor do Serviço"
                       size="small"
-                      {...register("preco")}
+                      {...register("preco", {
+                        required: "Campo é Obrigatório",
+                      })}
                       onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
                         inputSemEspaco(e);
                       }}
+                      error={Boolean(errors.preco)}
+                      helperText={errors.preco?.message}
                     />
 
                     <TextField
@@ -136,11 +168,15 @@ export default function EditPageService() {
                       variant="outlined"
                       placeholder="Digite o tempo do serviço"
                       size="small"
-                      {...register("qtdTempoServico")}
+                      {...register("qtdTempoServico", {
+                        required: "Campo é Obrigatório",
+                      })}
                       onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
                         inputSomenteNumero(e);
                         formatTime(e);
                       }}
+                      error={Boolean(errors.qtdTempoServico)}
+                      helperText={errors.qtdTempoServico?.message}
                     />
                   </div>
 
@@ -151,7 +187,11 @@ export default function EditPageService() {
                     multiline
                     size="small"
                     placeholder="Descreva o Serviço"
-                    {...register("categoria")}
+                    {...register("categoria", {
+                      required: "Campo é Obrigatório",
+                    })}
+                    error={Boolean(errors.categoria)}
+                    helperText={errors.categoria?.message}
                   />
 
                   <TextField
@@ -162,7 +202,11 @@ export default function EditPageService() {
                     size="small"
                     rows={8}
                     placeholder="Descreva o Serviço"
-                    {...register("descricao")}
+                    {...register("descricao", {
+                      required: "Campo é Obrigatório",
+                    })}
+                    error={Boolean(errors.descricao)}
+                    helperText={errors.descricao?.message}
                   />
                 </div>
                 <div className="flex justify-between">

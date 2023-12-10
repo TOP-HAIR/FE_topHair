@@ -28,6 +28,16 @@ export const postServiceEstablishmentContext = async (obj: any) => {
   }
 };
 
+export const putServiceEstablishmentContext = async (obj: any, id: string) => {
+  try {
+    const res = await apiService.putService(obj, id);
+    await apiService.getVincularService(res.data.idServico);
+    return await apiService.getListaService();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getListaClientContext = async (id: string = "") => {
   try {
     const idNumber = parseInt(id);

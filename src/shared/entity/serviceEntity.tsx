@@ -1,6 +1,6 @@
 export interface Service {
   idServico: number | 0;
-  tipo: string;
+  categoria: string;
   nomeServico: string;
   preco: number;
   descricao: string;

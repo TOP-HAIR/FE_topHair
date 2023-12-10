@@ -43,19 +43,19 @@ export const cadastroEstabelecimento = async (data: Empresa) => {
   if (data !== undefined && data !== null) {
     try {
       const objEmpresa = {
-        razaoSocial: data.empresa,
+        razaoSocial: data.empresa.trim(),
         cnpj: data.cnpj,
       };
       const dataEmpresa = await empresaService.postEmpresaCadastro(objEmpresa);
 
       const objEndereco = {
         cep: data.cep,
-        logradouro: data.logradouro,
-        bairro: data.bairro,
+        logradouro: data.logradouro.trim(),
+        bairro: data.bairro.trim(),
         numero: data.numero,
-        estado: data.uf,
-        cidade: data.localidade,
-        complemento: data.complemento,
+        estado: data.uf.trim(),
+        cidade: data.localidade.trim(),
+        complemento: data.complemento.trim(),
       };
 
       const dataEndereco = await authService.postEndereco(objEndereco);
