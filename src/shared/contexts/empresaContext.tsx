@@ -119,7 +119,29 @@ export const employeeRegisterContext = async (data: EmployeeCadastro) => {
         idEmpresa: empresaService.idEmpresa,
       },
     };
-    const response = await empresaService.createEmployee(obj);
+    const response = await empresaService.postEmployee(obj);
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const putEmployeeContext = async (
+  data: EmployeeCadastro,
+  idEmployee: string
+) => {
+  try {
+    const obj = {
+      cpf: data.cpf,
+      nomeCompleto: data.nomeCompleto,
+      email: data.email,
+      senha: data.senha,
+      telefone: data.telefone,
+      empresa: {
+        idEmpresa: empresaService.idEmpresa,
+      },
+    };
+    const response = await empresaService.putEmployee(obj, idEmployee);
     console.log(response);
   } catch (error) {
     console.log(error);
@@ -154,6 +176,15 @@ export const getEmpresaByIdContext = async (id: string) => {
   try {
     const idNumber = parseInt(id);
     return await empresaService.getEmpresaById(idNumber);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getEmpresaContext = async (id: string = "") => {
+  try {
+    const idNumber = parseInt(id);
+    return await empresaService.getEmpresa(idNumber);
   } catch (error) {
     console.log(error);
   }

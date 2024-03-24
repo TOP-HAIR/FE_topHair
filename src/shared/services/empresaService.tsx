@@ -1,4 +1,4 @@
-import { EmployeeCadastro, EmpresaCadastro } from "../entity/empresaEntity";
+import { EmpresaCadastro } from "../entity/empresaEntity";
 import { send } from "./apiUrl";
 import { AuthService } from "./authService";
 
@@ -19,9 +19,15 @@ export class EmpresaService extends AuthService {
       url + `/top5-avaliadas-por-estado?estado=${estado}`
     );
   }
-  async createEmployee(data: any) {
+  async postEmployee(data: any) {
     const url = super.authUrl;
     return await send("POST", url + "/cadastrar", data);
+  }
+
+  async putEmployee(data: any, idEmployee: string) {
+    console.log(data);
+    const url = super.authUrl;
+    return await send("PUT", url + `/${idEmployee}`, data);
   }
 
   async getAvaliacoesEmpresaById(idEmpresa: number) {
@@ -62,6 +68,11 @@ export class EmpresaService extends AuthService {
   async getEmpresaById(idEmpresa: number) {
     const url = this.empresaUrl;
     return await send("GET", url + `/buscar-por-id/${idEmpresa}`);
+  }
+
+  async getEmpresa(idEmpresa: number) {
+    const url = this.empresaUrl;
+    return await send("GET", url + `/${idEmpresa}`);
   }
 
   async postEmpresaCadastro(data: EmpresaCadastro) {
