@@ -11,6 +11,7 @@ import {
   Input,
   FormHelperText,
 } from "@mui/material";
+import InputMask from "react-input-mask";
 
 const darkTheme = createTheme({
   palette: {
@@ -85,11 +86,10 @@ export default function FormRegister1({ register, errors, getValues }: any) {
               error={Boolean(errors.email)}
               helperText={errors.email?.message}
             />
-            <TextField
-              label="CNPJ"
-              variant="standard"
-              size="medium"
-              type="text"
+            <InputMask
+              mask="99.999.999/9999-99"
+              maskPlaceholder=""
+              defaultValue=""
               {...register("cnpj", {
                 required: "Este campo é obrigatório",
                 pattern: {
@@ -97,10 +97,21 @@ export default function FormRegister1({ register, errors, getValues }: any) {
                   message: "Deve conter pelo menos um número",
                 },
               })}
-              placeholder="Digite seu CNPJ"
-              error={Boolean(errors.cnpj)}
-              helperText={errors.cnpj?.message}
-            />
+            >
+              {(inputProps) => (
+                <TextField
+                  {...inputProps}
+                  label="CNPJ"
+                  variant="standard"
+                  size="medium"
+                  type="text"
+                  placeholder="Digite seu CNPJ"
+                  error={Boolean(errors.cnpj)}
+                  helperText={errors.cnpj?.message}
+                />
+              )}
+            </InputMask>
+
             <FormControl variant="standard">
               <InputLabel htmlFor="standard-adornment-password">
                 Password
