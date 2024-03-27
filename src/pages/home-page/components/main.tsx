@@ -34,14 +34,7 @@ export default function HomeMain() {
                 </div>
                 <div className="flex gap-5">
                   <Button
-                    className="uppercase bg-primary-cyan max-w-72 text-md font-semibold"
-                    variant="contained"
-                    onClick={() => navigateToPage(navigate, "/client-page")}
-                  >
-                    Entrar como cliente
-                  </Button>
-                  <Button
-                    className="uppercase bg-primary-aqua max-w-72 text-md font-semibold"
+                    className="uppercase bg-primary-aqua w-96 text-md font-semibold"
                     variant="contained"
                     onClick={() => navigateToPage(navigate, "/login")}
                   >
