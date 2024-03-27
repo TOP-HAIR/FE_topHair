@@ -11,6 +11,7 @@ import {
   getEmployeeByIdContext,
   putEmployeeContext,
 } from "../../../../../shared/contexts/empresaContext";
+import InputMask from "react-input-mask";
 
 interface EmployeeRegister extends EmployeeCadastro {
   confirmarSenha: string;
@@ -120,16 +121,24 @@ export default function EditEmployees() {
                   <LoaderResponse />
                 ) : (
                   <div className="flex w-full flex-col gap-12">
-                    <TextField
-                      id="outlined-basic"
-                      label="CPF"
-                      variant="outlined"
-                      placeholder="Digite o CPF"
-                      size="small"
-                      {...register("cpf", { required: "cpf é obrigatório" })}
-                      error={Boolean(errors.cpf)}
-                      helperText={errors.cpf?.message ?? ""}
-                    />
+                    <InputMask
+                      mask="999.999.999-99"
+                      defaultValue=""
+                      {...register("cpf", { required: "CPF é obrigatório" })}
+                    >
+                      {(inputProps) => (
+                        <TextField
+                          {...inputProps}
+                          id="outlined-basic"
+                          label="CPF"
+                          variant="outlined"
+                          placeholder="Digite o CPF"
+                          size="small"
+                          error={Boolean(errors.cpf)}
+                          helperText={errors.cpf?.message ?? ""}
+                        />
+                      )}
+                    </InputMask>
 
                     <TextField
                       id="outlined-basic"
@@ -187,18 +196,26 @@ export default function EditEmployees() {
                       helperText={errors.confirmarSenha?.message || ""}
                     />
 
-                    <TextField
-                      id="outlined-basic"
-                      label="Telefone"
-                      variant="outlined"
-                      placeholder="Digite o numero de telefone"
-                      size="small"
+                    <InputMask
+                      mask="(99) 99999-9999"
+                      defaultValue=""
                       {...register("telefone", {
-                        required: "telefone é obrigatório",
+                        required: "Telefone é obrigatório",
                       })}
-                      error={Boolean(errors.telefone)}
-                      helperText={errors.telefone?.message || ""}
-                    />
+                    >
+                      {(inputProps) => (
+                        <TextField
+                          {...inputProps}
+                          id="outlined-basic"
+                          label="Telefone"
+                          variant="outlined"
+                          placeholder="Digite o número de telefone"
+                          size="small"
+                          error={Boolean(errors.telefone)}
+                          helperText={errors.telefone?.message || ""}
+                        />
+                      )}
+                    </InputMask>
                   </div>
                 )}
               </div>

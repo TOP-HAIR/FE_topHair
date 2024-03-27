@@ -16,6 +16,7 @@ import {
   inputSemEspaco,
   inputSomenteNumero,
 } from "../../../../../shared/hooks/utils/validateInput";
+import InputMask from "react-input-mask";
 
 export default function EditPageService() {
   const navigate = useNavigate();
@@ -57,13 +58,20 @@ export default function EditPageService() {
     if (idServico == undefined && idServico == null) {
       tempoServico += ":00";
     }
+    const stringValue = data.preco; // Obtém o valor do campo do formulário
+    const numericValue = parseFloat(
+      stringValue.replace(/[^\d.,]/g, "").replace(",", ".")
+    );
+
     const obj = {
       categoria: data.categoria,
       nomeServico: data.nomeServico.trim(),
-      preco: data.preco,
+      preco: numericValue,
       descricao: data.descricao.trim(),
       qtdTempoServico: tempoServico,
     };
+    console.log(obj);
+    return;
 
     if (idServico == undefined && idServico == null) {
       try {
@@ -144,22 +152,28 @@ export default function EditPageService() {
                     helperText={errors.nomeServico?.message}
                   />
                   <div className="flex gap-6 w-full">
-                    <TextField
-                      className="w-1/2"
-                      id="outlined-basic"
-                      label="Valor"
-                      variant="outlined"
-                      placeholder="Digite o valor do Serviço"
-                      size="small"
+                    <InputMask
+                      mask="R$ 999,99"
+                      maskChar="0"
+                      defaultValue=""
                       {...register("preco", {
                         required: "Campo é Obrigatório",
                       })}
-                      onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        inputSemEspaco(e);
-                      }}
-                      error={Boolean(errors.preco)}
-                      helperText={errors.preco?.message}
-                    />
+                    >
+                      {(inputProps) => (
+                        <TextField
+                          {...inputProps}
+                          className="w-1/2"
+                          id="outlined-basic"
+                          label="Valor"
+                          variant="outlined"
+                          placeholder="Digite o valor do Serviço"
+                          size="small"
+                          error={Boolean(errors.preco)}
+                          helperText={errors.preco?.message}
+                        />
+                      )}
+                    </InputMask>
 
                     <TextField
                       className="w-1/2"
