@@ -16,7 +16,7 @@ let env: string = "";
 const urlDoProjeto: string = window.location.href;
 
 if (!urlDoProjeto.includes(enviromentsLocal.url)) {
-  env = enviromentsLocal.api.URLBASE_API;
+  env = enviromentsProd.url;
 } else {
   env = enviromentsProd.url;
 }
