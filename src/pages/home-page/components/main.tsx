@@ -5,6 +5,7 @@ import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
 import { comments, valores } from "../../../shared/hooks/utils/arrayList";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import AboutUs01 from "../../../../src/assets/configs/img/about-us-image-1.png";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -62,7 +63,7 @@ export default function HomeMain() {
                   <div className="flex justify-center w-full">
                     <img
                       className="rounded-xl shadow-about-us height-image"
-                      src="../../../../src/assets/configs/img/about-us-image-1.png"
+                      src={AboutUs01}
                       alt="Homem avaliando corte de cabelo"
                     />
                   </div>
