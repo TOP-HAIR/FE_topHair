@@ -60,20 +60,17 @@ const valores = [
     nome: "Visão",
     texto:
       "Oferecer uma experiência excepcional para usuários e estabelecimentos.",
-    imagem: "../../../../src/assets/configs/img/svg/Visão.svg",
     alt: "Icone da Visão da Empresa",
   },
   {
     nome: "Missão",
     texto:
       "Ajudar os estabelecimentos a gerenciar seus agendamentos e expandir seus negócios.",
-    imagem: "../../../../src/assets/configs/img/svg/Missão.svg",
     alt: "Icone da Missão da Empresa",
   },
   {
     nome: "Valores",
     texto: "Inovação, excelência e transparência nos negócios.",
-    imagem: "../../../../src/assets/configs/img/svg/Valores.svg",
     alt: "Icone da Valores da Empresa",
   },
 ];

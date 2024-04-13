@@ -14,26 +14,29 @@ import OurProject02 from "../../../../src/assets/configs/img/our-project-image-2
 import OurProject03 from "../../../../src/assets/configs/img/our-project-image-3.png";
 import IconTask from "../../../../src/assets/configs/img/svg/Tasklist.svg";
 import IconEdit from "../../../../src/assets/configs/img/svg/Edit.svg";
-import "../../../../src/assets/configs/img/img-perfil/img-perfil-0.png";
-import "../../../../src/assets/configs/img/img-perfil/img-perfil-1.png";
-import "../../../../src/assets/configs/img/img-perfil/img-perfil-2.png";
-import "../../../../src/assets/configs/img/img-perfil/img-perfil-3.png";
-import "../../../../src/assets/configs/img/img-perfil/img-perfil-4.png";
-import "../../../../src/assets/configs/img/img-perfil/img-perfil-5.png";
-import "../../../../src/assets/configs/img/img-perfil/img-perfil-6.png";
-import "../../../../src/assets/configs/img/img-perfil/img-perfil-7.png";
-import "../../../../src/assets/configs/img/img-perfil/img-perfil-8.png";
+import ImgPerfil0 from "../../../../src/assets/configs/img/img-perfil/img-perfil-0.png";
+import ImgPerfil1 from "../../../../src/assets/configs/img/img-perfil/img-perfil-1.png";
+import ImgPerfil2 from "../../../../src/assets/configs/img/img-perfil/img-perfil-2.png";
+import ImgPerfil3 from "../../../../src/assets/configs/img/img-perfil/img-perfil-3.png";
+import ImgPerfil4 from "../../../../src/assets/configs/img/img-perfil/img-perfil-4.png";
+import ImgPerfil5 from "../../../../src/assets/configs/img/img-perfil/img-perfil-5.png";
+import ImgPerfil6 from "../../../../src/assets/configs/img/img-perfil/img-perfil-6.png";
+import ImgPerfil7 from "../../../../src/assets/configs/img/img-perfil/img-perfil-7.png";
+import ImgPerfil8 from "../../../../src/assets/configs/img/img-perfil/img-perfil-8.png";
+import Visao from "../../../../src/assets/configs/img/svg/Visão.svg";
+import Missao from "../../../../src/assets/configs/img/svg/Missão.svg";
+import Valores from "../../../../src/assets/configs/img/svg/Valores.svg";
 
 const imgPerfis = [
-  "../../../../src/assets/configs/img/img-perfil/img-perfil-0.png",
-  "../../../../src/assets/configs/img/img-perfil/img-perfil-1.png",
-  "../../../../src/assets/configs/img/img-perfil/img-perfil-2.png",
-  "../../../../src/assets/configs/img/img-perfil/img-perfil-3.png",
-  "../../../../src/assets/configs/img/img-perfil/img-perfil-4.png",
-  "../../../../src/assets/configs/img/img-perfil/img-perfil-5.png",
-  "../../../../src/assets/configs/img/img-perfil/img-perfil-6.png",
-  "../../../../src/assets/configs/img/img-perfil/img-perfil-7.png",
-  "../../../../src/assets/configs/img/img-perfil/img-perfil-8.png",
+  ImgPerfil0,
+  ImgPerfil1,
+  ImgPerfil2,
+  ImgPerfil3,
+  ImgPerfil4,
+  ImgPerfil5,
+  ImgPerfil6,
+  ImgPerfil7,
+  ImgPerfil8,
 ];
 
 import "swiper/css";
@@ -148,7 +151,7 @@ export default function HomeMain() {
                   <div key={index} className="flex flex-col text-center gap-3 ">
                     <img
                       className="max-h-20 max-sm:h-12"
-                      src={valor.imagem}
+                      src={index === 1 ? Visao : index === 2 ? Missao : Valores}
                       alt={valor.alt}
                     />
                     <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
@@ -167,7 +170,9 @@ export default function HomeMain() {
                       <div className="mx-20 flex flex-col gap-5">
                         <img
                           className="max-h-20"
-                          src={valor.imagem}
+                          src={
+                            index === 1 ? Visao : index === 2 ? Missao : Valores
+                          }
                           alt={valor.alt}
                         />
                         <h3 className="color-terciary-light-green font-bold drop-shadow-2xl text-lg">
@@ -323,7 +328,7 @@ export default function HomeMain() {
                     <div className="mx-20">
                       <img
                         className="mx-auto mb-5"
-                        src={imgPerfis[index]}
+                        src={index < imgPerfis.length ? imgPerfis[index] : ""}
                         alt={comment.alt}
                       />
 
