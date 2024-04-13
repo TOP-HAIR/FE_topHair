@@ -6,6 +6,36 @@ import { comments, valores } from "../../../shared/hooks/utils/arrayList";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import AboutUs01 from "../../../../src/assets/configs/img/about-us-image-1.png";
+import AboutUs02 from "../../../../src/assets/configs/img/about-us-image-2.png";
+import OurProject01 from "../../../../src/assets/configs/img/our-project-image-1.png";
+import IconGoogle from "../../../../src/assets/configs/img/svg/Google Maps Old.svg";
+import IconCalendar from "../../../../src/assets/configs/img/svg/Google Calendar.svg";
+import OurProject02 from "../../../../src/assets/configs/img/our-project-image-2.png";
+import OurProject03 from "../../../../src/assets/configs/img/our-project-image-3.png";
+import IconTask from "../../../../src/assets/configs/img/svg/Tasklist.svg";
+import IconEdit from "../../../../src/assets/configs/img/svg/Edit.svg";
+import "../../../../src/assets/configs/img/img-perfil/img-perfil-0.png";
+import "../../../../src/assets/configs/img/img-perfil/img-perfil-1.png";
+import "../../../../src/assets/configs/img/img-perfil/img-perfil-2.png";
+import "../../../../src/assets/configs/img/img-perfil/img-perfil-3.png";
+import "../../../../src/assets/configs/img/img-perfil/img-perfil-4.png";
+import "../../../../src/assets/configs/img/img-perfil/img-perfil-5.png";
+import "../../../../src/assets/configs/img/img-perfil/img-perfil-6.png";
+import "../../../../src/assets/configs/img/img-perfil/img-perfil-7.png";
+import "../../../../src/assets/configs/img/img-perfil/img-perfil-8.png";
+
+const imgPerfis = [
+  "../../../../src/assets/configs/img/img-perfil/img-perfil-0.png",
+  "../../../../src/assets/configs/img/img-perfil/img-perfil-1.png",
+  "../../../../src/assets/configs/img/img-perfil/img-perfil-2.png",
+  "../../../../src/assets/configs/img/img-perfil/img-perfil-3.png",
+  "../../../../src/assets/configs/img/img-perfil/img-perfil-4.png",
+  "../../../../src/assets/configs/img/img-perfil/img-perfil-5.png",
+  "../../../../src/assets/configs/img/img-perfil/img-perfil-6.png",
+  "../../../../src/assets/configs/img/img-perfil/img-perfil-7.png",
+  "../../../../src/assets/configs/img/img-perfil/img-perfil-8.png",
+];
+
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -98,7 +128,7 @@ export default function HomeMain() {
                   <div className="flex justify-center w-full">
                     <img
                       className="rounded-xl shadow-about-us height-image"
-                      src="../../../../src/assets/configs/img/about-us-image-2.png"
+                      src={AboutUs02}
                       alt="Homem cortando cabelo"
                     />
                   </div>
@@ -173,7 +203,7 @@ export default function HomeMain() {
               </div>
               <img
                 className="rounded-xl shadow-about-us"
-                src="../../../../src/assets/configs/img/our-project-image-1.png"
+                src={OurProject01}
                 alt="Imagem do google maps"
               />
             </div>
@@ -198,7 +228,7 @@ export default function HomeMain() {
                       <div className="grid gap-8">
                         <img
                           className="mx-auto"
-                          src="./src/assets/configs/img/svg/Google Maps Old.svg"
+                          src={IconGoogle}
                           alt="Ícone de um mapa"
                         />
                         <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans max-sm:text-base">
@@ -208,7 +238,7 @@ export default function HomeMain() {
                       <div className="grid gap-8">
                         <img
                           className="mx-auto"
-                          src="./src/assets/configs/img/svg/Google Calendar.svg"
+                          src={IconCalendar}
                           alt="Ícone de uma calendário"
                         />
                         <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans max-sm:text-base">
@@ -221,7 +251,7 @@ export default function HomeMain() {
 
                   <img
                     className="h-full rounded-xl shadow-about-us max-md:mx-auto height-image"
-                    src="../../../../src/assets/configs/img/our-project-image-2.png"
+                    src={OurProject02}
                     alt="Imagem de um celular emcima de uma mesa"
                   />
                 </div>
@@ -231,7 +261,7 @@ export default function HomeMain() {
                 <div className="grid grid-cols-2 max-md:grid-cols-1 max-lg:gap-24 gap-48 max-md:flex max-md:flex-col-reverse">
                   <img
                     className="h-full rounded-xl shadow-about-us max-md:mx-auto height-image"
-                    src="../../../../src/assets/configs/img/our-project-image-3.png"
+                    src={OurProject03}
                     alt="Imagem de alguém mexendo no celular"
                   />
                   <div className="grid gap-24">
@@ -250,7 +280,7 @@ export default function HomeMain() {
                       <div className="grid gap-8">
                         <img
                           className="mx-auto"
-                          src="./src/assets/configs/img/svg/Tasklist.svg"
+                          src={IconTask}
                           alt="Ícone de lista de task"
                         />
                         <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans max-sm:text-base">
@@ -261,7 +291,7 @@ export default function HomeMain() {
                       <div className="grid gap-8">
                         <img
                           className="mx-auto"
-                          src="./src/assets/configs/img/svg/Edit.svg"
+                          src={IconEdit}
                           alt="Ícone de edit"
                         />
                         <p className="text-xl drop-shadow-2xl font-normal font-family-dm-sans max-sm:text-base">
@@ -293,9 +323,10 @@ export default function HomeMain() {
                     <div className="mx-20">
                       <img
                         className="mx-auto mb-5"
-                        src={`src/assets/configs/img/img-perfil/img-perfil-${index}.png`}
+                        src={imgPerfis[index]}
                         alt={comment.alt}
                       />
+
                       <div className="text-center">
                         <h3 className="text-2xl mb-6 max-sm:text-lg">
                           {comment.name}
