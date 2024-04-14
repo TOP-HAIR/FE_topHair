@@ -9,7 +9,7 @@ if (objetoString !== null) {
   agendaServices.idEmpresa = idEmpresa;
 }
 
-export const getAgendaMesesAgendadosContext = async () => {
+export const getAgendamentos = async () => {
   try {
     return await agendaServices.getMesesAgendados();
   } catch (error) {

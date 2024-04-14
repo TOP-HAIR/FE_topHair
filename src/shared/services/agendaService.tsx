@@ -11,6 +11,6 @@ export class AgendaServices extends AuthService {
 
   async getMesesAgendados() {
     const url = this.agendaUrl;
-    return await send("GET", url + `/meses-ordenados/${this.idEmpresa}`);
+    return await send("GET", url + `/agendas/empresa/${this.idEmpresa}`);
   }
 }

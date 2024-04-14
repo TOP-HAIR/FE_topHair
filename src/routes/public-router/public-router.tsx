@@ -4,15 +4,8 @@ import Loader from "../../components/loader";
 import HomePage from "../../pages/home-page/home-page";
 import PrivateRoutes from "../private-router/private-router";
 import ErrorPage404 from "../../components/ErrorPage404";
-import HomeUserClient from "../../pages/home-user-client/home-user-client";
-import ClientHomePage from "../../pages/home-user-client/components/home-page";
-import ClientHomeEstablishment from "../../pages/home-user-client/components/home-establishment";
-import ClientHomeEstablishmentList from "../../pages/home-user-client/components/home-establishment-list";
 import EditEmployees from "../../pages/home-establishment/tabs/establishment-employees/employees-edit-page/employees-edit";
 import EmployeesList from "../../pages/home-establishment/tabs/establishment-employees/employees-list/employees-list";
-const HomeUserClientPage = lazy(
-  () => import("../../pages/home-user-client/home-user-page")
-);
 const HomeList = lazy(
   () =>
     import(
@@ -80,7 +73,10 @@ const ReportDashboard = lazy(
     )
 );
 const HomeEstablishment = lazy(
-  () => import("../../pages/home-establishment/tabs/home-establishment")
+  () =>
+    import(
+      "../../pages/home-establishment/tabs/establishment-home/home-establishment"
+    )
 );
 
 const Login = lazy(
@@ -247,20 +243,6 @@ export default function PublicRoutes() {
                   }
                 />
               </Route>
-            </Route>
-
-            <Route path="client-page" element={<HomeUserClient />} />
-            <Route path="client" element={<HomeUserClientPage />}>
-              <Route path="home" element={<ClientHomePage />} />
-              <Route
-                path="establishment/:idEmpresa"
-                element={<ClientHomeEstablishment />}
-              />
-              <Route path="list" element={<ClientHomeEstablishmentList />} />
-              <Route
-                path="list/:filtro"
-                element={<ClientHomeEstablishmentList />}
-              />
             </Route>
 
             <Route path="login" element={<Login />} />

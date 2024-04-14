@@ -8,10 +8,11 @@ import BuildCircleIcon from "@mui/icons-material/BuildCircle";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import PeopleIcon from "@mui/icons-material/People";
 import LogoutIcon from "@mui/icons-material/Logout";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 // import SettingsIcon from "@mui/icons-material/Settings";
-import TopHair from "../../../assets/configs/img/logo/top-hair-logo-white-version 2.svg";
+import TopHair from "../../../../assets/configs/img/logo/top-hair-logo-white-version 2.svg";
 import { useNavigate, Outlet } from "react-router-dom";
-import { navigateToPage } from "../../../shared/hooks/utils/navigatePage";
+import { navigateToPage } from "../../../../shared/hooks/utils/navigatePage";
 import {
   Box,
   Drawer,
@@ -41,12 +42,12 @@ const links = [
     text: "Calendário",
     icon: <CalendarMonthIcon />,
   },
-  // {
-  //   key: "reports",
-  //   to: "/establishment/reports/list",
-  //   text: "Relatórios",
-  //   icon: <AssignmentIcon />,
-  // },
+  {
+    key: "reports",
+    to: "/establishment/reports/list",
+    text: "Relatórios",
+    icon: <AssignmentIcon />,
+  },
   {
     key: "shop",
     to: "/establishment/shop",

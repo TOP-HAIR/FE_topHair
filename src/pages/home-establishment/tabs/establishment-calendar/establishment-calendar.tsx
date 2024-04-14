@@ -1,33 +1,35 @@
 import { Card } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { getAgendaMesesAgendadosContext } from "../../../../shared/contexts/agendaContext";
+import { getAgendamentos } from "../../../../shared/contexts/agendaContext";
 import LoaderResponse from "../../../../components/loaderResponse";
 import NoContentComponent from "../../../../components/noContent";
+import multiMonthPlugin from "@fullcalendar/multimonth";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import { Agenda } from "../../../../shared/entity/agenda";
+import FullCalendar from "@fullcalendar/react";
 
 export default function HomeCalendar() {
-  const [loadResponse, setloadResponse] = useState(false);
-  const [resLenghtValid, setResLenghtValid] = useState(false);
-  const [meses, setMeses] = useState<string[]>([]);
+  const [agenda, setAgenda] = useState<Agenda[]>([]);
 
   useEffect(() => {
     async function listarAvaliacoes() {
       setloadResponse(false);
       try {
-        const res = await getAgendaMesesAgendadosContext();
+        const res = await getAgendamentos();
         console.log(res);
         if (res == undefined || res.data.length == 0) {
           setResLenghtValid(true);
         }
         if (res != undefined) {
-          setMeses(res.data);
+          setAgenda(res);
         }
         setloadResponse(true);
       } catch (error) {
-        console.error("Erro ao buscar serviços:", error);
+        console.error("Erro ao buscar agendamentos:", error);
       }
     }
-
+    console.log(new Date("2024-07-08"));
     listarAvaliacoes();
   }, []);
   return (
@@ -38,27 +40,54 @@ export default function HomeCalendar() {
             Selecione o card para visualizar
           </h2>
           <div className="m-6">
-            {!loadResponse ? (
-              <LoaderResponse />
-            ) : resLenghtValid ? (
-              <NoContentComponent />
-            ) : (
-              <div className="w-full flex flex-wrap gap-10 ">
-                {meses.map((mes) => (
-                  <div
-                    key={mes}
-                    className="min-w-96 w-80 rounded-md bg-black card-service border-2 grow cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-105"
-                  >
-                    <div className="w-full h-12 bg-white flex justify-center items-center">
-                      <p className="text-xl font-bold">{mes}</p>
-                    </div>
-                    <div className="w-full h-48 bg-[#0f3d3a] flex justify-center items-center">
-                      <CalendarMonthIcon className="w-24 h-24 text-white" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+            <FullCalendar
+              plugins={[multiMonthPlugin, dayGridPlugin, timeGridPlugin]} // Alterando os plugins para multiMonthPlugin e timeGridPlugin
+              initialView="multiMonthYear"
+              initialEvents={[
+                {
+                  start: "2024-07-08T10:30:00",
+                  end: "2024-07-08T11:30:00",
+                  title: "{serviço} - {Cliente}",
+                  backgroundColor: "#FF0000",
+                },
+                {
+                  date: new Date("2024-07-08 12:01:00.230"),
+                  title: "new day",
+                  backgroundColor: "#0000FF",
+                },
+              ]}
+              locale="pt-BR"
+              eventTextColor="#FF00000"
+              slotDuration="01:00:00"
+              slotLabelFormat={{
+                hour: "2-digit",
+                minute: "2-digit",
+                omitZeroMinute: false,
+                meridiem: "short",
+              }}
+              eventTimeFormat={{
+                hour: "2-digit",
+                minute: "2-digit",
+                meridiem: false,
+                hour12: false,
+              }}
+              views={{
+                dayGridWeek: {
+                  eventTimeFormat: {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  },
+                },
+              }}
+              selectable={true}
+              // selectMirror={true}
+              // dayMaxEvents={true}
+              headerToolbar={{
+                left: "prev,next today",
+                center: "title",
+                right: "multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay",
+              }}
+            />
           </div>
         </Card>
       </section>
