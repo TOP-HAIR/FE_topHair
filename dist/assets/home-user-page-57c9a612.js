@@ -1,0 +1,1 @@
+import{j as e,H as a,O as r,F as t}from"./index-72062742.js";function n(){const s="";return e.jsxs(e.Fragment,{children:[e.jsx(a,{header:s}),e.jsx("main",{className:"w-full",children:e.jsx(r,{})}),e.jsx("div",{className:"bg-black py-10",children:e.jsx(t,{})})]})}export{n as default};
