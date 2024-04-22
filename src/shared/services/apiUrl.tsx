@@ -17,7 +17,9 @@ const urlDoProjeto: string = window.location.href;
 
 if (urlDoProjeto.includes(enviromentsLocal.url)) {
   env = enviromentsLocal.api.URLBASE_API;
-} else {
+} else if (urlDoProjeto.includes("34.237.189.174"))
+  env = enviromentsProd.url_pi;
+else {
   env = enviromentsProd.url;
 }
 
