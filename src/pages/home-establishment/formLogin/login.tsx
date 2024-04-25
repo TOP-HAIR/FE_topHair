@@ -160,7 +160,10 @@ export default function Login() {
                 <div className="w-full flex flex-col items-center gap-12">
                   <p className="text-white text-sm">
                     Ainda não tem uma conta ?{" "}
-                    <Link href="/form" underline="hover">
+                    <Link
+                      onClick={() => navigateToPage(navigate, "/form")}
+                      underline="hover"
+                    >
                       cadastre-se aqui
                     </Link>
                   </p>

@@ -3,6 +3,6 @@ export const enviromentsLocal = {
   url: "http://localhost:",
   api: {
     TOKEN_API_TEST: "",
-    URLBASE_API: "http://localhost:8080/",
+    URLBASE_API: "http://localhost:8080/api/",
   },
 };

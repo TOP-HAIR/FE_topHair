@@ -15,10 +15,12 @@ let env: string = "";
 
 const urlDoProjeto: string = window.location.href;
 
-if (urlDoProjeto.includes(enviromentsLocal.url)) {
+if (!urlDoProjeto.includes(enviromentsLocal.url)) {
   env = enviromentsLocal.api.URLBASE_API;
-} else {
-  env = enviromentsProd.url;
+} else if (urlDoProjeto.includes("34.237.189.174"))
+  env = enviromentsProd.url_pi;
+else {
+  env = enviromentsProd.url_pi;
 }
 
 const httpClient = axios.create({
