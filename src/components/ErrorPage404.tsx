@@ -12,7 +12,7 @@ export default function ErrorPage404() {
     <>
       <header className="w-full fixed h-20 bg-primary-dark-cyan flex justify-center">
         <div className="grid-home-width w-full flex justify-between px-4">
-          <a className="h-full" href="/">
+          <a className="h-full" onClick={() => navigateToPage(navigate, "/")}>
             <img className="h-full" src={logoTopHair} alt="Logo da TopHair" />
           </a>
           <div className="flex gap-16 items-center">
