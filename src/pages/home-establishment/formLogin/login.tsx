@@ -73,6 +73,8 @@ export default function Login() {
     userLoginContext(data).then((resultado) => {
       if (!resultado) {
         setHideRecaptcha(false);
+      } else {
+        navigateToPage(navigate, "/establishment/home");
       }
     });
   };

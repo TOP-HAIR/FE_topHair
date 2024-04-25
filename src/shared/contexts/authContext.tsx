@@ -126,5 +126,4 @@ const loginStorage = async (data: userData) => {
       console.error("Erro ao obter informações da empresa:", error);
     }
   }
-  window.location.href = "/establishment/home";
 };
