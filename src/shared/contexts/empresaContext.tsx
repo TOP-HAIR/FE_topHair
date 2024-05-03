@@ -10,6 +10,7 @@ if (objetoString !== null) {
   const objeto = JSON.parse(objetoString);
   const idEmpresa = objeto.idEmpresa;
   empresaService.idEmpresa = idEmpresa;
+  console.log(empresaService.idEmpresa);
 }
 
 export const getEmpresaEstadoContext = async () => {

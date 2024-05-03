@@ -52,6 +52,7 @@ export class EmpresaService extends AuthService {
 
   async getEployeesEmpresa() {
     const url = this.authUrl;
+    console.log(this.idEmpresa);
     return await send("GET", url + `/empresa/${this.idEmpresa}`);
   }
 
