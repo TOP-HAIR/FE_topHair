@@ -206,3 +206,19 @@ input[type="number"] {
 .image-banner-client {
   background-image: url("../img/fundo-texturizado-abstrato.jpg");
 }
+
+.image-preview {
+  margin: 15px 0;
+  padding: 10px;
+  max-width: 70vw;
+  max-height: 40vh;
+  border: 1px solid #ccc;
+}
+
+.image-preview-foto {
+  margin: 15px 0;
+  padding: 10px;
+  max-width: 500px;
+  max-height: 500px;
+  border: 1px solid #ccc;
+}

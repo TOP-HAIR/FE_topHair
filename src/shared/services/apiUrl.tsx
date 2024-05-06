@@ -61,6 +61,8 @@ httpClient.interceptors.response.use(
         throw new Error("Usuário não Autorizado");
       }
       if (error.response?.status === 403) {
+        localStorage.clear();
+        sessionStorage.clear();
         console.log(error.response.status);
         throw new Error("Caso o erro persista, contate o administrador");
       }

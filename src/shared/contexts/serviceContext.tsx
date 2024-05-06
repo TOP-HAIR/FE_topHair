@@ -1,3 +1,4 @@
+import { copyFile } from "fs";
 import { ApiService } from "../services/serviceService";
 
 const apiService = new ApiService();
@@ -29,13 +30,9 @@ export const postServiceEstablishmentContext = async (obj: any) => {
 };
 
 export const putServiceEstablishmentContext = async (obj: any, id: string) => {
-  try {
-    const res = await apiService.putService(obj, id);
-    await apiService.getVincularService(res.data.idServico);
-    return await apiService.getListaService();
-  } catch (error) {
-    console.log(error);
-  }
+  const res = await apiService.putService(obj, id);
+  await apiService.getVincularService(res.data.idServico);
+  return await apiService.getListaService();
 };
 
 export const getListaClientContext = async (id: string = "") => {

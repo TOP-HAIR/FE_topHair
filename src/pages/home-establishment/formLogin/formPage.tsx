@@ -20,6 +20,8 @@ export default function FormPage() {
     formState: { errors },
     trigger,
   } = useForm<Empresa>();
+  localStorage.clear();
+  sessionStorage.clear();
 
   const updateValidRecaptcha = (value: boolean) => {
     if (value) {

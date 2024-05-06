@@ -23,6 +23,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import Swal from "sweetalert2";
 
 interface SidebarProps {
   mobileOpen: boolean;
@@ -110,8 +111,26 @@ export default function HomeEstablishment() {
   };
 
   const linkActiveNavigate = (key: string, to: string) => {
-    handleLinkClick(key);
-    navigateToPage(navigate, to);
+    console.log(key, to);
+    if (key === "logout") {
+      Swal.fire({
+        title: "Tem certeza que deseja sair?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim",
+        cancelButtonText: "Cancelar",
+        reverseButtons: false,
+        width: 450,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          handleLinkClick(key);
+          navigateToPage(navigate, to);
+        }
+      });
+    } else {
+      handleLinkClick(key);
+      navigateToPage(navigate, to);
+    }
   };
 
   const handleDrawerToggle = () => {

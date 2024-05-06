@@ -36,8 +36,9 @@ export default function EditPageService() {
         setloadResponse(false);
         try {
           const res = await getServiceByIdContext(idServico);
+          const formattedPrice = res.data?.preco.toFixed(2).replace(".", ",");
           setValue("nomeServico", res.data?.nomeServico);
-          setValue("preco", res.data?.preco);
+          setValue("preco", formattedPrice);
           setValue("categoria", res.data?.preco);
           setValue("qtdTempoServico", res.data?.qtdTempoServico);
           setValue("descricao", res.data?.descricao);
@@ -45,6 +46,7 @@ export default function EditPageService() {
           console.log(res);
           setloadResponse(true);
         } catch (error) {
+          setloadResponse(true);
           console.error("Erro ao buscar serviços:", error);
         }
       }
@@ -58,7 +60,7 @@ export default function EditPageService() {
     if (idServico == undefined && idServico == null) {
       tempoServico += ":00";
     }
-    const stringValue = data.preco; // Obtém o valor do campo do formulário
+    const stringValue = String(data.preco);
     const numericValue = parseFloat(
       stringValue.replace(/[^\d.,]/g, "").replace(",", ".")
     );
@@ -70,16 +72,14 @@ export default function EditPageService() {
       descricao: data.descricao.trim(),
       qtdTempoServico: tempoServico,
     };
-    console.log(obj);
-    return;
 
     if (idServico == undefined && idServico == null) {
       try {
         await postServiceEstablishmentContext(obj);
 
         Swal.fire("Sucess", "Sucesso ao criar o serviço.", "success");
-
         navigateToPage(navigate, -1);
+        console.log(response);
       } catch (error) {
         console.error("Erro ao criar o serviço:", error);
         Swal.fire("Erro", "Erro ao criar o serviço.", "error");
@@ -181,6 +181,7 @@ export default function EditPageService() {
                       label="Tempo"
                       variant="outlined"
                       placeholder="Digite o tempo do serviço"
+                      defaultValue="00:00:00"
                       size="small"
                       {...register("qtdTempoServico", {
                         required: "Campo é Obrigatório",

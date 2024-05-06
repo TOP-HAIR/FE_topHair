@@ -88,4 +88,15 @@ export class EmpresaService extends AuthService {
       url + `/vincular-endereco/${idEmpresa}/${idEndereco}`
     );
   }
+
+  async postArquivo(data: FormData) {
+    return await send("POST", `/arquivos/upload`, data);
+  }
+
+  async putVincularEmpresaArquivo(idArquivo: number) {
+    return await send(
+      "PUT",
+      `/arquivos/vincular-empresa/${idArquivo}/${this.idEmpresa}`
+    );
+  }
 }

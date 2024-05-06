@@ -11,7 +11,7 @@ if (objetoString !== null) {
 
 export const getAgendamentos = async () => {
   try {
-    return await agendaServices.getMesesAgendados();
+    return await agendaServices.getAgendamento();
   } catch (error) {
     console.log(error);
   }
