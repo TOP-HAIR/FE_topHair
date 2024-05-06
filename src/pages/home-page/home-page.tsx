@@ -4,6 +4,8 @@ import HomeMain from "./components/main";
 import Footer from "../../components/footer";
 
 export default function HomePage() {
+  localStorage.clear();
+  sessionStorage.clear();
   return (
     <>
       <div className="w-auto relative bg-secondary-gray">

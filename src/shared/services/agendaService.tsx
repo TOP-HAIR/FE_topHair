@@ -9,8 +9,8 @@ export class AgendaServices extends AuthService {
     this.agendaUrl = "/agendas";
   }
 
-  async getMesesAgendados() {
+  async getAgendamento() {
     const url = this.agendaUrl;
-    return await send("GET", url + `/agendas/empresa/${this.idEmpresa}`);
+    return await send("GET", url + `/empresa/${this.idEmpresa}`);
   }
 }

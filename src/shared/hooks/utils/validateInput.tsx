@@ -12,18 +12,23 @@ export const formatTime = (e: React.ChangeEvent<HTMLInputElement>) => {
 
   value = value.replace(/[^0-9:]/g, "");
 
-  if (value.length > 2 && value.indexOf(":") === -1) {
-    value = value.slice(0, 2) + ":" + value.slice(2);
+  if (value === "" || value.length == 5) {
+    value = "00:00:00";
   }
 
-  const [hours, minutes] = value.split(":").map(Number);
-  if (!isNaN(hours) && !isNaN(minutes)) {
+  if (value.length > 4 && value.indexOf(":") === -1) {
+    value = value.slice(0, 2) + ":" + value.slice(2, 4) + ":" + value.slice(4);
+  }
+
+  const [hours, minutes, seconds] = value.split(":").map(Number);
+
+  if (!isNaN(hours) && !isNaN(minutes) && !isNaN(seconds)) {
     value = `${Math.min(23, hours).toString().padStart(2, "0")}:${Math.min(
       59,
       minutes
     )
       .toString()
-      .padStart(2, "0")}`;
+      .padStart(2, "0")}:${Math.min(59, seconds).toString().padStart(2, "0")}`;
   }
 
   e.target.value = value;

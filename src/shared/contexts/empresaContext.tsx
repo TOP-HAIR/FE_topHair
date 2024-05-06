@@ -149,6 +149,22 @@ export const putEmployeeContext = async (
   }
 };
 
+export const putEstablishmentContext = async (data: any) => {
+  const formDataBanner = new FormData();
+  formDataBanner.append("arquivo", data.img_banner[0]);
+  const formDataPerfil = new FormData();
+  formDataPerfil.append("arquivo", data.img_foto[0]);
+  const img_banner = await empresaService.postArquivo(formDataBanner);
+  const img_perfil = await empresaService.postArquivo(formDataPerfil);
+
+  await empresaService.putVincularEmpresaArquivo(img_banner.id);
+  const response = await empresaService.putVincularEmpresaArquivo(
+    img_perfil.id
+  );
+
+  console.log(response);
+};
+
 export const getListEmployees = async () => {
   try {
     const res = await empresaService.getEployeesEmpresa();

@@ -40,6 +40,8 @@ export default function Login() {
   } = useForm<UserLogin>();
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  localStorage.clear();
+  sessionStorage.clear();
 
   const updateValidRecaptcha = (value: boolean) => {
     if (value) {
