@@ -57,3 +57,24 @@ export interface EmployeeCadastro {
     idEmpresa: number;
   };
 }
+export interface MetricaEmpresa {
+  idMetricaEmpresa: number;
+  totalSemanal: number;
+  qtdAgendas: number;
+  servicoMaisPedidos: string;
+  servicoMenosPedidos: string;
+  faturamentoMinimo: string;
+  faturamentoMaximo: string;
+  qtdAgendaDomingo: number;
+  qtdAgendaSegunda: number;
+  qtdAgendaTerca: number;
+  qtdAgendaQuarta: number;
+  qtdAgendaQuinta: number;
+  qtdAgendaSexta: number;
+  qtdAgendaSabado: number;
+}
+
+export interface DadoChart {
+  semana: string;
+  total: number;
+}

@@ -1,4 +1,3 @@
-import { copyFile } from "fs";
 import { ApiService } from "../services/serviceService";
 
 const apiService = new ApiService();
@@ -12,21 +11,13 @@ if (objetoString !== null) {
 }
 
 export const getServiceContext = async () => {
-  try {
-    return await apiService.getListaService();
-  } catch (error) {
-    console.log(error);
-  }
+  return await apiService.getListaService();
 };
 
 export const postServiceEstablishmentContext = async (obj: any) => {
-  try {
-    const res = await apiService.postService(obj);
-    await apiService.getVincularService(res.idServico);
-    return await apiService.getListaService();
-  } catch (error) {
-    console.log(error);
-  }
+  const res = await apiService.postService(obj);
+  await apiService.getVincularService(res.idServico);
+  return await apiService.getListaService();
 };
 
 export const putServiceEstablishmentContext = async (obj: any, id: string) => {
@@ -36,70 +27,49 @@ export const putServiceEstablishmentContext = async (obj: any, id: string) => {
 };
 
 export const getListaClientContext = async (id: string = "") => {
-  try {
-    const idNumber = parseInt(id);
-    return await apiService.getListaClientService(idNumber);
-  } catch (error) {
-    console.log(error);
-  }
+  const idNumber = parseInt(id);
+  return await apiService.getListaClientService(idNumber);
 };
 
 export const getExportarServicoContext = async () => {
-  try {
-    const res = await apiService.getExportarServicoService();
+  const res = await apiService.getExportarServicoService();
+  console.log(res);
+  if (res.data) {
+    const blob = new Blob([res.data], { type: res.headers["content-type"] });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Servicos.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
     console.log(res);
-    if (res.data) {
-      const blob = new Blob([res.data], { type: res.headers["content-type"] });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "Servicos.csv";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-      console.log(res);
-    } else {
-      console.error("A resposta não contém dados");
-    }
-  } catch (error) {
-    console.log(error);
+  } else {
+    console.error("A resposta não contém dados");
   }
 };
 
 export const getEmpresaEstadoFiltroContext = async (filtro: string) => {
-  try {
-    if (filtro) {
-      const estado = localStorage.getItem("estado");
+  if (filtro) {
+    const estado = localStorage.getItem("estado");
 
-      if (estado) {
-        const res = await apiService.getEmpresaEstadoFiltro(estado, filtro);
-        if (res == undefined || res.data.length == 0) {
-          return;
-        }
-        console.log(res.data);
-        return res.data;
+    if (estado) {
+      const res = await apiService.getEmpresaEstadoFiltro(estado, filtro);
+      if (res == undefined || res.data.length == 0) {
+        return;
       }
+      console.log(res.data);
+      return res.data;
     }
-  } catch (error) {
-    console.log(error);
   }
 };
 
 export const postServiceContext = async () => {
-  try {
-    return await apiService.getListaService();
-  } catch (error) {
-    console.log(error);
-    console.error("Erro ao encontrar serviços.");
-  }
+  return await apiService.getListaService();
 };
 
 export const getServiceByIdContext = async (id: string) => {
-  try {
-    const idNumber = parseInt(id);
-    return await apiService.getListaServiceById(idNumber);
-  } catch (error) {
-    console.log(error);
-  }
+  const idNumber = parseInt(id);
+  return await apiService.getListaServiceById(idNumber);
 };

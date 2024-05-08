@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Card, TextField, Button } from "@mui/material";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
   getEmpresaContext,
   putEstablishmentContext,
 } from "../../../../shared/contexts/empresaContext";
 import LoaderResponse from "../../../../components/loaderResponse";
 import Swal from "sweetalert2";
-import { navigateToPage } from "../../../../shared/hooks/utils/navigatePage";
-import { useNavigate } from "react-router-dom";
-
 export default function HomeShop() {
-  const {
-    handleSubmit,
-    register,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<any>();
+  const { handleSubmit, register, setValue } = useForm<any>();
   const [loadResponse, setloadResponse] = useState(false);
   const [bannerFile, setBannerFile] = useState<File | null>(null);
   const [fotoFile, setFotoFile] = useState<File | null>(null);

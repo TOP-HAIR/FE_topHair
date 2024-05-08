@@ -9,9 +9,5 @@ if (objetoString !== null) {
 }
 
 export const getCommentContext = async () => {
-  try {
-    return await commentServices.getComments();
-  } catch (error) {
-    console.log(error);
-  }
+  return await commentServices.getComments();
 };
