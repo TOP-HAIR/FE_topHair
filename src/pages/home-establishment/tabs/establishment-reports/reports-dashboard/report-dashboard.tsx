@@ -116,7 +116,7 @@ export default function ReportDashboard() {
                 <p className="text-base">
                   Total Semanal: R${" "}
                   <span className="text-base font-bold">
-                    {dadosRelatorio?.totalSemanalW}
+                    {dadosRelatorio?.totalSemanal}
                   </span>
                 </p>
                 <p className="text-base">
