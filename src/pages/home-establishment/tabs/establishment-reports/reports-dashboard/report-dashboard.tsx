@@ -36,6 +36,7 @@ export default function ReportDashboard() {
       { semana: "Sexta", total: dados?.qtdAgendaSexta },
       { semana: "Sábado", total: dados?.qtdAgendaSabado },
     ];
+    console.log(semanaArray);
 
     return semanaArray;
   };
@@ -71,29 +72,29 @@ export default function ReportDashboard() {
   useEffect(() => {
     async function listarEmpresaRelatorio() {
       // setloadResponse(false);
-      try {
-        const res = await getListarEmpresaRelatorioContext(dataInicio, dataFim);
-        setDadosRelatorio(res.data as MetricaEmpresa);
+      // try {
+      const res = await getListarEmpresaRelatorioContext(dataInicio, dataFim);
+      const dadosChart = transformarDadosRelatorio(res as MetricaEmpresa);
+      setDadosChart(dadosChart);
+      dataset = dadosChart.map((item) => ({
+        semana: item.semana,
+        total: item.total,
+      }));
+      setDadosRelatorio(res as MetricaEmpresa);
 
-        const dadosrChart = transformarDadosRelatorio(dadosRelatorio);
-        setDadosChart(dadosrChart);
-        dataset = dadosrChart.map((item) => ({
-          semana: item.semana,
-          total: item.total,
-        }));
-
-        valoresTotais = dadosChart.map((item) => item.total);
-        valorMinimo = Math.min(...valoresTotais);
-        valorMaximo = Math.max(...valoresTotais);
-        setDadosChart(dadosChart);
-        console.log(res);
-        if (res.data == undefined || res.data.length == 0) {
-          // setResLenghtValid(true);
-        }
-        // setloadResponse(true);
-      } catch (error) {
-        console.error("Erro ao buscar relatórios:", error);
+      valoresTotais = dadosChart.map((item) => item.total);
+      console.log(dadosChart);
+      valorMinimo = Math.min(...valoresTotais);
+      valorMaximo = Math.max(...valoresTotais);
+      setDadosChart(dadosChart);
+      console.log(res);
+      if (res.data == undefined || res.data.length == 0) {
+        // setResLenghtValid(true);
       }
+      // setloadResponse(true);
+      // } catch (error) {
+      //   console.error("Erro ao buscar relatórios:", error);
+      // }
     }
 
     listarEmpresaRelatorio();
@@ -156,6 +157,7 @@ export default function ReportDashboard() {
           <Card className="m-5">
             <h2 className="m-6 text-2xl font-bold">Faturamento Semanal</h2>
             <div className="m-6">
+              {console.log(dadosChart)}
               {dadosChart && dadosChart.length > 0 ? (
                 <BarChart
                   xAxis={[
