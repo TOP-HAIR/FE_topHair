@@ -13,22 +13,7 @@ import { BarChart } from "@mui/x-charts";
 export default function ReportDashboard() {
   const [loadResponse, setloadResponse] = useState(false);
   const [resLenghtValid, setResLenghtValid] = useState(false);
-  const [dadosRelatorio, setDadosRelatorio] = useState<MetricaEmpresa>({
-    idMetricaEmpresa: 123,
-    totalSemanal: 5000,
-    qtdAgendas: 50,
-    servicoMaisPedidos: "Corte de cabelo",
-    servicoMenosPedidos: "Manicure",
-    faturamentoMinimo: "R$ 1000,00",
-    faturamentoMaximo: "R$ 8000,00",
-    qtdAgendaDomingo: 10,
-    qtdAgendaSegunda: 12,
-    qtdAgendaTerca: 8,
-    qtdAgendaQuarta: 6,
-    qtdAgendaQuinta: 10,
-    qtdAgendaSexta: 12,
-    qtdAgendaSabado: 12,
-  });
+  const [dadosRelatorio, setDadosRelatorio] = useState<MetricaEmpresa>();
   const [dadosChart, setDadosChart] = useState<DadoChart[]>([]);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
