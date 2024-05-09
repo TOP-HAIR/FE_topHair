@@ -47,6 +47,7 @@ export class EmpresaService extends AuthService {
 
   async getListarEmpresaRelatorio(dataInicio: string, dataFim: string) {
     const url = this.empresaUrl;
+    console.log(this.idEmpresa);
     return await send(
       "GET",
       url +
