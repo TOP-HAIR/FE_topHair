@@ -147,7 +147,7 @@ export default function EditEmployees() {
                       placeholder="Digite o nome"
                       size="small"
                       {...register("nomeCompleto", {
-                        required: "nome é obrigatório",
+                        required: "Nome é obrigatório",
                       })}
                       error={Boolean(errors.nomeCompleto)}
                       helperText={errors.nomeCompleto?.message || ""}
@@ -159,7 +159,7 @@ export default function EditEmployees() {
                       placeholder="Digite o email"
                       size="small"
                       {...register("email", {
-                        required: "email é obrigatório",
+                        required: "Email é obrigatório",
                       })}
                       error={Boolean(errors.email)}
                       helperText={errors.email?.message || ""}
@@ -172,7 +172,7 @@ export default function EditEmployees() {
                       placeholder="Digite sua senha"
                       size="small"
                       {...register("senha", {
-                        required: "senha é obrigatória",
+                        required: "Senha é obrigatória",
                       })}
                       error={Boolean(errors.senha)}
                       helperText={errors.senha?.message || ""}
@@ -188,7 +188,7 @@ export default function EditEmployees() {
                         required: true,
                         validate: (val: string) => {
                           if (watch("senha") != val) {
-                            return "senhas não são iguais";
+                            return "Senhas não são iguais";
                           }
                         },
                       })}

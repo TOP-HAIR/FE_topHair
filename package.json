@@ -20,7 +20,7 @@
     "@fullcalendar/timegrid": "^6.1.11",
     "@mui/icons-material": "^5.14.8",
     "@mui/material": "^5.14.8",
-    "@mui/x-charts": "^6.0.0-alpha.10",
+    "@mui/x-charts": "^6.19.8",
     "@mui/x-date-pickers": "^6.13.0",
     "axios": "^1.5.0",
     "mapbox-gl": "^2.15.0",

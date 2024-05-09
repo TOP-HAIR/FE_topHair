@@ -153,7 +153,7 @@ export default function PublicRoutes() {
                   }
                 />
                 <Route
-                  path="dashboard/:idDashboard"
+                  path="dashboard"
                   element={
                     <PrivateRoutes>
                       <ReportDashboard />

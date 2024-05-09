@@ -11,3 +11,9 @@ export interface Agendamento {
   title: string;
   background: string;
 }
+
+export interface AgendaRelatorio {
+  dataInicio: Date;
+  dataFinal: Date;
+  precoTotal: number;
+}

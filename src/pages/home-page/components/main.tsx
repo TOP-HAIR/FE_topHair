@@ -102,7 +102,7 @@ export default function HomeMain() {
                   </div>
 
                   <div className="grid gap-8">
-                    <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
+                    <h3 className="text-white text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
                       Mercado de atuação
                     </h3>
                     <p className="text-white text-xl font-normal font-family-dm-sans max-sm:text-base">
@@ -117,7 +117,7 @@ export default function HomeMain() {
 
                 <div className="text-center grid max-md:gap-14 gap-24">
                   <div className="grid gap-8">
-                    <h3 className="color-terciary-light-green text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
+                    <h3 className="text-white text-2xl font-bold drop-shadow-2xl max-sm:text-lg">
                       Como surgiu a ideia?
                     </h3>
                     <p className="text-white text-xl font-normal drop-shadow-2xl max-sm:text-base">

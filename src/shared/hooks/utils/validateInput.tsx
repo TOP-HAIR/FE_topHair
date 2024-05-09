@@ -1,4 +1,5 @@
-// Validações Inputs válidos
+import moment from "moment";
+
 export const validateCepFormat = (value: string): boolean => {
   const cepRegex = /^\d{5}-\d{3}$/;
   return cepRegex.test(value);
@@ -50,4 +51,9 @@ export const inputSemCaracteresEspeciais = (
   e: React.ChangeEvent<HTMLInputElement>
 ) => {
   e.target.value = e.target.value.replace(/[^A-Za-zÀ-ú0-9\s]/g, "");
+};
+
+export const converterData = (data: string): string => {
+  const dataFormatada = moment(data).format("YYYY-MM-DD");
+  return dataFormatada;
 };

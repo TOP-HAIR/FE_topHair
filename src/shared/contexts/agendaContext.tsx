@@ -10,9 +10,9 @@ if (objetoString !== null) {
 }
 
 export const getAgendamentos = async () => {
-  try {
-    return await agendaServices.getAgendamento();
-  } catch (error) {
-    console.log(error);
-  }
+  return await agendaServices.getAgendamentos();
+};
+
+export const getAgendaRelatoriosContext = async () => {
+  return await agendaServices.getAgendaRelatorios();
 };
