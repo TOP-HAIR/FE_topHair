@@ -104,6 +104,7 @@ export class EmpresaService extends AuthService {
   }
 
   async putVincularEmpresaArquivo(idArquivo: number) {
+    console.log(idArquivo)
     return await send(
       "PUT",
       `/arquivos/vincular-empresa/${idArquivo}/${this.idEmpresa}`

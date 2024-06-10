@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import { EmpresaService } from "../services/empresaService";
 import axios from "axios";
 import { EmployeeCadastro } from "../entity/empresaEntity";
+import { C } from "node_modules/@fullcalendar/core/internal-common";
 
 const empresaService = new EmpresaService();
 
@@ -50,7 +51,7 @@ export const postImportarEmployeesContext = async () => {
   if (file) {
     const formData = new FormData();
     formData.append("file", file);
-
+    console.log(file)
     try {
       const response = await axios.post(
         "http://localhost:8080/usuarios/importacao",
@@ -122,19 +123,22 @@ export const putEmployeeContext = async (
 };
 
 export const putEstablishmentContext = async (data: any) => {
-  const formDataBanner = new FormData();
-  formDataBanner.append("arquivo", data.img_banner[0]);
-  const formDataPerfil = new FormData();
-  formDataPerfil.append("arquivo", data.img_foto[0]);
-  const img_banner = await empresaService.postArquivo(formDataBanner);
-  const img_perfil = await empresaService.postArquivo(formDataPerfil);
+  
+  
+  console
+  if(data.img_banner[0] != null){
+    const formDataBanner = new FormData();
+    formDataBanner.append("arquivo", data.img_banner[0]);
+    const img_banner = await empresaService.postArquivo(formDataBanner);
+    await empresaService.putVincularEmpresaArquivo(img_banner.idArquivo);
+  }
 
-  await empresaService.putVincularEmpresaArquivo(img_banner.id);
-  const response = await empresaService.putVincularEmpresaArquivo(
-    img_perfil.id
-  );
-
-  console.log(response);
+  if(data.img_foto[0] != null){
+    const formDataPerfil = new FormData();
+    formDataPerfil.append("arquivo", data.img_foto[0]);
+    const img_perfil = await empresaService.postArquivo(formDataPerfil);
+    await empresaService.putVincularEmpresaArquivo(img_perfil.idArquivo);
+  }
 };
 
 export const getListEmployees = async () => {
