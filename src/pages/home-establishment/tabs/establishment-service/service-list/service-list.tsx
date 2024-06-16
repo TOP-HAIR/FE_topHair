@@ -92,7 +92,7 @@ export default function ServiceList() {
       <Card className="m-5 p-6 h-full">
         <div className="flex justify-between flex-wrap">
           <h2 className="text-2xl font-bold">Serviços do Estabelecimento</h2>
-          <div className="flex flex-wrap gap-4 md:px-6 sm:px-6">
+          <div className="flex flex-wrap gap-4">
             <Button
               className="border-lime-700 color-primary-cyan"
               variant="outlined"

@@ -12,7 +12,3 @@ if (objetoString !== null) {
 export const getAgendamentos = async () => {
   return await agendaServices.getAgendamentos();
 };
-
-export const getAgendaRelatoriosContext = async () => {
-  return await agendaServices.getAgendaRelatorios();
-};

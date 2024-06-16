@@ -1,8 +1,8 @@
 export const enviromentsLocal = {
   production: false,
-  url: "http://34.237.189.174/api/",
+  url: "http://localhost:3000/",
   api: {
     TOKEN_API_TEST: "",
-    URLBASE_API: "https://tophair.zapto.org/api/",
+    URLBASE_API: "http://100.27.119.11:8080/api/",
   },
 };

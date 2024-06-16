@@ -72,9 +72,22 @@ export interface MetricaEmpresa {
   qtdAgendaQuinta: number;
   qtdAgendaSexta: number;
   qtdAgendaSabado: number;
+  rendimentoDomingo: number;
+  rendimentoSegunda: number;
+  rendimentoTerca: number;
+  rendimentoQuarta: number;
+  rendimentoQuinta: number;
+  rendimentoSexta: number;
+  rendimentoSabado: number;
+  topServicoPrimeiro: string;
+  topServicoSegundo: string;
+  topServicoTerceiro: string;
+  topServicoQuarto: string;
+  topServicoQuinto: string;
 }
 
 export interface DadoChart {
   semana: string;
   total: number;
+  rendimento: number;
 }
