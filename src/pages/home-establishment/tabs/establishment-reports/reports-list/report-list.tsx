@@ -41,13 +41,6 @@ export default function ReportList() {
     },
   });
 
-  const handleFilterClick = () => {
-    setIsFormSubmitted(false);
-    setTimeout(() => {
-      setIsFormSubmitted(true);
-    }, 0);
-  };
-
   const onSubmit: SubmitHandler<IFormInputs> = (data, event) => {
     if (event) {
       event.preventDefault();
@@ -60,8 +53,7 @@ export default function ReportList() {
     };
     setFormData(formattedData);
 
-    handleFilterClick();
-    if (IsFormSubmitted) {
+    if (isFormSubmitted) {
       setIsFormSubmitted(false);
     }
     setIsFormSubmitted(true);
