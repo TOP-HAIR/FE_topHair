@@ -1,7 +1,8 @@
 export interface AgendamentosData {
-  id: number;
+  idAgenda: number;
+  idUsuario: number;
   nomeUsuario: string;
-  data: string;
-  hora: string;
-  status: string;
+  start: string;
+  end: string;
+  title: string;
 }

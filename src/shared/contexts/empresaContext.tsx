@@ -2,7 +2,6 @@ import Swal from "sweetalert2";
 import { EmpresaService } from "../services/empresaService";
 import axios from "axios";
 import { EmployeeCadastro } from "../entity/empresaEntity";
-import { C } from "node_modules/@fullcalendar/core/internal-common";
 
 const empresaService = new EmpresaService();
 
@@ -187,13 +186,20 @@ export const getListarEmpresaRelatorioContext = async (
   dataInicio: string = "",
   dateFim: string = ""
 ) => {
-  const res = await empresaService.getListarEmpresaRelatorio(
-    dataInicio,
-    dateFim
-  );
-  if (res == undefined || res.data.length == 0) {
-    return;
+  const objetoString = sessionStorage.getItem("dataEmpresa");
+  if (objetoString !== null) {
+    const objeto = JSON.parse(objetoString);
+    const idEmpresa = objeto.idEmpresa;
+
+    const res = await empresaService.getListarEmpresaRelatorio(
+      dataInicio,
+      dateFim,
+      idEmpresa
+    );
+    if (res == undefined || res.data.length == 0) {
+      return;
+    }
+    console.log(res.data);
+    return res.data;
   }
-  console.log(res.data);
-  return res.data;
 };

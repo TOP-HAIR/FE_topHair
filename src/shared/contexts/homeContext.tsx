@@ -10,7 +10,12 @@ if (objetoString !== null) {
 
 export const homeTableContext = async () => {
   try {
-    return await homeService.getUltimosAgendamentos();
+    const objetoString = sessionStorage.getItem("dataEmpresa");
+    if (objetoString != null) {
+      const objeto = JSON.parse(objetoString);
+      const idEmpresa = objeto.idEmpresa;
+      return await homeService.getUltimosAgendamentos(idEmpresa);
+    }
   } catch (error) {
     return error;
   }

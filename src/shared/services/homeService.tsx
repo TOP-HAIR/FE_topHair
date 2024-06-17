@@ -9,8 +9,8 @@ export class HomeService extends AuthService {
     this.agendasUrl = "/agendas";
   }
 
-  async getUltimosAgendamentos() {
+  async getUltimosAgendamentos(idEmpresa: string) {
     const url = this.agendasUrl;
-    return await send("GET", url + `/ultimos-agendamentos/${this.idEmpresa}`);
+    return await send("GET", url + `/ultimos-agendamentos/${idEmpresa}`);
   }
 }

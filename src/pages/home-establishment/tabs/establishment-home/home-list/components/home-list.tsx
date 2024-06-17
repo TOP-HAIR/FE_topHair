@@ -10,6 +10,7 @@ import LoaderResponse from "../../../../../../components/loaderResponse";
 import { homeTableContext } from "../../../../../../shared/contexts/homeContext";
 import { AgendamentosData } from "../../../../../../shared/entity/homeEntity";
 import NoContentComponent from "../../../../../../components/noContent";
+import moment from "moment";
 
 export default function HomeList() {
   const [loadResponse, setloadResponse] = useState(false);
@@ -52,6 +53,7 @@ export default function HomeList() {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
                     <TableRow className="font-bold">
+                      <TableCell align="center">idAgenda</TableCell>
                       <TableCell align="center">Nome</TableCell>
                       <TableCell align="center">Data Marcada</TableCell>
                       <TableCell align="center">Horário</TableCell>
@@ -63,20 +65,25 @@ export default function HomeList() {
                       ?.filter((servico) => servico != null)
                       .map((servico) => (
                         <TableRow
-                          key={servico?.id}
+                          key={servico?.idAgenda}
                           sx={{
                             "&:last-child td, &:last-child th": { border: 0 },
                             marginBottom: 100,
                           }}
                         >
                           <TableCell align="center" component="th" scope="row">
+                            {servico?.idUsuario}
+                          </TableCell>
+                          <TableCell align="center" component="th" scope="row">
                             {servico?.nomeUsuario}
                           </TableCell>
-                          <TableCell align="center">{servico?.data}</TableCell>
-                          <TableCell align="center">{servico?.hora}</TableCell>
                           <TableCell align="center">
-                            {servico?.status}
+                            {moment(servico?.start).format("DD/MM/YYYY")}
                           </TableCell>
+                          <TableCell align="center">
+                            {moment(servico?.end).format("DD/MM/YYYY")}
+                          </TableCell>
+                          <TableCell align="center">{servico?.title}</TableCell>
                         </TableRow>
                       ))}
                   </TableBody>
