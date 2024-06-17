@@ -45,13 +45,16 @@ export class EmpresaService extends AuthService {
     return await send("GET", url + `/${id}`);
   }
 
-  async getListarEmpresaRelatorio(dataInicio: string, dataFim: string) {
+  async getListarEmpresaRelatorio(
+    dataInicio: string,
+    dataFim: string,
+    idEmpresa: string
+  ) {
     const url = this.empresaUrl;
-    console.log(this.idEmpresa);
+
     return await send(
       "GET",
-      url +
-        `/metricas/${this.idEmpresa}?dataInicio=${dataInicio}&dataFim=${dataFim}`
+      url + `/metricas/${idEmpresa}?dataInicio=${dataInicio}&dataFim=${dataFim}`
     );
   }
 

@@ -6,7 +6,6 @@ import {
 } from "../../../../../shared/entity/empresaEntity";
 import { Card } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import NoContentComponent from "../../../../../components/noContent";
 import { BarChart } from "@mui/x-charts";
 
@@ -190,7 +189,7 @@ export default function ReportDashboard({ dataInicio, dataFim }) {
             <Card className="m-5">
               <h2 className="m-6 text-2xl font-bold">Faturamento Semanal</h2>
               <div className="m-6 h-full">
-                {dadosChart && dadosChart.length > 0 ? (
+                {dadosChart != null ? (
                   <BarChart
                     dataset={dataset}
                     xAxis={[

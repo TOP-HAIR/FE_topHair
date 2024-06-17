@@ -52,6 +52,7 @@ export default function ReportList() {
       dataFim: data.dataFim ? dayjs(data.dataFim).format("YYYY-MM-DD") : null,
     };
     setFormData(formattedData);
+    console.log(formattedData);
 
     if (isFormSubmitted) {
       setIsFormSubmitted(false);
