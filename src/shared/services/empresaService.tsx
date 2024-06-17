@@ -91,7 +91,7 @@ export class EmpresaService extends AuthService {
     return await send("POST", url + "/cadastrar", data);
   }
 
-  async putVincularEmpresaEndereco(idEmpresa: number, idEndereco: number) {
+  async putVincularEmpresaEndereco(idEmpresa: number, idEndereco: string) {
     const url = this.empresaUrl;
     return await send(
       "PUT",
@@ -103,12 +103,12 @@ export class EmpresaService extends AuthService {
     return await send("POST", `/arquivos/upload`, data);
   }
 
-  async putVincularEmpresaArquivo(idArquivo: number) {
+  async putVincularEmpresaArquivo(idArquivo: number, idEmpresa: string) {
     console.log(idArquivo);
     console.log(this.idEmpresa);
     return await send(
       "PUT",
-      `/arquivos/vincular-empresa/${idArquivo}/${this.idEmpresa}`
+      `/arquivos/vincular-empresa/${idArquivo}/${idEmpresa}`
     );
   }
 }

@@ -93,7 +93,7 @@ export default function ServiceList() {
         <div className="flex justify-between flex-wrap">
           <h2 className="text-2xl font-bold">Serviços do Estabelecimento</h2>
           <div className="flex flex-wrap gap-4">
-            <Button
+            {/* <Button
               className="border-lime-700 color-primary-cyan"
               variant="outlined"
               onClick={() => {
@@ -101,7 +101,7 @@ export default function ServiceList() {
               }}
             >
               <BallotOutlinedIcon /> Exportar .csv
-            </Button>
+            </Button> */}
             <Link to="/establishment/service/edit">
               <Button className="bg-terciary-light-green" variant="contained">
                 + Adicionar Serviço

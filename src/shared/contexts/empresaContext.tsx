@@ -51,7 +51,7 @@ export const postImportarEmployeesContext = async () => {
   if (file) {
     const formData = new FormData();
     formData.append("file", file);
-    console.log(file)
+    console.log(file);
     try {
       const response = await axios.post(
         "http://localhost:8080/usuarios/importacao",
@@ -123,21 +123,28 @@ export const putEmployeeContext = async (
 };
 
 export const putEstablishmentContext = async (data: any) => {
-  
-  
-  console
-  if(data.img_banner[0] != null){
-    const formDataBanner = new FormData();
-    formDataBanner.append("arquivo", data.img_banner[0]);
-    const img_banner = await empresaService.postArquivo(formDataBanner);
-    await empresaService.putVincularEmpresaArquivo(img_banner.idArquivo);
-  }
+  const objetoString = sessionStorage.getItem("dataEmpresa");
+  if (objetoString != null) {
+    const objeto = JSON.parse(objetoString);
+    if (data.img_banner[0] != null) {
+      const formDataBanner = new FormData();
+      formDataBanner.append("arquivo", data.img_banner[0]);
+      const img_banner = await empresaService.postArquivo(formDataBanner);
+      await empresaService.putVincularEmpresaArquivo(
+        img_banner.idArquivo,
+        objeto.idEmpresa
+      );
+    }
 
-  if(data.img_foto[0] != null){
-    const formDataPerfil = new FormData();
-    formDataPerfil.append("arquivo", data.img_foto[0]);
-    const img_perfil = await empresaService.postArquivo(formDataPerfil);
-    await empresaService.putVincularEmpresaArquivo(img_perfil.idArquivo);
+    if (data.img_foto[0] != null) {
+      const formDataPerfil = new FormData();
+      formDataPerfil.append("arquivo", data.img_foto[0]);
+      const img_perfil = await empresaService.postArquivo(formDataPerfil);
+      await empresaService.putVincularEmpresaArquivo(
+        img_perfil.idArquivo,
+        objeto.idEmpresa
+      );
+    }
   }
 };
 
