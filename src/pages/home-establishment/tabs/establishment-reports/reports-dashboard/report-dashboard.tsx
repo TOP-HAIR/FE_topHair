@@ -70,7 +70,7 @@ export default function ReportDashboard({ dataInicio, dataFim }) {
       setloadResponse(false);
       const res = await getListarEmpresaRelatorioContext(dataInicio, dataFim);
 
-      if (res == undefined || res.data.length == 0) {
+      if (res == undefined || res == null) {
         setResLenghtValid(true);
       } else {
         const dadosChart = transformarDadosRelatorio(res as MetricaEmpresa);
