@@ -63,10 +63,10 @@ export class EmpresaService extends AuthService {
     return await send("GET", url + `/exportar-txt/${this.idEmpresa}`);
   }
 
-  async getEployeesEmpresa() {
+  async getEployeesEmpresa(idEmpresa: number) {
     const url = this.authUrl;
     console.log(this.idEmpresa);
-    return await send("GET", url + `/empresa/${this.idEmpresa}`);
+    return await send("GET", url + `/empresa/${idEmpresa}`);
   }
 
   async deleteEployeeEmpresa(idUser: number) {

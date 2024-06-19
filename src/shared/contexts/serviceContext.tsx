@@ -15,7 +15,9 @@ export const getServiceContext = async () => {
 };
 
 export const postServiceEstablishmentContext = async (obj: any) => {
+  console.log(obj);
   const res = await apiService.postService(obj);
+  console.log(res);
   await apiService.getVincularService(res.idServico);
   return await apiService.getListaService();
 };
