@@ -148,7 +148,13 @@ export const putEstablishmentContext = async (data: any) => {
 };
 
 export const getListEmployees = async () => {
-  const res = await empresaService.getEployeesEmpresa();
+  const objetoString = sessionStorage.getItem("dataEmpresa");
+  if (objetoString == null) return null;
+
+  const objeto = JSON.parse(objetoString);
+  const idEmpresa = objeto.idEmpresa;
+
+  const res = await empresaService.getEployeesEmpresa(idEmpresa);
   if (res == undefined || res.data.length == 0) {
     return;
   }

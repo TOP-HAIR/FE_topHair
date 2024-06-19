@@ -57,7 +57,11 @@ export default function EditPageService() {
 
   const onSubmit: SubmitHandler<DataService> = async (data: DataService) => {
     let tempoServico = data.qtdTempoServico;
-    if (idServico == undefined && idServico == null) {
+    if (
+      idServico == undefined &&
+      idServico == null &&
+      data.qtdTempoServico.length == 5
+    ) {
       tempoServico += ":00";
     }
     const stringValue = String(data.preco);
@@ -79,7 +83,6 @@ export default function EditPageService() {
 
         Swal.fire("Sucess", "Sucesso ao criar o serviço.", "success");
         navigateToPage(navigate, -1);
-        console.log(response);
       } catch (error) {
         console.error("Erro ao criar o serviço:", error);
         Swal.fire("Erro", "Erro ao criar o serviço.", "error");
